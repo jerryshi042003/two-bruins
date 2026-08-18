@@ -722,3 +722,68 @@ function usageGap(sel, rows) {
   svg.append("text").attr("x", axL + 210).attr("y", ly + 5).attr("font-size", 13).attr("fill", "#52514e")
     .text("how often he wins when he does");
 }
+
+/* ================================================================== *
+ * K. SEPARATION STRIP — one dot per match, coloured by result, with
+ *    the threshold that best splits them. Shows the misses too, so
+ *    the reader can judge how clean the split really is.
+ * ================================================================== */
+function separation(sel, cfg) {
+  const W = 1000, H = 262, m = { t: 96, b: 70, l: 40, r: 40 };
+  const svg = d3.select(sel).html("").attr("viewBox", `0 0 ${W} ${H}`)
+    .attr("preserveAspectRatio", "xMidYMid meet").attr("class", "chart");
+  svg.append("rect").attr("width", "100%").attr("height", "100%").attr("fill", "#fcfcfb");
+  const WIN = "#2a78d6", LOSS = "#d03b3b";
+  const x = d3.scaleLinear().domain([0, 1]).range([m.l + 20, W - m.r - 20]);
+
+  svg.append("text").attr("x", m.l - 24).attr("y", 34).attr("font-size", 19)
+    .attr("font-weight", 700).attr("fill", "#0b0b0b").text(cfg.title);
+  svg.append("text").attr("x", m.l - 24).attr("y", 58).attr("font-size", 14)
+    .attr("fill", "#52514e").text(cfg.sub);
+
+  // axis
+  svg.append("line").attr("x1", x(0)).attr("x2", x(1)).attr("y1", H - m.b).attr("y2", H - m.b)
+    .attr("stroke", "#dedcd6").attr("stroke-width", 2);
+  [0, .25, .5, .75, 1].forEach((t) => {
+    svg.append("text").attr("x", x(t)).attr("y", H - m.b + 26).attr("text-anchor", "middle")
+      .attr("font-size", 13).attr("fill", "#8d8b85").text(Math.round(t * 100) + "%");
+  });
+
+  // threshold
+  if (cfg.threshold != null) {
+    svg.append("line").attr("x1", x(cfg.threshold)).attr("x2", x(cfg.threshold))
+      .attr("y1", 106).attr("y2", H - m.b + 6)
+      .attr("stroke", "#0b0b0b").attr("stroke-width", 2).attr("stroke-dasharray", "6,5");
+    svg.append("text").attr("x", x(cfg.threshold)).attr("y", 98).attr("text-anchor", "middle")
+      .attr("font-size", 13).attr("font-weight", 700).attr("fill", "#0b0b0b")
+      .text(Math.round(cfg.threshold * 100) + "%");
+  }
+
+  // dodge overlapping dots into rows
+  const sorted = cfg.rows.slice().sort((a, b) => a.v - b.v);
+  const placed = [];
+  sorted.forEach((r) => {
+    let row = 0;
+    while (placed.some((p) => p.row === row && Math.abs(x(p.v) - x(r.v)) < 19)) row++;
+    placed.push({ ...r, row });
+  });
+  const baseY = H - m.b - 26;
+  placed.forEach((r) => {
+    const cy = baseY - r.row * 26;
+    const col = r.res === "W" ? WIN : LOSS;
+    svg.append("circle").attr("cx", x(r.v)).attr("cy", cy).attr("r", 9)
+      .attr("fill", r.res === "W" ? col : "#fcfcfb")
+      .attr("stroke", col).attr("stroke-width", r.res === "W" ? 2 : 3)
+      .append("title").text(`${r.label} vs ${r.opp}: ${Math.round(r.v * 100)}% (${r.res === "W" ? "won" : "lost"})`);
+  });
+
+  // legend
+  svg.append("circle").attr("cx", x(0) + 6).attr("cy", 78).attr("r", 8)
+    .attr("fill", WIN).attr("stroke", WIN).attr("stroke-width", 2);
+  svg.append("text").attr("x", x(0) + 20).attr("y", 83).attr("font-size", 13)
+    .attr("fill", "#52514e").text("match won");
+  svg.append("circle").attr("cx", x(0) + 126).attr("cy", 78).attr("r", 8)
+    .attr("fill", "#fcfcfb").attr("stroke", LOSS).attr("stroke-width", 3);
+  svg.append("text").attr("x", x(0) + 140).attr("y", 83).attr("font-size", 13)
+    .attr("fill", "#52514e").text("match lost");
+}

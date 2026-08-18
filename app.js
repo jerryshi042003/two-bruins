@@ -92,6 +92,12 @@ d3.json("data.json").then((data) => {
   const sp = data.spencer, ru = data.rudy;
 
   /* ---- cross-cutting hero ---- */
+  slot("#hero-split", [
+    { name: "Serve+1 forehand share, by match", dark: false, render: (el) => separation(el, {
+        title: "How often the ball after his serve was a forehand",
+        sub: "One dot per completed match, 2026 season",
+        threshold: ru.plus1Split.threshold, rows: ru.plus1Split.rows }) },
+  ]);
   slot("#hero-net", [
     { name: "Net usage gap", dark: false, render: (el) => usageGap(el, [
         { name: "Spencer Johnson", sub: "197 net points across 11 tracked matches",

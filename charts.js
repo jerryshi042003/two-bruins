@@ -598,7 +598,7 @@ function seasonStrip(sel, rows, accent, highlightLabel) {
 
   svg.append("text").attr("x", 8).attr("y", 30).attr("font-size", 18)
     .attr("font-weight", 700).attr("fill", "#222")
-    .text(`Every tracked match this season — ${highlightLabel} highlighted`);
+    .text(`Every tracked match this season. ${highlightLabel} in color.`);
   svg.append("text").attr("x", W - 8).attr("y", 30).attr("text-anchor", "end")
     .attr("font-size", 13).attr("fill", "#999").text("| median");
 

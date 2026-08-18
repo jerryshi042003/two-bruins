@@ -93,7 +93,7 @@ d3.json("data.json").then((data) => {
 
   /* ---- Spencer ---- */
   slot("#sp-flow", [
-    { name: "Match flow", dark: false, render: (el) => flowChart(el, sp, "#2d68c4", "Point margin — Johnson vs Djuric") },
+    { name: "Match flow", dark: false, render: (el) => flowChart(el, sp, "#2d68c4", "Point margin: Johnson vs Djuric") },
     { name: "How points ended", dark: false, render: (el) => endedBars(el, sp, "#2d68c4") },
   ]);
   slot("#sp-rally", [
@@ -127,7 +127,7 @@ d3.json("data.json").then((data) => {
     { name: "How points ended", dark: false, render: (el) => endedBars(el, ru, "#f2a900") },
   ]);
   slot("#ru-flow", [
-    { name: "Match flow", dark: false, render: (el) => flowChart(el, ru, "#f2a900", "Point margin — Quan vs Trouve") },
+    { name: "Match flow", dark: false, render: (el) => flowChart(el, ru, "#f2a900", "Point margin: Quan vs Trouve") },
   ]);
   slot("#ru-rally", [
     { name: "Rally length bars", dark: false, render: (el) => rallyBars(el, ru, "#f2a900") },

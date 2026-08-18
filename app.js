@@ -7,7 +7,7 @@ const VIDEO = {
   rudy: null,
 };
 
-let THEME = "classic";
+const THEME = "classic";
 const REGISTRY = [];
 
 const mmss = (s) => {
@@ -28,6 +28,7 @@ function slot(hostSel, options) {
   const entry = { host, options, active: 0, svg };
   REGISTRY.push(entry);
 
+  if (options.length < 2) tabs.style.display = "none";
   options.forEach((o, i) => {
     const b = document.createElement("button");
     b.className = "vizTab" + (i === 0 ? " on" : "");
@@ -90,70 +91,59 @@ function renderClips(sel, p, key) {
 d3.json("data.json").then((data) => {
   const sp = data.spencer, ru = data.rudy;
 
-  const courtOptions = (p, extra) => ([
-    { name: "Court map — BTC classic", render: (el, th) => extra.court(el, th || "classic") },
-    { name: "Court map — light", render: (el) => extra.court(el, "light") },
-  ]);
-
   /* ---- Spencer ---- */
+  slot("#sp-flow", [
+    { name: "Match flow", dark: false, render: (el) => flowChart(el, sp, "#2d68c4", "Point margin — Johnson vs Djuric") },
+    { name: "How points ended", dark: false, render: (el) => endedBars(el, sp, "#2d68c4") },
+  ]);
   slot("#sp-rally", [
     { name: "Rally length bars", dark: false, render: (el) => rallyBars(el, sp, "#2d68c4") },
     { name: "Head-to-head summary", dark: false, render: (el) => h2hStats(el, sp) },
   ]);
 
   slot("#sp-serve", [
-    { name: "Serve placement — classic", render: (el) => serveCourt(el, sp, THEME) },
-    { name: "Serve placement — light", render: (el) => serveCourt(el, sp, "light"), dark: false },
+    { name: "Serve placement", render: (el) => serveCourt(el, sp, THEME) },
+    { name: "Light", render: (el) => serveCourt(el, sp, "light"), dark: false },
   ]);
 
   slot("#sp-shots", [
-    { name: "Where the misses came from", render: (el) => errorCourt(el, sp, THEME) },
-    { name: "Forehand landing spots", render: (el) => placementCourt(el, sp, THEME, { id: "spf", filter: (d) => d.wing === "F", title: "Forehand Placement" }) },
-    { name: "Backhand landing spots", render: (el) => placementCourt(el, sp, THEME, { id: "spb", filter: (d) => d.wing === "B", title: "Backhand Placement" }) },
-    { name: "Point-enders only", render: (el) => placementCourt(el, sp, THEME, { id: "spl", filter: (d) => d.last, title: "Point-Ending Shots" }) },
-    { name: "Forehand misses", render: (el) => errorCourt(el, sp, THEME, { filter: (d) => d.wing === "F", title: "Forehand Misses" }) },
+    { name: "Miss map", render: (el) => errorCourt(el, sp, THEME) },
+    { name: "FH landing spots", render: (el) => placementCourt(el, sp, THEME, { id: "spf", filter: (d) => d.wing === "F", title: "Forehand Placement" }) },
+    { name: "Point-enders", render: (el) => placementCourt(el, sp, THEME, { id: "spl", filter: (d) => d.last, title: "Point-Ending Shots" }) },
   ]);
 
   slot("#sp-return", [
     { name: "Return contact depth", render: (el) => returnCourt(el, sp, THEME) },
-    { name: "Light", render: (el) => returnCourt(el, sp, "light"), dark: false },
   ]);
 
   renderClips("#sp-clips", sp, "spencer");
 
   /* ---- Rudy ---- */
+  slot("#ru-ended", [
+    { name: "How points ended", dark: false, render: (el) => endedBars(el, ru, "#f2a900") },
+  ]);
+  slot("#ru-flow", [
+    { name: "Match flow", dark: false, render: (el) => flowChart(el, ru, "#f2a900", "Point margin — Quan vs Trouve") },
+  ]);
   slot("#ru-rally", [
     { name: "Rally length bars", dark: false, render: (el) => rallyBars(el, ru, "#f2a900") },
     { name: "Head-to-head summary", dark: false, render: (el) => h2hStats(el, ru) },
   ]);
 
   slot("#ru-serve", [
-    { name: "Serve placement — classic", render: (el) => serveCourt(el, ru, THEME) },
-    { name: "Serve placement — light", render: (el) => serveCourt(el, ru, "light"), dark: false },
+    { name: "Serve placement", render: (el) => serveCourt(el, ru, THEME) },
+    { name: "Light", render: (el) => serveCourt(el, ru, "light"), dark: false },
   ]);
 
   slot("#ru-shots", [
-    { name: "Where the misses came from", render: (el) => errorCourt(el, ru, THEME) },
-    { name: "Forehand landing spots", render: (el) => placementCourt(el, ru, THEME, { id: "ruf", filter: (d) => d.wing === "F", title: "Forehand Placement" }) },
-    { name: "Backhand landing spots", render: (el) => placementCourt(el, ru, THEME, { id: "rub", filter: (d) => d.wing === "B", title: "Backhand Placement" }) },
-    { name: "Point-enders only", render: (el) => placementCourt(el, ru, THEME, { id: "rul", filter: (d) => d.last, title: "Point-Ending Shots" }) },
-    { name: "Forehand misses", render: (el) => errorCourt(el, ru, THEME, { filter: (d) => d.wing === "F", title: "Forehand Misses" }) },
+    { name: "Miss map", render: (el) => errorCourt(el, ru, THEME) },
+    { name: "FH landing spots", render: (el) => placementCourt(el, ru, THEME, { id: "ruf", filter: (d) => d.wing === "F", title: "Forehand Placement" }) },
+    { name: "Point-enders", render: (el) => placementCourt(el, ru, THEME, { id: "rul", filter: (d) => d.last, title: "Point-Ending Shots" }) },
   ]);
 
   slot("#ru-return", [
     { name: "Return contact depth", render: (el) => returnCourt(el, ru, THEME) },
-    { name: "Light", render: (el) => returnCourt(el, ru, "light"), dark: false },
   ]);
 
   renderClips("#ru-clips", ru, "rudy");
-
-  /* ---- global theme switch ---- */
-  document.querySelectorAll("[data-theme]").forEach((btn) => {
-    btn.onclick = () => {
-      THEME = btn.dataset.theme;
-      document.querySelectorAll("[data-theme]").forEach((b) =>
-        b.classList.toggle("on", b === btn));
-      redrawAll();
-    };
-  });
 }).catch((e) => console.error("data.json failed to load", e));

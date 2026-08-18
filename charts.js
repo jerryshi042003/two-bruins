@@ -309,14 +309,17 @@ function placementCourt(sel, p, theme, opts) {
 }
 
 /* ================================================================== *
- * C2. NET / LONG ERRORS — contact point of every miss     (BTC net-errors)
+ * C2. MISS MAP — contact point of every groundstroke miss, on the
+ *    hitter's half.  Colour = how it missed; shape = wing.  (BTC net-errors)
  * ================================================================== */
 function errorCourt(sel, p, theme, opts) {
   opts = opts || {};
-  const { svg, t } = svgBase(sel, theme, `0 0 ${BTC.W} 760`);
+  const { svg, t } = svgBase(sel, theme, `0 0 ${BTC.W} 690`);
   const x = d3.scaleLinear().domain([-350, 350]).range([0, BTC.W]);
-  const y = d3.scaleLinear().domain([-640, 120]).range([640, 60]);
+  const y = d3.scaleLinear().domain([-620, 60], ).range([600, 56]);
+  const NETC = "#e64848", OUTC = "#f2a900";
 
+  // hitter's half: net at top, baseline at -455
   svg.append("rect").attr("x", x(-210)).attr("y", y(25))
     .attr("width", x(210) - x(-210)).attr("height", y(-455) - y(25)).attr("fill", t.court);
   [{ x1: 210, y1: 25, x2: 210, y2: -455 }, { x1: -210, y1: 25, x2: -210, y2: -455 },
@@ -328,49 +331,54 @@ function errorCourt(sel, p, theme, opts) {
       .attr("x2", x(d.x2)).attr("y2", y(d.y2))
       .attr("stroke", "#fff").attr("stroke-width", d.width || 4);
   });
+  svg.append("text").attr("x", x(250)).attr("y", y(0) + 5).attr("text-anchor", "start")
+    .attr("fill", t.text).attr("font-size", 15).attr("font-weight", 700).text("NET");
+  svg.append("text").attr("x", x(250)).attr("y", y(-455) + 5).attr("text-anchor", "start")
+    .attr("fill", t.text).attr("font-size", 13).attr("opacity", .85).text("BASELINE");
 
-  svg.append("defs").append("marker").attr("id", "arwE")
-    .attr("viewBox", "0 0 10 10").attr("refX", 7).attr("refY", 5)
-    .attr("markerWidth", 4).attr("markerHeight", 4).attr("orient", "auto")
-    .append("path").attr("d", "M 0 0 L 10 5 L 0 10 Z").attr("fill", "#111");
-
-  // contact point of every ball that did not land in, mirrored onto the hitter's half
   let miss = p.ground.filter((d) => d.res !== "i");
   if (opts.filter) miss = miss.filter(opts.filter);
   const g = svg.append("g");
   miss.forEach((d) => {
-    const px = x(d.x), py = y(Math.max(-635, Math.min(115, d.y)));
-    if (d.bx !== null) {
-      const dx = d.bx - d.x, dy = (d.by - d.y), L = Math.hypot(dx, dy) || 1;
-      g.append("line").attr("x1", px).attr("y1", py)
-        .attr("x2", px + (dx / L) * 46).attr("y2", py - (dy / L) * 46)
-        .attr("stroke", "#111").attr("stroke-width", 1.8).attr("opacity", .7)
-        .attr("marker-end", "url(#arwE)");
-    }
-    const col = d.res === "n" ? "#d1372f" : "#f2a900";
+    const px = x(d.x), py = y(Math.max(-615, Math.min(50, d.y)));
+    const col = d.res === "n" ? NETC : OUTC;
     const node = d.wing === "B"
-      ? g.append("polygon").attr("points", `${px},${py - 7} ${px - 6.5},${py + 5.5} ${px + 6.5},${py + 5.5}`)
-      : g.append("circle").attr("cx", px).attr("cy", py).attr("r", 6.2);
-    node.attr("fill", col).attr("stroke", "#000").attr("stroke-width", 0.8)
-      .append("title").text(`${d.wing === "F" ? "Forehand" : "Backhand"} · ${d.res === "n" ? "into the net" : "long or wide"}`);
+      ? g.append("polygon").attr("points", `${px},${py - 7.5} ${px - 7},${py + 6} ${px + 7},${py + 6}`)
+      : g.append("circle").attr("cx", px).attr("cy", py).attr("r", 6.6);
+    node.attr("fill", col).attr("stroke", "#000").attr("stroke-width", 0.9)
+      .append("title").text(`${d.wing === "F" ? "Forehand" : "Backhand"} · ` +
+        `${d.res === "n" ? "into the net" : "long or wide"}${d.mph ? " · " + Math.round(d.mph) + " mph" : ""}`);
   });
 
-  const nNet = miss.filter((d) => d.res === "n").length;
-  const nOut = miss.filter((d) => d.res === "o").length;
-  [["Into the net", nNet, "#d1372f", -105], ["Long or wide", nOut, "#f2a900", 105]].forEach(([l, n, c, xx]) => {
-    svg.append("rect").attr("x", x(xx) - 78).attr("y", y(60) - 15).attr("width", 156)
-      .attr("height", 30).attr("rx", 15).attr("fill", c).attr("stroke", "#fff");
-    svg.append("text").attr("x", x(xx)).attr("y", y(60) + 6).attr("text-anchor", "middle")
-      .attr("fill", "#fff").attr("font-weight", 700).attr("font-size", 16).text(`${l}: ${n}`);
+  // per-wing miss profile — the actionable split
+  const wings = [["F", "Forehand", -105], ["B", "Backhand", 105]];
+  wings.forEach(([w, label, xx]) => {
+    const m = miss.filter((d) => d.wing === w);
+    if (!m.length) return;
+    const net = m.filter((d) => d.res === "n").length;
+    const gx = x(xx);
+    svg.append("text").attr("x", gx).attr("y", y(-105)).attr("text-anchor", "middle")
+      .attr("fill", "#fff").attr("font-size", 19).attr("font-weight", 700)
+      .text(`${label}: ${m.length} misses`);
+    svg.append("text").attr("x", gx).attr("y", y(-150)).attr("text-anchor", "middle")
+      .attr("fill", "#fff").attr("font-size", 16).attr("opacity", .95)
+      .text(`${net} net · ${m.length - net} long/wide`);
   });
 
-  legendBox(svg, x(0), y(-150), [
-    { label: "FH", color: "#d1372f" }, { label: "BH", color: "#d1372f", shape: "tri" },
-    { label: "Net", color: "#d1372f" }, { label: "Long / wide", color: "#f2a900" },
-  ], t, 430);
-  svg.append("text").attr("x", x(0)).attr("y", 735).attr("text-anchor", "middle")
+  // legend: colour = miss type, shape = wing (kept as separate channels)
+  const ly = 30;
+  const items = [
+    { label: "Net", color: NETC }, { label: "Long / wide", color: OUTC },
+    { label: "FH", color: "#cfcfcf" }, { label: "BH", color: "#cfcfcf", shape: "tri" },
+  ];
+  legendBox(svg, x(0), ly, items, t, 480);
+
+  svg.append("text").attr("x", x(0)).attr("y", 668).attr("text-anchor", "middle")
     .attr("fill", t.text).attr("font-size", 26).attr("font-weight", 700)
     .text(opts.title || "Where the Misses Came From");
+  svg.append("text").attr("x", x(0)).attr("y", 638).attr("text-anchor", "middle")
+    .attr("fill", t.text).attr("font-size", 15).attr("opacity", .85)
+    .text("Contact point of every groundstroke that missed");
 }
 
 /* ================================================================== *
@@ -380,7 +388,7 @@ function h2hStats(sel, p) {
   const me = p.me, opp = p.oppName, S = p.h2h;
   const A = S[me], B = S[opp];
   const rows = [
-    { label: "Aces", a: A.aces, b: B.aces, raw: true },
+    { label: "Untouched Serves", a: A.aces, b: B.aces, raw: true },
     { label: "Double Faults", a: A.df, b: B.df, raw: true, lowGood: true },
     { label: "1st Serve In", a: A.firstIn, b: B.firstIn },
     { label: "Service Points Won", a: A.svcPts, b: B.svcPts },
@@ -482,4 +490,97 @@ function rallyBars(sel, p, accent) {
     .text((d) => d.n + " pts");
   svg.append("line").attr("x1", m.l - 10).attr("x2", W - m.r)
     .attr("y1", H - m.b).attr("y2", H - m.b).attr("stroke", "#222").attr("stroke-width", 2);
+}
+
+/* ================================================================== *
+ * F. MATCH FLOW — running point margin, break points flagged.
+ *    Derived from the point log; SwingVision's UI has no equivalent.
+ * ================================================================== */
+function flowChart(sel, p, accent, label) {
+  const flow = p.pressure.flow;
+  const W = 1000, H = 340, m = { t: 64, r: 26, b: 44, l: 56 };
+  const svg = d3.select(sel).html("").attr("viewBox", `0 0 ${W} ${H}`)
+    .attr("preserveAspectRatio", "xMidYMid meet").attr("class", "chart");
+  svg.append("rect").attr("width", "100%").attr("height", "100%").attr("fill", "#fff");
+
+  const x = d3.scaleLinear().domain([0, flow.length - 1]).range([m.l, W - m.r]);
+  const ext = d3.max(flow, (d) => Math.abs(d.d)) + 1;
+  const y = d3.scaleLinear().domain([-ext, ext]).range([H - m.b, m.t]);
+
+  // set boundaries
+  const setStarts = [];
+  flow.forEach((d, i) => { if (i === 0 || d.s !== flow[i - 1].s) setStarts.push({ i, s: d.s }); });
+  setStarts.forEach(({ i, s }, k) => {
+    if (k > 0) svg.append("line").attr("x1", x(i)).attr("x2", x(i)).attr("y1", m.t - 12).attr("y2", H - m.b)
+      .attr("stroke", "#ddd").attr("stroke-width", 2).attr("stroke-dasharray", "3,5");
+    svg.append("text").attr("x", x(i) + 6).attr("y", m.t - 18).attr("font-size", 13)
+      .attr("fill", "#999").attr("font-weight", 700).text("SET " + s);
+  });
+
+  svg.append("line").attr("x1", m.l).attr("x2", W - m.r).attr("y1", y(0)).attr("y2", y(0))
+    .attr("stroke", "#ccc").attr("stroke-width", 2);
+  svg.append("text").attr("x", m.l - 8).attr("y", y(0) + 4).attr("text-anchor", "end")
+    .attr("font-size", 12).attr("fill", "#999").text("EVEN");
+
+  const area = d3.area().x((d, i) => x(i)).y0(y(0)).y1((d) => y(d.d)).curve(d3.curveMonotoneX);
+  const line = d3.line().x((d, i) => x(i)).y((d) => y(d.d)).curve(d3.curveMonotoneX);
+  svg.append("path").datum(flow).attr("d", area).attr("fill", accent).attr("opacity", 0.14);
+  svg.append("path").datum(flow).attr("d", line).attr("fill", "none")
+    .attr("stroke", accent).attr("stroke-width", 3);
+
+  // break points: filled when won, hollow when lost
+  const bps = flow.map((d, i) => ({ ...d, i })).filter((d) => d.bp);
+  svg.append("g").selectAll("circle").data(bps).enter().append("circle")
+    .attr("cx", (d) => x(d.i)).attr("cy", (d) => y(d.d)).attr("r", 6.5)
+    .attr("fill", (d) => (d.w ? accent : "#fff"))
+    .attr("stroke", (d) => (d.w ? "#222" : "#d1372f")).attr("stroke-width", 2)
+    .append("title").text((d) => `Break point · ${d.w ? "won" : "lost"}`);
+
+  svg.append("text").attr("x", m.l - 10).attr("y", 30).attr("font-size", 18)
+    .attr("font-weight", 700).attr("fill", "#222").text(label);
+  svg.append("text").attr("x", W - m.r).attr("y", 30).attr("text-anchor", "end")
+    .attr("font-size", 13).attr("fill", "#999")
+    .text("● break point won   ○ break point lost");
+
+  const last = flow[flow.length - 1];
+  svg.append("text").attr("x", W - m.r).attr("y", y(last.d) - 10).attr("text-anchor", "end")
+    .attr("font-size", 15).attr("font-weight", 700).attr("fill", accent)
+    .text(`+${last.d} points`);
+}
+
+/* ================================================================== *
+ * G. HOW POINTS ENDED — gifts vs earned; not in the SwingVision UI
+ * ================================================================== */
+function endedBars(sel, p, accent) {
+  const e = p.pressure.ended, opp = p.oppName.split(" ").slice(-1)[0];
+  const rows = [
+    { label: `${opp} unforced errors`, n: e.ue_opp || 0, good: true },
+    { label: "Own winners", n: e.win_me || 0, good: true },
+    { label: "Own unforced errors", n: e.ue_me || 0, good: false },
+    { label: `${opp} winners`, n: e.win_opp || 0, good: false },
+  ];
+  const total = p.points;
+  const W = 1000, rowH = 64, top = 56, H = top + rows.length * rowH + 14;
+  const svg = d3.select(sel).html("").attr("viewBox", `0 0 ${W} ${H}`)
+    .attr("preserveAspectRatio", "xMidYMid meet").attr("class", "chart");
+  svg.append("rect").attr("width", "100%").attr("height", "100%").attr("fill", "#fff");
+  const max = d3.max(rows, (d) => d.n);
+  const x = d3.scaleLinear().domain([0, max]).range([0, W - 460]);
+
+  svg.append("text").attr("x", 8).attr("y", 30).attr("font-size", 18).attr("font-weight", 700)
+    .attr("fill", "#222").text("How the points ended");
+  rows.forEach((r, i) => {
+    const gy = top + i * rowH;
+    svg.append("text").attr("x", 8).attr("y", gy + 25).attr("font-size", 17).attr("fill", "#444")
+      .text(r.label);
+    svg.append("rect").attr("x", 300).attr("y", gy + 6).attr("width", x(max)).attr("height", 26)
+      .attr("rx", 13).attr("fill", "#f0f0f0");
+    svg.append("rect").attr("x", 300).attr("y", gy + 6).attr("width", Math.max(3, x(r.n)))
+      .attr("height", 26).attr("rx", 13)
+      .attr("fill", r.good ? accent : "#c9c9c9");
+    svg.append("text").attr("x", 300 + x(max) + 16).attr("y", gy + 26).attr("font-size", 19)
+      .attr("font-weight", 700).text(r.n);
+    svg.append("text").attr("x", 300 + x(max) + 62).attr("y", gy + 26).attr("font-size", 14)
+      .attr("fill", "#999").text(`${Math.round((r.n / total) * 100)}% of pts`);
+  });
 }

@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Two Bruins, Two Plans — UCLA vs USC, Feb 21 2026 | SwingVision shot report</title>
-<meta name="description" content="Every shot of two UCLA singles wins over USC, tracked by SwingVision and read as a coaching report: serve placement, rally length, return depth and shot placement.">
+<meta name="description" content="Every shot of two UCLA singles wins over USC: match flow, pressure points, rally economics and the misses that matter — analysis SwingVision doesn't surface.">
 <meta property="og:title" content="Two Bruins, Two Plans">
 <meta property="og:description" content="1,611 tracked shots from one rivalry dual. Two UCLA wins, two opposite winning formulas.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -23,80 +23,78 @@
   <section class="read">
     <p class="kicker">ONE DUAL, TWO SINGLES WINS</p>
     <h1>Two Bruins won.<br>They won opposite ways.</h1>
-    <p class="lede">
-      SwingVision tracked every ball struck in two UCLA singles matches on the same
-      February afternoon against USC. Same opponent school, same courts, same result
-      &mdash; and two players whose numbers point to completely different plans.
-    </p>
     <dl class="statRow">
-      <div><dt>SHOTS TRACKED</dt><dd>1,611</dd><small>both matches, ball-by-ball</small></div>
-      <div><dt>POINTS</dt><dd>285</dd><small>with outcome and rally length</small></div>
+      <div><dt>SHOTS TRACKED</dt><dd>1,611</dd><small>ball-by-ball, both matches</small></div>
+      <div><dt>POINTS</dt><dd>286</dd><small>scored, timed, break points flagged</small></div>
       <div><dt>SINGLES WINS</dt><dd>2 / 2</dd><small>Johnson and Quan</small></div>
     </dl>
   </section>
-
-  <div class="themeBar">
-    <span>COURT STYLE</span>
-    <button data-theme="classic" class="on">BTC classic</button>
-    <button data-theme="light">Light</button>
-    <em>Each chart below also has its own options &mdash; use the tabs.</em>
-  </div>
 
   <!-- ============================ SPENCER ============================ -->
   <div class="playerBar">
     <h2>Spencer Johnson</h2>
     <div class="meta">
       DEF. BRANKO DJURIC (USC) 4&ndash;6, 6&ndash;2, 6&ndash;3<br>
-      <span class="tag blue">LEFT-HANDED</span> <span class="tag">747 SHOTS</span>
+      <span class="tag blue">LEFT-HANDED</span> <span class="tag">FIRST-STRIKE</span>
     </div>
   </div>
 
   <section class="read">
-    <p class="kicker">RALLY LENGTH</p>
-    <h1>Win it early.</h1>
-    <div class="bigStat"><strong>69%</strong><span>of points won when the rally ended in two shots</span></div>
-    <p class="coachCue">Every extra ball costs him.</p>
+    <p class="kicker">POINT DURATION &middot; NOT IN THE SWINGVISION APP</p>
+    <h1>His wins are 5 seconds<br>shorter than his losses.</h1>
+    <div class="bigStat"><strong>10.6s vs 15.5s</strong><span>average length of points he won &middot; points he lost</span></div>
+    <p class="coachCue">End it by ball four. The clock agrees with the rally count.</p>
   </section>
-  <div class="viz" id="sp-rally"></div>
+  <div class="viz" id="sp-flow"></div>
   <p class="caption">
-    From 69% at one or two shots he falls to 41% in the five-to-eight-shot band that
-    decided 42 of his points. Average rally: <strong>4.4 shots</strong>.
+    Running point margin across the match. He lost set one, then broke Djuric
+    <strong>4 times in 7 chances</strong> while conceding 2 of 3 &mdash; the whole
+    match fits in that gap.
   </p>
 
   <div class="visualHeading ruled">
-    <p class="kicker">SERVE PLACEMENT</p>
-    <h2>The serve is the shot.</h2>
-    <p class="sub">
-      75% first serves in, averaging 98 mph and topping out at 126, for one double fault
-      all match. Win rate by the six standard placement zones.
-    </p>
+    <p class="kicker">RALLY ECONOMICS</p>
+    <h2>Win it early.</h2>
+    <p class="sub"><strong>69%</strong> of points inside two shots, <strong>40%</strong> at five to eight.</p>
+  </div>
+  <div class="viz" id="sp-rally"></div>
+
+  <section class="courtSection">
+    <div class="courtRead">
+      <p class="kicker">GROUNDSTROKE MISSES</p>
+      <h2>Line ball long.<br>Backhand net.</h2>
+      <dl class="sideSplit">
+        <div><dt>FH DOWN THE LINE</dt><dd><strong>15</strong> of 84 flew long</dd></div>
+        <div><dt>FH CROSSCOURT</dt><dd><strong>0</strong> of 67 flew long</dd></div>
+      </dl>
+      <p>The backhand missed into the net 14 times &mdash; a height fix. The forehand
+      only leaks when it goes up the line.</p>
+      <p class="coachCue">Crosscourt until the short ball.</p>
+    </div>
+    <div class="viz slim" id="sp-shots"></div>
+  </section>
+
+  <div class="visualHeading">
+    <p class="kicker">SERVE PLACEMENT &times; POINT OUTCOME</p>
+    <h2>Ad court: trust the T.</h2>
+    <p class="sub">SwingVision shows where serves land. Crossing each zone with who won the
+    point is the part it doesn't do: the ad-court T ran at <strong>79%</strong>, fourteen
+    better than the lefty slider wide.</p>
   </div>
   <div class="viz" id="sp-serve"></div>
+  <p class="coachCue center">Big points: hit the T.</p>
 
   <div class="visualHeading">
-    <p class="kicker">SHOT PLACEMENT</p>
-    <h2>Crosscourt never went long.</h2>
-    <p class="sub">
-      Every one of his 67 crosscourt forehands that missed, missed into the net &mdash; a miss
-      you fix with height. Down the line, 15 of 84 flew long, which is the miss that hands
-      over the point.
-    </p>
-  </div>
-  <div class="viz" id="sp-shots"></div>
-
-  <div class="visualHeading">
-    <p class="kicker">RETURN</p>
-    <h2>Step in and it turns.</h2>
-    <p class="sub">
-      Where he stood at return contact, against how often he went on to win the point.
-    </p>
+    <p class="kicker">RETURN POSITION</p>
+    <h2>No-man's land loses.</h2>
+    <p class="sub">Inside the baseline <strong>55%</strong> of points won, behind it 48% &mdash; standing on it, <strong>22%</strong>.</p>
   </div>
   <div class="viz" id="sp-return"></div>
+  <p class="coachCue center">Commit: step in, or stay back.</p>
 
   <div class="visualHeading ruled">
     <p class="kicker">FROM THE DATA TO THE TAPE</p>
-    <h2>The points worth re-watching.</h2>
-    <p class="sub">Pulled automatically: the longest rallies, the biggest serves and the cleanest strikes, each with its exact position in the match video.</p>
+    <h2>Worth re-watching.</h2>
   </div>
   <div class="clipGrid" id="sp-clips"></div>
 
@@ -105,56 +103,58 @@
     <h2>Rudy Quan</h2>
     <div class="meta">
       DEF. NATHAN TROUVE (USC) 7&ndash;5, 7&ndash;5<br>
-      <span class="tag gold">BASELINE ATTRITION</span> <span class="tag">864 SHOTS</span>
+      <span class="tag gold">ATTRITION</span> <span class="tag">864 SHOTS</span>
     </div>
   </div>
 
   <section class="read">
-    <p class="kicker">RALLY LENGTH</p>
-    <h1>Win it late.</h1>
-    <div class="bigStat"><strong>64%</strong><span>of points won once the rally reached five shots</span></div>
-    <p class="coachCue">The longer it goes, the better he gets.</p>
+    <p class="kicker">HOW POINTS ENDED &middot; NOT IN THE SWINGVISION APP</p>
+    <h1>He made Trouve<br>give it away.</h1>
+    <div class="bigStat"><strong>51 unforced errors</strong><span>squeezed out of Trouve &mdash; 38% of every point played</span></div>
+    <p class="coachCue">17 winners was all he needed. Pressure did the rest.</p>
   </section>
-  <div class="viz" id="ru-rally"></div>
-  <p class="caption">
-    The exact inverse of his teammate: 32% of the short points, 64% of the
-    five-to-eight-shot rallies. Average rally: <strong>6.0 shots</strong>, a shot and a
-    half longer than Johnson's.
-  </p>
+  <div class="viz" id="ru-ended"></div>
 
   <div class="visualHeading ruled">
-    <p class="kicker">FIRST SERVE</p>
-    <h2>85% in. Zero double faults.</h2>
-    <p class="sub">
-      He does not serve big &mdash; 77 mph on average, topping out at 100. He serves to start
-      a rally he expects to win, and the ad-court slice is the ball that actually opens the court.
-    </p>
+    <p class="kicker">MATCH FLOW</p>
+    <h2>Never ahead by much.<br>Never behind for long.</h2>
+    <p class="sub">7&ndash;5, 7&ndash;5 with <strong>5 of 8</strong> break points converted and <strong>5 of 8</strong> saved.</p>
+  </div>
+  <div class="viz" id="ru-flow"></div>
+
+  <div class="visualHeading">
+    <p class="kicker">RALLY ECONOMICS</p>
+    <h2>Win it late.</h2>
+    <p class="sub"><strong>64%</strong> of points at five to eight shots, <strong>32%</strong> inside two &mdash; the exact inverse of his teammate.</p>
+  </div>
+  <div class="viz" id="ru-rally"></div>
+
+  <section class="courtSection">
+    <div class="courtRead">
+      <p class="kicker">THE LINE BALL</p>
+      <h2>Same shot.<br>Different owners.</h2>
+      <dl class="sideSplit">
+        <div><dt>QUAN FH LINE</dt><dd><strong>91%</strong> stayed in (94)</dd></div>
+        <div><dt>TROUVE FH LINE</dt><dd><strong>75%</strong> stayed in (118)</dd></div>
+      </dl>
+      <p>Both pulled the trigger up the line about a hundred times. Only one kept it in
+      the court &mdash; and most of those 51 gifts came off this exact ball.</p>
+      <p class="coachCue">Keep pulling the trigger.</p>
+    </div>
+    <div class="viz slim" id="ru-shots"></div>
+  </section>
+
+  <div class="visualHeading">
+    <p class="kicker">SERVE PLACEMENT &times; POINT OUTCOME</p>
+    <h2>Ad court: go wide.</h2>
+    <p class="sub">The wide slice won <strong>77%</strong> of the points it started; the T won 27%.
+    85% first serves in, zero double faults &mdash; the serve's job is to start the rally on his terms.</p>
   </div>
   <div class="viz" id="ru-serve"></div>
 
-  <div class="visualHeading">
-    <p class="kicker">SHOT PLACEMENT</p>
-    <h2>A player who doesn't miss.</h2>
-    <p class="sub">
-      All four wing-and-direction combinations landed in between 84% and 92% of the time.
-      His forehand down the line &mdash; the shot that leaks errors for most players &mdash;
-      was his single most reliable ball at 92%. Trouve hit the same shot almost as often
-      and kept only 75% of them in.
-    </p>
-  </div>
-  <div class="viz" id="ru-shots"></div>
-
-  <div class="visualHeading">
-    <p class="kicker">RETURN</p>
-    <h2>91% of returns came back.</h2>
-    <p class="sub">Return contact depth against points won.</p>
-  </div>
-  <div class="viz" id="ru-return"></div>
-
   <div class="visualHeading ruled">
     <p class="kicker">FROM THE DATA TO THE TAPE</p>
-    <h2>The points worth re-watching.</h2>
-    <p class="sub">Same automatic selection, run against Quan's match.</p>
+    <h2>Worth re-watching.</h2>
   </div>
   <div class="clipGrid" id="ru-clips"></div>
 
@@ -165,23 +165,23 @@
   </div>
   <div class="contrast">
     <div>
-      <p class="who">SPENCER JOHNSON</p>
-      <h3>First-strike player</h3>
+      <p class="who">SPENCER JOHNSON &middot; FIRST-STRIKE</p>
+      <h3>Shorten the point.</h3>
       <ul>
-        <li>Wins 69% of points inside two shots, 41% from five to eight.</li>
-        <li>75% first serves in at 98 mph average, one double fault.</li>
-        <li>Forehand crosscourt is the safe ball &mdash; not one landed long all match.</li>
-        <li>Practice target: shorten the point, or lift the five-to-eight-shot number.</li>
+        <li>Wins average 10.6s; losses 15.5s. 69% inside two shots.</li>
+        <li>Ad-court T: 79%. Use it on big points.</li>
+        <li>Backhand height; forehand line only off short balls.</li>
+        <li>On return, off the line: step in or stand back.</li>
       </ul>
     </div>
     <div>
-      <p class="who">RUDY QUAN</p>
-      <h3>Attrition player</h3>
+      <p class="who">RUDY QUAN &middot; ATTRITION</p>
+      <h3>Lengthen the point.</h3>
       <ul>
-        <li>Wins 64% of points from five to eight shots, 32% inside two.</li>
-        <li>85% first serves in, zero double faults, 91% of returns in play.</li>
-        <li>Forehand down the line stays in 92% of the time.</li>
-        <li>Practice target: steal cheap points early so fewer rallies are needed.</li>
+        <li>38% of all points ended in a Trouve unforced error.</li>
+        <li>64% at five to eight shots; 32% inside two.</li>
+        <li>Ad-court wide: 77%. The T gave it back (27%).</li>
+        <li>The line-ball reliability gap is the whole margin &mdash; keep it.</li>
       </ul>
     </div>
   </div>
@@ -189,19 +189,14 @@
   <section class="method">
     <h3>HOW THIS WAS BUILT</h3>
     <p>
-      Source data is the raw SwingVision match export for each singles match &mdash; one row
-      per ball struck, carrying stroke, spin, speed, direction, result, contact and bounce
-      coordinates in metres, and the position of that shot in the match video.
+      Raw SwingVision match exports &mdash; one row per ball (stroke, spin, speed, direction,
+      result, coordinates, video timestamp) plus the point log (score state, break points,
+      point endings, durations). Shots are mirrored into one court frame and converted to
+      Bruin Tennis Consulting court units so the BTC D3 court visuals apply unchanged.
+      Match flow, pressure splits, point-duration economics and the win-rate-by-zone badges
+      are computed from the export &mdash; none of them appear in the SwingVision app itself.
+      No manual tagging. Small samples carry their counts.
     </p>
-    <p>
-      Shots are mirrored into a single court frame so every hitter attacks in the same
-      direction, then converted into the court units used by the Bruin Tennis Consulting
-      analytics library (1 m = 38.28 units, net at zero) so the existing D3 court visuals,
-      zone splits and Win% / Freq badges apply unchanged. Point outcomes are derived from the
-      final ball of each rally. Percentages carry their sample size because several of these
-      splits rest on fewer than twenty serves.
-    </p>
-    <p>No manual tagging was added. Everything here comes out of the SwingVision file itself.</p>
   </section>
 
   <footer>

@@ -5,10 +5,11 @@
 
 const BTC = {
   W: 1000, H: 800,
-  court: "#6092ce",
-  green: "#86ac91",         // classic sage backdrop
-  won: "#00cc00", lost: "red", dead: "#808080", ace: "#f8c84f",
-  pillMax: "#32a852", pillMin: "red", pillMid: "#3395f6", freq: "#d3d3d3",
+  court: "#bcd3ee",         // light court so marks carry the colour
+  green: "#fcfcfb",         // chart surface
+  // Outcome pair: green vs violet. Validated ΔE 33.7 deutan (green/red fails at 4.1).
+  won: "#0ca30c", lost: "#4a3aa7", dead: "#8d8b85", ace: "#eda100",
+  pillMax: "#0ca30c", pillMin: "#d03b3b", pillMid: "#2a78d6", freq: "#e9e8e4",
   // court line-work, straight from the BTC source
   lines: [
     { x1: 210, y1: -25, x2: 210, y2: 455 },
@@ -26,8 +27,8 @@ const BTC = {
 /* Light theme keeps the identical geometry and encodings, swapping only the
    backdrop so the visual can sit on a white editorial page. */
 const THEMES = {
-  classic: { bg: BTC.green, court: BTC.court, line: "#fff", text: "#fff", chrome: "#fff" },
-  light:   { bg: "#ffffff", court: "#7ba4d8", line: "#fff", text: "#1a1a1a", chrome: "#333" },
+  classic: { bg: "#fcfcfb", court: BTC.court, line: "#fff", text: "#0b0b0b", chrome: "#52514e" },
+  light:   { bg: "#fcfcfb", court: BTC.court, line: "#fff", text: "#0b0b0b", chrome: "#52514e" },
 };
 
 const pct1 = (v) => (v * 100).toFixed(1) + "%";
@@ -53,7 +54,8 @@ function drawCourt(svg, x, y, t, opts) {
   svg.append("g").selectAll("line").data(BTC.lines).enter().append("line")
     .attr("x1", (d) => x(d.x1)).attr("y1", (d) => y(d.y1))
     .attr("x2", (d) => x(d.x2)).attr("y2", (d) => y(d.y2))
-    .attr("stroke", t.line).attr("stroke-width", (d) => d.width || 4);
+    .attr("stroke", (d) => (d.width === 7 ? "#7f93ab" : t.line))
+    .attr("stroke-width", (d) => d.width || 4);
 }
 
 /* Rounded Win% / Freq badge pair, exactly the BTC treatment. */
@@ -71,7 +73,7 @@ function pills(svg, x, y, items, yWin, yFreq, t) {
       .attr("font-weight", 700).attr("font-size", 17).text(pct0(d.win));
     svg.append("rect").attr("x", x(d.x) - 22).attr("y", y(yFreq) - 13)
       .attr("width", 44).attr("height", 26).attr("rx", 13)
-      .attr("fill", BTC.freq).attr("stroke", "#000").attr("stroke-width", 1);
+      .attr("fill", BTC.freq).attr("stroke", "#fff").attr("stroke-width", 1.5);
     svg.append("text").attr("x", x(d.x)).attr("y", y(yFreq) + 6)
       .attr("text-anchor", "middle").attr("fill", "#000")
       .attr("font-weight", 700).attr("font-size", 16).text(d.n);
@@ -105,13 +107,13 @@ function legendBox(svg, cx, cy, items, t, w) {
     const gx = cx - w / 2 + step * (i + 0.5) - 26;
     if (it.shape === "star") {
       svg.append("polygon").attr("points", star(gx, cy, 8, 4))
-        .attr("fill", it.color).attr("stroke", "#000").attr("stroke-width", 1);
+        .attr("fill", it.color).attr("stroke", "#fff").attr("stroke-width", 1.5);
     } else if (it.shape === "tri") {
       svg.append("polygon").attr("points", `${gx},${cy - 7} ${gx - 7},${cy + 6} ${gx + 7},${cy + 6}`)
-        .attr("fill", it.color).attr("stroke", "#000").attr("stroke-width", 1);
+        .attr("fill", it.color).attr("stroke", "#fff").attr("stroke-width", 1.5);
     } else {
       svg.append("circle").attr("cx", gx).attr("cy", cy).attr("r", 6)
-        .attr("fill", it.color).attr("stroke", "#000").attr("stroke-width", 1);
+        .attr("fill", it.color).attr("stroke", "#fff").attr("stroke-width", 1.5);
     }
     svg.append("text").attr("x", gx + 14).attr("y", cy + 6)
       .attr("fill", t.text).attr("font-size", 17).text(it.label);
@@ -129,7 +131,7 @@ const title = (svg, x, y, txt, t, yy) =>
 function serveCourt(sel, p, theme) {
   const { svg, t } = svgBase(sel, theme);
   const x = d3.scaleLinear().domain([-350, 350]).range([0, BTC.W]);
-  const y = d3.scaleLinear().domain([-150, 600]).range([BTC.H, 0]);
+  const y = d3.scaleLinear().domain([-150, 500]).range([BTC.H, 0]);
   drawCourt(svg, x, y, t);
 
   svg.append("g").selectAll("line")
@@ -141,24 +143,24 @@ function serveCourt(sel, p, theme) {
   [["T", 26.25], ["T", -26.25], ["Body", 78.75], ["Body", -78.75],
    ["Wide", 131.25], ["Wide", -131.25]].forEach(([l, xx]) => {
     svg.append("text").attr("x", x(xx)).attr("y", y(20) + 5).attr("text-anchor", "middle")
-      .attr("fill", "#fff").attr("font-weight", 700).attr("font-size", 18).text(l);
+      .attr("fill", "#2f4a६b".replace("६","6")).attr("font-weight", 700).attr("font-size", 18).text(l);
   });
   [["Deuce", -78.25], ["Ad", 78.25]].forEach(([l, xx]) => {
     svg.append("text").attr("x", x(xx)).attr("y", y(260) + 5).attr("text-anchor", "middle")
-      .attr("fill", "#fff").attr("font-weight", 700).attr("font-size", 20).text(l);
+      .attr("fill", "#2f4a6b").attr("font-weight", 700).attr("font-size", 20).text(l);
   });
 
   svg.append("g").selectAll("circle").data(p.serves.filter((d) => !d.ace))
     .enter().append("circle")
     .attr("cx", (d) => x(d.x)).attr("cy", (d) => y(d.y)).attr("r", 6)
     .attr("fill", (d) => (d.won ? BTC.won : BTC.lost))
-    .attr("stroke", "#000").attr("stroke-width", 0.6)
+    .attr("stroke", "#fff").attr("stroke-width", 1.5)
     .append("title").text((d) => `${Math.round(d.mph)} mph ${d.spin} · ${d.side} ${d.zone} · ${d.won ? "won" : "lost"}`);
 
   svg.append("g").selectAll("polygon").data(p.serves.filter((d) => d.ace))
     .enter().append("polygon")
     .attr("points", (d) => star(x(d.x), y(d.y), 9, 4.5))
-    .attr("fill", BTC.ace).attr("stroke", "#000").attr("stroke-width", 0.6)
+    .attr("fill", BTC.ace).attr("stroke", "#fff").attr("stroke-width", 1.5)
     .append("title").text((d) => `Ace · ${Math.round(d.mph)} mph`);
 
   // one badge pair per zone, ordered the way the court reads left-to-right
@@ -209,11 +211,11 @@ function returnCourt(sel, p, theme) {
     const cx = x(d.x), cy = y(Math.max(-635, d.y));
     if (d.wing === "B") {
       svg.append("polygon").attr("points", `${cx},${cy - 7} ${cx - 7},${cy + 6} ${cx + 7},${cy + 6}`)
-        .attr("fill", col).attr("stroke", "#000").attr("stroke-width", 0.8)
+        .attr("fill", col).attr("stroke", "#fff").attr("stroke-width", 1.5)
         .append("title").text(`Backhand return · ${d.res === "i" ? (d.won ? "point won" : "point lost") : "missed"}`);
     } else {
       svg.append("circle").attr("cx", cx).attr("cy", cy).attr("r", 6.5)
-        .attr("fill", col).attr("stroke", "#000").attr("stroke-width", 0.8)
+        .attr("fill", col).attr("stroke", "#fff").attr("stroke-width", 1.5)
         .append("title").text(`Forehand return · ${d.res === "i" ? (d.won ? "point won" : "point lost") : "missed"}`);
     }
   });
@@ -282,7 +284,7 @@ function placementCourt(sel, p, theme, opts) {
     const node = d.wing === "B"
       ? g.append("polygon").attr("points", `${px},${py - 7} ${px - 6.5},${py + 5.5} ${px + 6.5},${py + 5.5}`)
       : g.append("circle").attr("cx", px).attr("cy", py).attr("r", 6.2);
-    node.attr("fill", col).attr("stroke", "#000").attr("stroke-width", 0.8)
+    node.attr("fill", col).attr("stroke", "#fff").attr("stroke-width", 1.5)
       .append("title").text(
         `${d.wing === "F" ? "Forehand" : "Backhand"}` +
         `${d.dir === "C" ? " crosscourt" : d.dir === "L" ? " down the line" : ""}` +
@@ -317,14 +319,14 @@ function errorCourt(sel, p, theme, opts) {
   const { svg, t } = svgBase(sel, theme, `0 0 ${BTC.W} 690`);
   const x = d3.scaleLinear().domain([-350, 350]).range([0, BTC.W]);
   const y = d3.scaleLinear().domain([-620, 60], ).range([600, 56]);
-  const NETC = "#e64848", OUTC = "#f2a900";
+  const NETC = "#d03b3b", OUTC = "#eda100";
 
   // hitter's half: net at top, baseline at -455
   svg.append("rect").attr("x", x(-210)).attr("y", y(25))
     .attr("width", x(210) - x(-210)).attr("height", y(-455) - y(25)).attr("fill", t.court);
   [{ x1: 210, y1: 25, x2: 210, y2: -455 }, { x1: -210, y1: 25, x2: -210, y2: -455 },
    { x1: 157.5, y1: 25, x2: 157.5, y2: -455 }, { x1: -157.5, y1: 25, x2: -157.5, y2: -455 },
-   { x1: 240, y1: 0, x2: -240, y2: 0, width: 7 }, { x1: 0, y1: 25, x2: 0, y2: -245 },
+   { x1: 240, y1: 0, x2: -240, y2: 0, width: 7, net: 1 }, { x1: 0, y1: 25, x2: 0, y2: -245 },
    { x1: 157.5, y1: -245, x2: -157.5, y2: -245 },
    { x1: 211.25, y1: -455, x2: -211.25, y2: -455 }].forEach((d) => {
     svg.append("line").attr("x1", x(d.x1)).attr("y1", y(d.y1))
@@ -345,7 +347,7 @@ function errorCourt(sel, p, theme, opts) {
     const node = d.wing === "B"
       ? g.append("polygon").attr("points", `${px},${py - 7.5} ${px - 7},${py + 6} ${px + 7},${py + 6}`)
       : g.append("circle").attr("cx", px).attr("cy", py).attr("r", 6.6);
-    node.attr("fill", col).attr("stroke", "#000").attr("stroke-width", 0.9)
+    node.attr("fill", col).attr("stroke", "#fff").attr("stroke-width", 1.5)
       .append("title").text(`${d.wing === "F" ? "Forehand" : "Backhand"} · ` +
         `${d.res === "n" ? "into the net" : "long or wide"}${d.mph ? " · " + Math.round(d.mph) + " mph" : ""}`);
   });
@@ -358,10 +360,10 @@ function errorCourt(sel, p, theme, opts) {
     const net = m.filter((d) => d.res === "n").length;
     const gx = x(xx);
     svg.append("text").attr("x", gx).attr("y", y(-105)).attr("text-anchor", "middle")
-      .attr("fill", "#fff").attr("font-size", 19).attr("font-weight", 700)
+      .attr("fill", "#2f4a6b").attr("font-size", 19).attr("font-weight", 700)
       .text(`${label}: ${m.length} misses`);
     svg.append("text").attr("x", gx).attr("y", y(-150)).attr("text-anchor", "middle")
-      .attr("fill", "#fff").attr("font-size", 16).attr("opacity", .95)
+      .attr("fill", "#2f4a6b").attr("font-size", 16).attr("opacity", .95)
       .text(`${net} net · ${m.length - net} long/wide`);
   });
 
@@ -369,7 +371,7 @@ function errorCourt(sel, p, theme, opts) {
   const ly = 30;
   const items = [
     { label: "Net", color: NETC }, { label: "Long / wide", color: OUTC },
-    { label: "FH", color: "#cfcfcf" }, { label: "BH", color: "#cfcfcf", shape: "tri" },
+    { label: "FH", color: "#8d8b85" }, { label: "BH", color: "#8d8b85", shape: "tri" },
   ];
   legendBox(svg, x(0), ly, items, t, 480);
 
@@ -421,13 +423,13 @@ function h2hStats(sel, p) {
       .attr("font-size", 19).attr("fill", "#555").text(r.label);
 
     svg.append("rect").attr("x", mid - half - gap).attr("y", gy + 4).attr("width", half)
-      .attr("height", 22).attr("rx", 11).attr("fill", "#d4e5f3");
+      .attr("height", 22).attr("rx", 11).attr("fill", "#d7e5f7");
     svg.append("rect").attr("x", mid + gap).attr("y", gy + 4).attr("width", half)
-      .attr("height", 22).attr("rx", 11).attr("fill", "#fef7cd");
+      .attr("height", 22).attr("rx", 11).attr("fill", "#fbe3d6");
     svg.append("rect").attr("x", mid - gap - half * aFrac).attr("y", gy + 4)
-      .attr("width", half * aFrac).attr("height", 22).attr("rx", 11).attr("fill", "#2596be");
+      .attr("width", half * aFrac).attr("height", 22).attr("rx", 11).attr("fill", "#2a78d6");
     svg.append("rect").attr("x", mid + gap).attr("y", gy + 4)
-      .attr("width", half * (1 - aFrac)).attr("height", 22).attr("rx", 11).attr("fill", "#fcd404");
+      .attr("width", half * (1 - aFrac)).attr("height", 22).attr("rx", 11).attr("fill", "#eb6834");
 
     const show = (v) => (Array.isArray(v) ? pct0(v[1] ? v[0] / v[1] : 0) : String(v));
     const sub = (v) => (Array.isArray(v) ? `(${v[0]}/${v[1]})` : "");
@@ -436,7 +438,7 @@ function h2hStats(sel, p) {
     if (better) {
       svg.append("rect").attr("x", mid - half - gap - 96).attr("y", gy + 1)
         .attr("width", 78).attr("height", 28).attr("rx", 14)
-        .attr("fill", "none").attr("stroke", "#2974af").attr("stroke-width", 2);
+        .attr("fill", "none").attr("stroke", "#2a78d6").attr("stroke-width", 2);
     }
     svg.append("text").attr("x", mid - half - gap - 57).attr("y", gy + 21)
       .attr("text-anchor", "middle").attr("font-size", 20).attr("font-weight", 700).text(show(r.a));
@@ -653,4 +655,70 @@ function workOn(sel, cards, accent) {
       <div class="wl">${c.line}</div>
       <div class="wc" style="border-color:${accent}">${c.cue}</div>
     </div>`).join("");
+}
+
+
+/* ================================================================== *
+ * J. USAGE GAP — how well a pattern works vs how often it gets used.
+ *    Two percentages on one 0-100 scale, both labelled. The gap is
+ *    the story, so it is drawn as an explicit connector.
+ * ================================================================== */
+function usageGap(sel, rows) {
+  const W = 1000, rowH = 112, top = 128, H = top + (rows.length - 1) * rowH + 78;
+  const svg = d3.select(sel).html("").attr("viewBox", `0 0 ${W} ${H}`)
+    .attr("preserveAspectRatio", "xMidYMid meet").attr("class", "chart");
+  svg.append("rect").attr("width", "100%").attr("height", "100%").attr("fill", "#fcfcfb");
+
+  const axL = 250, axR = W - 210;
+  const x = d3.scaleLinear().domain([0, 1]).range([axL, axR]);
+
+  svg.append("text").attr("x", 8).attr("y", 34).attr("font-size", 19).attr("font-weight", 700)
+    .attr("fill", "#0b0b0b").text("Points won at the net, against how often they go there");
+  // axis
+  [0, .25, .5, .75, 1].forEach((t) => {
+    svg.append("line").attr("x1", x(t)).attr("x2", x(t)).attr("y1", top - 46).attr("y2", H - 44)
+      .attr("stroke", "#eceae5").attr("stroke-width", 2);
+    svg.append("text").attr("x", x(t)).attr("y", H - 18).attr("text-anchor", "middle")
+      .attr("font-size", 13).attr("fill", "#8d8b85").text(Math.round(t * 100) + "%");
+  });
+
+  rows.forEach((r, i) => {
+    const gy = top + i * rowH;
+    svg.append("text").attr("x", 8).attr("y", gy + 6).attr("font-size", 18).attr("font-weight", 700)
+      .attr("fill", "#0b0b0b").text(r.name);
+    svg.append("text").attr("x", 8).attr("y", gy + 28).attr("font-size", 13).attr("fill", "#52514e")
+      .text(r.sub);
+
+    // connector showing the distance between the two values
+    svg.append("line").attr("x1", x(r.use)).attr("x2", x(r.win)).attr("y1", gy).attr("y2", gy)
+      .attr("stroke", r.color).attr("stroke-width", 3).attr("opacity", .28);
+
+    // usage marker (hollow) and win marker (filled)
+    svg.append("circle").attr("cx", x(r.use)).attr("cy", gy).attr("r", 9)
+      .attr("fill", "#fcfcfb").attr("stroke", r.color).attr("stroke-width", 3)
+      .append("title").text(`${r.name}: comes in on ${Math.round(r.use * 100)}% of points`);
+    svg.append("circle").attr("cx", x(r.win)).attr("cy", gy).attr("r", 9)
+      .attr("fill", r.color).attr("stroke", "#fcfcfb").attr("stroke-width", 2)
+      .append("title").text(`${r.name}: wins ${Math.round(r.win * 100)}% of the points he does play at the net`);
+
+    svg.append("text").attr("x", x(r.use)).attr("y", gy - 20).attr("text-anchor", "middle")
+      .attr("font-size", 15).attr("font-weight", 700).attr("fill", "#52514e")
+      .text(Math.round(r.use * 100) + "% of points");
+    svg.append("text").attr("x", x(r.win)).attr("y", gy - 20).attr("text-anchor", "middle")
+      .attr("font-size", 17).attr("font-weight", 700).attr("fill", r.color)
+      .text("wins " + Math.round(r.win * 100) + "%");
+    svg.append("text").attr("x", axR + 16).attr("y", gy + 6).attr("font-size", 14)
+      .attr("fill", "#52514e").text(r.note);
+  });
+
+  // one legend, since two mark types share the scale
+  const ly = 72;
+  svg.append("circle").attr("cx", axL + 6).attr("cy", ly).attr("r", 7)
+    .attr("fill", "#fcfcfb").attr("stroke", "#52514e").attr("stroke-width", 3);
+  svg.append("text").attr("x", axL + 20).attr("y", ly + 5).attr("font-size", 13).attr("fill", "#52514e")
+    .text("how often he goes in");
+  svg.append("circle").attr("cx", axL + 196).attr("cy", ly).attr("r", 7)
+    .attr("fill", "#52514e").attr("stroke", "#fcfcfb").attr("stroke-width", 2);
+  svg.append("text").attr("x", axL + 210).attr("y", ly + 5).attr("font-size", 13).attr("fill", "#52514e")
+    .text("how often he wins when he does");
 }

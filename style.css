@@ -319,13 +319,12 @@ footer {
   justify-content: center;
   align-items: center;
   padding: 6px;
-  border: 2px solid var(--line);
+  border: 1px solid rgba(0, 0, 0, .12);
   border-radius: 12px;
-  box-shadow: 0 6px 12px rgba(0, 0, 0, .2);
-  background: #fff;
+  background: #fcfcfb;
   overflow: hidden;
 }
-.vizStage.dark { background: #86ac91; }
+.vizStage.dark { background: #fcfcfb; }
 .vizStage svg { display: block; width: 100%; height: auto; border-radius: 8px; }
 
 .caption {
@@ -462,3 +461,16 @@ footer {
 .nights .row.hi .who { color: var(--ink); }
 .nights .row .n { font-variant-numeric: tabular-nums; white-space: nowrap; }
 .nights .rowHead { padding: 0 2px 8px; font-size: 10px; font-weight: 700; letter-spacing: .1em; color: var(--muted); }
+
+/* ---------- two-up comparison ---------- */
+.twoUp { display: grid; grid-template-columns: 1fr 1fr; gap: 26px; margin-top: 6px; }
+.twoUpName { margin: 0 0 8px; font-size: 12px; font-weight: 700; letter-spacing: .08em; }
+.twoUpName.blue { color: #2a78d6; }
+.twoUpName.orange { color: #b84a1c; }
+.clipLabel {
+  margin: 22px 0 0; font-size: 11px; font-weight: 700;
+  letter-spacing: .1em; color: var(--muted);
+}
+.read.tight { padding-bottom: 16px; }
+.tag.orange { background: #b84a1c; }
+@media (max-width: 740px) { .twoUp { grid-template-columns: 1fr; gap: 30px; } }

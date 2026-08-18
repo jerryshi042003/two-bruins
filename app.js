@@ -91,12 +91,19 @@ function renderClips(sel, p, key) {
 d3.json("data.json").then((data) => {
   const sp = data.spencer, ru = data.rudy;
 
-  /* ---- Spencer ---- */
-  slot("#sp-flow", [
-    { name: "Match flow", dark: false, render: (el) => flowChart(el, sp, "#2d68c4", "Point margin: Johnson vs Djuric") },
+  /* ---- cross-cutting hero ---- */
+  slot("#hero-net", [
+    { name: "Net usage gap", dark: false, render: (el) => usageGap(el, [
+        { name: "Spencer Johnson", sub: "197 net points across 11 tracked matches",
+          use: 0.137, win: 0.609, color: "#2a78d6", note: "1 point in 7" },
+        { name: "Rudy Quan", sub: "145 net points across 19 tracked matches",
+          use: 0.065, win: 0.614, color: "#eb6834", note: "1 point in 15" },
+      ]) },
   ]);
+
+  /* ---- Spencer ---- */
   slot("#sp-rally", [
-    { name: "Rally length bars", dark: false, render: (el) => rallyBars(el, sp, "#2d68c4") },
+    { name: "Rally length bars", dark: false, render: (el) => rallyBars(el, sp, "#2a78d6") },
   ]);
 
   slot("#sp-serve", [
@@ -116,19 +123,19 @@ d3.json("data.json").then((data) => {
 
   renderClips("#sp-clips", sp, "spencer");
   slot("#sp-season", [
-    { name: "Season strips", dark: false, render: (el) => seasonStrip(el, sp.season.strip, "#2d68c4", "USC") },
+    { name: "Season strips", dark: false, render: (el) => seasonStrip(el, sp.season.strip, "#2a78d6", "USC") },
   ]);
-  workOn("#sp-work", sp.season.cards, "#2d68c4");
+  workOn("#sp-work", sp.season.cards, "#2a78d6");
 
   /* ---- Rudy ---- */
   slot("#ru-ended", [
-    { name: "How points ended", dark: false, render: (el) => endedBars(el, ru, "#f2a900") },
+    { name: "How points ended", dark: false, render: (el) => endedBars(el, ru, "#eb6834") },
   ]);
   slot("#ru-flow", [
-    { name: "Match flow", dark: false, render: (el) => flowChart(el, ru, "#f2a900", "Point margin: Quan vs Trouve") },
+    { name: "Match flow", dark: false, render: (el) => flowChart(el, ru, "#eb6834", "Point margin: Quan vs Trouve") },
   ]);
   slot("#ru-rally", [
-    { name: "Rally length bars", dark: false, render: (el) => rallyBars(el, ru, "#f2a900") },
+    { name: "Rally length bars", dark: false, render: (el) => rallyBars(el, ru, "#eb6834") },
   ]);
 
   slot("#ru-serve", [
@@ -148,7 +155,7 @@ d3.json("data.json").then((data) => {
 
   renderClips("#ru-clips", ru, "rudy");
   slot("#ru-season", [
-    { name: "Season strips", dark: false, render: (el) => seasonStrip(el, ru.season.strip, "#f2a900", "USC (Feb)") },
+    { name: "Season strips", dark: false, render: (el) => seasonStrip(el, ru.season.strip, "#eb6834", "USC (Feb)") },
   ]);
-  workOn("#ru-work", ru.season.cards, "#f2a900");
+  workOn("#ru-work", ru.season.cards, "#eb6834");
 }).catch((e) => console.error("data.json failed to load", e));

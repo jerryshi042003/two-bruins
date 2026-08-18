@@ -417,3 +417,48 @@ footer {
 .plan.gold li::before { background: #8b6400; }
 .plan li strong { color: var(--ink); }
 .courtSection.noTop { border-top: 0; margin-top: 0; padding-top: 16px; }
+
+/* ---------- pull quote ---------- */
+.pullQuote {
+  max-width: 660px;
+  margin: 26px auto 0;
+  padding: 4px 0 0 26px;
+  border-left: 3px solid var(--ink);
+}
+.pullQuote p {
+  margin: 0;
+  font-size: 19px;
+  line-height: 1.45;
+  font-weight: 500;
+  letter-spacing: -.01em;
+}
+.pullQuote cite {
+  display: block;
+  margin-top: 10px;
+  font-style: normal;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .06em;
+  color: var(--muted);
+}
+.pullQuote cite a { color: inherit; }
+
+/* ---------- other-nights comparison ---------- */
+.nights {
+  max-width: 640px;
+  margin: 18px auto 0;
+}
+.nights .row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 16px;
+  padding: 11px 2px;
+  border-bottom: 1px solid var(--rule);
+  font-size: 15px;
+}
+.nights .row.hi { font-weight: 700; }
+.nights .row .who { color: #444; }
+.nights .row.hi .who { color: var(--ink); }
+.nights .row .n { font-variant-numeric: tabular-nums; white-space: nowrap; }
+.nights .rowHead { padding: 0 2px 8px; font-size: 10px; font-weight: 700; letter-spacing: .1em; color: var(--muted); }

@@ -16,18 +16,11 @@
 <main class="report">
 
   <header class="matchHeader">
-    <p>UCLA MEN'S TENNIS &middot; SWINGVISION</p>
-    <p class="event">FEBRUARY 21, 2026 &middot; vs USC</p>
+    <p>UCLA vs USC &middot; FEBRUARY 21, 2026</p>
   </header>
 
   <section class="read">
-    <p class="kicker">ONE DUAL, TWO SINGLES WINS</p>
     <h1>Two Bruins won.<br>They won opposite ways.</h1>
-    <dl class="statRow">
-      <div><dt>SHOTS TRACKED</dt><dd>1,611</dd><small>ball-by-ball, both matches</small></div>
-      <div><dt>POINTS</dt><dd>286</dd><small>scored, timed, break points flagged</small></div>
-      <div><dt>SINGLES WINS</dt><dd>2 / 2</dd><small>Johnson and Quan</small></div>
-    </dl>
   </section>
 
   <!-- ============================ SPENCER ============================ -->
@@ -40,28 +33,31 @@
   </div>
 
   <section class="read">
-    <p class="kicker">POINT DURATION &middot; NOT IN THE SWINGVISION APP</p>
-    <h1>His wins are 5 seconds<br>shorter than his losses.</h1>
-    <div class="bigStat"><strong>10.6s vs 15.5s</strong><span>average point he won &middot; average point he lost</span></div>
-    <p class="coachCue">End points by ball four.</p>
+    <p class="kicker">HOW HE WINS</p>
+    <h1>Win it early.</h1>
+    <div class="bigStat"><strong>69% vs 40%</strong><span>points won inside two shots &middot; points won at five to eight</span></div>
   </section>
-  <div class="viz" id="sp-flow"></div>
-  <p class="caption">
-    Running point margin across the match. He lost set one, then broke Djuric
-    <strong>4 times in 7 chances</strong> and gave back 2 of 3. That gap is the match.
-  </p>
+  <div class="viz" id="sp-rally"></div>
+  <p class="caption">The clock says the same thing. His wins average <strong>10.6 seconds</strong>. His losses average <strong>15.5</strong>.</p>
 
   <div class="visualHeading ruled">
-    <p class="kicker">RALLY ECONOMICS</p>
-    <h2>Win it early.</h2>
-    <p class="sub"><strong>69%</strong> inside two shots. <strong>40%</strong> at five to eight.</p>
+    <p class="kicker">THE GAME PLAN</p>
+    <h2>The serve does the work.<br>Then he stays home.</h2>
   </div>
-  <div class="viz" id="sp-rally"></div>
+  <ol class="plan blue">
+    <li><strong>Serve T on the ad side.</strong> Won 79% tonight. 77% across the season on 93 serves.</li>
+    <li><strong>Take the first ball as a forehand.</strong> 80% of his serve-plus-ones tonight were forehands.</li>
+    <li><strong>Follow the T serve in.</strong> He wins 61% at net this season. Tonight: 13 ad-T points, zero net follows.</li>
+    <li><strong>Cash the short ball.</strong> He got 70 short balls, went forward on 12, and won only 41% of those points.</li>
+  </ol>
+  <p class="coachCue center">Steps 1 and 2 are working. Steps 3 and 4 are the free points he leaves.</p>
 
-  <section class="courtSection">
+  <div class="visualHeading ruled">
+    <p class="kicker">HOW HE LOSES</p>
+    <h2>Line ball long. Backhand net.</h2>
+  </div>
+  <section class="courtSection noTop">
     <div class="courtRead">
-      <p class="kicker">GROUNDSTROKE MISSES</p>
-      <h2>Line ball long.<br>Backhand net.</h2>
       <dl class="sideSplit">
         <div><dt>FH DOWN THE LINE</dt><dd><strong>15</strong> of 84 flew long</dd></div>
         <div><dt>FH CROSSCOURT</dt><dd><strong>0</strong> of 67 flew long</dd></div>
@@ -74,26 +70,30 @@
   </section>
 
   <div class="visualHeading">
-    <p class="kicker">SERVE PLACEMENT &times; POINT OUTCOME</p>
-    <h2>Ad court: trust the T.</h2>
-    <p class="sub">SwingVision maps where serves land. It does not say who won the point.
-    The ad-court T won <strong>79%</strong>. The wide slider won 65%.</p>
-  </div>
-  <div class="viz" id="sp-serve"></div>
-  <p class="coachCue center">Big points: hit the T.</p>
-
-  <div class="visualHeading">
-    <p class="kicker">RETURN POSITION</p>
+    <p class="kicker">HOW HE LOSES &middot; RETURN</p>
     <h2>No-man's land loses.</h2>
     <p class="sub">Inside the baseline he won <strong>55%</strong>. Behind it, 48%. Standing on it, <strong>22%</strong>.</p>
   </div>
   <div class="viz" id="sp-return"></div>
-  <p class="coachCue center">Commit: step in, or stay back.</p>
 
   <div class="visualHeading ruled">
-    <p class="kicker">SCALE &middot; 11 TRACKED MATCHES, 1,435 POINTS</p>
+    <p class="kicker">SERVE MAP</p>
+    <h2>Where the T money is.</h2>
+    <p class="sub">Landing spot of every serve, with points won by zone.</p>
+  </div>
+  <div class="viz" id="sp-serve"></div>
+
+  <div class="visualHeading ruled">
+    <p class="kicker">THE MATCH</p>
+    <h2>Down a set, then gone.</h2>
+    <p class="sub">Broke Djuric <strong>4 of 7</strong> chances. Gave back 2 of 3.</p>
+  </div>
+  <div class="viz" id="sp-flow"></div>
+
+  <div class="visualHeading ruled">
+    <p class="kicker">THE EVIDENCE &middot; 11 TRACKED MATCHES &middot; 1,435 POINTS</p>
     <h2>Was USC typical? Yes.</h2>
-    <p class="sub">Gray dots are his other tracked matches. Blue is USC.</p>
+    <p class="sub">His 10 other tracked matches are the gray dots. USC is blue.</p>
   </div>
   <div class="viz" id="sp-season"></div>
   <div class="workGrid" id="sp-work"></div>
@@ -160,9 +160,21 @@
   <div class="viz" id="ru-serve"></div>
 
   <div class="visualHeading ruled">
-    <p class="kicker">SCALE &middot; 19 TRACKED MATCHES, 2,216 POINTS</p>
+    <p class="kicker">THE GAME PLAN</p>
+    <h2>The grind creates the short ball.<br>He never cashes it.</h2>
+  </div>
+  <ol class="plan gold">
+    <li><strong>Extend the point.</strong> Ball five and later, he wins 64%.</li>
+    <li><strong>Ad side: wide slice.</strong> 77% tonight. The T lost all season: 54% on 211 serves.</li>
+    <li><strong>Serve to get a forehand first ball.</strong> Forehand next: 57%. Backhand next: 49%. 841 season points.</li>
+    <li><strong>Take the short ball forward.</strong> 83 short balls tonight. 8 trips to net. He wins 61% up there.</li>
+  </ol>
+  <p class="coachCue center">Steps 1 to 3 won this match. Step 4 is the next level.</p>
+
+  <div class="visualHeading ruled">
+    <p class="kicker">THE EVIDENCE &middot; 19 TRACKED MATCHES &middot; 2,216 POINTS</p>
     <h2>The season says it louder.</h2>
-    <p class="sub">Gray dots are his other 18 tracked matches. Gold is USC.</p>
+    <p class="sub">His 18 other tracked matches are the gray dots. USC is gold.</p>
   </div>
   <div class="viz" id="ru-season"></div>
   <div class="workGrid" id="ru-work"></div>

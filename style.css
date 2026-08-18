@@ -380,3 +380,40 @@ footer {
 .workCard .wl { margin-top: 8px; color: var(--muted); font-size: 13.5px; line-height: 1.45; }
 .workCard .wc { margin-top: 14px; padding-top: 12px; border-top: 2px solid; font-size: 14px; font-weight: 700; }
 @media (max-width: 860px) { .workGrid { grid-template-columns: 1fr; } }
+
+/* ---------- game plan ---------- */
+.plan {
+  max-width: 640px;
+  margin: 18px auto 0;
+  padding: 6px 0 0 0;
+  list-style: none;
+  counter-reset: step;
+}
+.plan li {
+  position: relative;
+  padding: 14px 0 14px 52px;
+  border-bottom: 1px solid var(--rule);
+  font-size: 15.5px;
+  line-height: 1.5;
+  color: #333;
+  counter-increment: step;
+}
+.plan li::before {
+  content: counter(step);
+  position: absolute;
+  left: 0;
+  top: 12px;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-weight: 700;
+  font-size: 14px;
+}
+.plan.blue li::before { background: var(--blue); }
+.plan.gold li::before { background: #8b6400; }
+.plan li strong { color: var(--ink); }
+.courtSection.noTop { border-top: 0; margin-top: 0; padding-top: 16px; }

@@ -3,8 +3,8 @@
    them and the theme control at the top switches all courts at once. */
 
 const VIDEO = {
-  spencer: null,   // set a YouTube id to turn the clip cards into real embeds
-  rudy: null,
+  spencer: "NVhM0fEcu3U",   // Johnson vs Djuric (USC) — UCLA Tennis Consulting channel
+  rudy: "6iLvp5WOi-Q",      // Quan vs Trouve (USC)
 };
 
 const THEME = "classic";
@@ -117,6 +117,10 @@ d3.json("data.json").then((data) => {
   ]);
 
   renderClips("#sp-clips", sp, "spencer");
+  slot("#sp-season", [
+    { name: "Season strips", dark: false, render: (el) => seasonStrip(el, sp.season.strip, "#2d68c4", "USC") },
+  ]);
+  workOn("#sp-work", sp.season.cards, "#2d68c4");
 
   /* ---- Rudy ---- */
   slot("#ru-ended", [
@@ -146,4 +150,8 @@ d3.json("data.json").then((data) => {
   ]);
 
   renderClips("#ru-clips", ru, "rudy");
+  slot("#ru-season", [
+    { name: "Season strips", dark: false, render: (el) => seasonStrip(el, ru.season.strip, "#f2a900", "USC (Feb)") },
+  ]);
+  workOn("#ru-work", ru.season.cards, "#f2a900");
 }).catch((e) => console.error("data.json failed to load", e));

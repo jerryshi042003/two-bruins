@@ -371,3 +371,12 @@ footer {
 /* miss-map inside the split section renders narrower */
 .courtSection .viz.slim { min-width: 0; }
 .coachCue.center { text-align: center; margin-top: 14px; }
+
+/* ---------- work-on cards ---------- */
+.workGrid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 18px; }
+.workCard { border: 1px solid var(--line); border-radius: 12px; padding: 20px 20px 18px; background: #fff; }
+.workCard .wk { font-size: 10px; font-weight: 700; letter-spacing: .1em; color: var(--muted); }
+.workCard .wv { margin-top: 10px; font-size: 34px; font-weight: 700; letter-spacing: -.04em; line-height: 1; }
+.workCard .wl { margin-top: 8px; color: var(--muted); font-size: 13.5px; line-height: 1.45; }
+.workCard .wc { margin-top: 14px; padding-top: 12px; border-top: 2px solid; font-size: 14px; font-weight: 700; }
+@media (max-width: 860px) { .workGrid { grid-template-columns: 1fr; } }

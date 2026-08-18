@@ -584,3 +584,73 @@ function endedBars(sel, p, accent) {
       .attr("fill", "#999").text(`${Math.round((r.n / total) * 100)}% of pts`);
   });
 }
+
+/* ================================================================== *
+ * H. SEASON STRIP — one dot per tracked match, this match highlighted.
+ *    The "is this normal?" chart: distribution + median + highlight.
+ * ================================================================== */
+function seasonStrip(sel, rows, accent, highlightLabel) {
+  // rows: [{metric, unit, matches:[{label, v}], hi}]  hi = highlighted value
+  const W = 1000, rowH = 84, top = 66, H = top + rows.length * rowH + 30;
+  const svg = d3.select(sel).html("").attr("viewBox", `0 0 ${W} ${H}`)
+    .attr("preserveAspectRatio", "xMidYMid meet").attr("class", "chart");
+  svg.append("rect").attr("width", "100%").attr("height", "100%").attr("fill", "#fff");
+
+  svg.append("text").attr("x", 8).attr("y", 30).attr("font-size", 18)
+    .attr("font-weight", 700).attr("fill", "#222")
+    .text(`Every tracked match this season — ${highlightLabel} highlighted`);
+  svg.append("text").attr("x", W - 8).attr("y", 30).attr("text-anchor", "end")
+    .attr("font-size", 13).attr("fill", "#999").text("| median");
+
+  const axL = 268, axR = W - 120;
+  rows.forEach((r, i) => {
+    const gy = top + i * rowH + 26;
+    const vals = r.matches.map((m) => m.v).filter((v) => v !== null && v !== undefined);
+    const lo = Math.min(...vals, r.hi), hiV = Math.max(...vals, r.hi);
+    const pad = (hiV - lo) * 0.08 + 1e-6;
+    const x = d3.scaleLinear().domain([lo - pad, hiV + pad]).range([axL, axR]);
+
+    svg.append("text").attr("x", 8).attr("y", gy + 5).attr("font-size", 16.5)
+      .attr("fill", "#333").attr("font-weight", 700).text(r.metric);
+    if (r.sub) svg.append("text").attr("x", 8).attr("y", gy + 24)
+      .attr("font-size", 12.5).attr("fill", "#999").text(r.sub);
+
+    svg.append("line").attr("x1", axL).attr("x2", axR).attr("y1", gy).attr("y2", gy)
+      .attr("stroke", "#e4e4e4").attr("stroke-width", 2);
+
+    const med = d3.median(vals);
+    svg.append("line").attr("x1", x(med)).attr("x2", x(med))
+      .attr("y1", gy - 15).attr("y2", gy + 15).attr("stroke", "#999").attr("stroke-width", 2.5);
+
+    r.matches.forEach((m) => {
+      if (m.v === null || m.v === undefined) return;
+      svg.append("circle").attr("cx", x(m.v)).attr("cy", gy).attr("r", 6)
+        .attr("fill", "#d7d7d7").attr("stroke", "#aaa").attr("stroke-width", 1)
+        .append("title").text(`${m.label}: ${r.unit === "%" ? Math.round(m.v * 100) + "%" : m.v}`);
+    });
+    // highlighted match on top
+    svg.append("circle").attr("cx", x(r.hi)).attr("cy", gy).attr("r", 8.5)
+      .attr("fill", accent).attr("stroke", "#111").attr("stroke-width", 1.6)
+      .append("title").text(`${highlightLabel}: ${r.unit === "%" ? Math.round(r.hi * 100) + "%" : r.hi}`);
+
+    const fmt = (v) => (r.unit === "%" ? Math.round(v * 100) + "%" : v);
+    svg.append("text").attr("x", axR + 16).attr("y", gy + 6).attr("font-size", 19)
+      .attr("font-weight", 700).attr("fill", accent).text(fmt(r.hi));
+    svg.append("text").attr("x", axR + 16).attr("y", gy + 25).attr("font-size", 12.5)
+      .attr("fill", "#999").text(`med ${fmt(med)}`);
+  });
+}
+
+/* ================================================================== *
+ * I. WORK-ON CARD ROW — prescription stats with evidence numbers
+ * ================================================================== */
+function workOn(sel, cards, accent) {
+  const host = document.querySelector(sel);
+  host.innerHTML = cards.map((c) => `
+    <div class="workCard">
+      <div class="wk">${c.kicker}</div>
+      <div class="wv">${c.value}</div>
+      <div class="wl">${c.line}</div>
+      <div class="wc" style="border-color:${accent}">${c.cue}</div>
+    </div>`).join("");
+}

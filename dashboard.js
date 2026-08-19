@@ -53,21 +53,18 @@ function renderPanel(p) {
   // header
   const head = el('div', 'pHead');
   head.appendChild(el('h2', null, p.name));
-  const opps = p.matches.map(m => m.opp).join(' · ');
-  let tags = '';
-  if (p.hand) tags += `<span class="tag ${p.hand.toLowerCase() === 'left' ? 'blue' : ''}">${p.hand.toUpperCase()}-HANDED</span> `;
-  tags += `<span class="tag">${p.matchesTracked} MATCH${p.matchesTracked > 1 ? 'ES' : ''} TRACKED</span>`;
-  if (p.seasonMatches) tags += ` <span class="tag orange">${p.seasonMatches} SEASON ON MAIN REPORT</span>`;
-  head.appendChild(el('div', 'pMeta', `vs ${opps}<br>${tags}`));
+  head.appendChild(el('div', 'pMeta',
+    `${p.matchesTracked} MATCH${p.matchesTracked > 1 ? 'ES' : ''} TRACKED · ${p.points.toLocaleString()} POINTS`));
   panel.appendChild(head);
 
   // KPI row
   const kpis = el('div', 'kpis');
+  const bp = p.bp || {};
   const K = [
     ['v', pct(p.winPct), 'POINTS WON', `${p.ptsWon} of ${p.points}`],
     ['v', pct(p.firstInPct), '1ST SERVE IN', `${p.servePts} service pts`],
-    ['v', pct(p.plus1FhSharePct), 'SERVE +1 FOREHAND', `${p.plus1N} serve+1 balls`],
-    ['v', String(p.aces) + ' / ' + String(p.df), 'ACES / DOUBLES', 'this player'],
+    ['v', bp.convN ? `${bp.conv}/${bp.convN}` : '—', 'BREAK PTS WON', bp.convPct != null ? pct(bp.convPct) + ' converted' : 'as returner'],
+    ['v', String(p.aces) + ' / ' + String(p.df), 'ACES / DOUBLES', `${p.servePts} serves`],
   ];
   K.forEach(([, v, l, s]) => {
     const k = el('div', 'kpi');
@@ -86,12 +83,49 @@ function renderPanel(p) {
   // shot-making
   panel.appendChild(shotMakingBlock(p));
 
-  // net + return
+  // break points + return
   const grid2 = el('div', 'dgrid');
-  grid2.appendChild(netBlock(p));
+  grid2.appendChild(bpBlock(p));
   grid2.appendChild(returnBlock(p));
   const b2 = el('div', 'dblock'); b2.appendChild(grid2);
   panel.appendChild(b2);
+
+  // matches list (with YouTube where available)
+  panel.appendChild(matchesBlock(p));
+}
+
+function bpBlock(p) {
+  const b = block('BREAK POINTS', 'The moments that decide sets');
+  const bp = p.bp || {};
+  const pair = el('div', 'pairStat');
+  const items = [
+    [bp.convN ? `${bp.conv} / ${bp.convN}` : '—', 'CONVERTED (RETURNING)', bp.convPct],
+    [bp.saveN ? `${bp.saved} / ${bp.saveN}` : '—', 'SAVED (SERVING)', bp.savePct],
+  ];
+  items.forEach(([v, l]) => {
+    const ps = el('div', 'ps'); ps.appendChild(el('div', 'v', v)); ps.appendChild(el('div', 'l', l)); pair.appendChild(ps);
+  });
+  b.appendChild(pair);
+  const cv = bp.convPct != null ? pct(bp.convPct) : '—', sv = bp.savePct != null ? pct(bp.savePct) : '—';
+  b.appendChild(el('p', 'dnote', `Converts ${cv} of the break points earned and saves ${sv} of those faced.`));
+  return b;
+}
+
+function matchesBlock(p) {
+  const b = block('THE MATCHES', `${p.matchesTracked} tracked, pooled above`);
+  const wrap = el('div', 'matchList');
+  p.matches.forEach(m => {
+    const row = el('div', 'matchRow');
+    const opp = (m.opp || '').replace(/^[.\s]+/, '').replace(/\s+\d[\d/]*$/, '').trim();
+    row.appendChild(el('div', 'mo', `vs ${opp || m.team || '—'}`));
+    row.appendChild(el('div', 'mn', `${m.n} pts`));
+    const watch = el('div', 'mw');
+    if (m.video) watch.innerHTML = `<a href="https://www.youtube.com/watch?v=${m.video}" target="_blank" rel="noopener">watch ▸</a>`;
+    row.appendChild(watch);
+    wrap.appendChild(row);
+  });
+  b.appendChild(wrap);
+  return b;
 }
 
 function block(kicker, head) {
@@ -199,21 +233,36 @@ function netBlock(p) {
 }
 
 function returnBlock(p) {
-  const b = block('RETURN', 'Where the return lands');
-  if (!p.ret) {
-    b.appendChild(el('p', 'naNote', 'Return depth is not tracked in this player’s export.'));
+  const b = block('RETURN', 'Forehand or backhand, and where');
+  if (!p.ret || !p.ret.n) {
+    b.appendChild(el('p', 'naNote', 'Return wing is not tracked in this player’s matches.'));
     return b;
   }
-  const total = p.ret.depth.reduce((s, d) => s + d.n, 0) || 1;
-  p.ret.depth.sort((a, c) => c.n - a.n).forEach(d => {
-    const row = el('div', 'hbar');
-    row.appendChild(el('div', 'hl', ''));
-    const ht = el('div', 'ht'); const i = el('i'); i.style.width = Math.round(d.n / total * 100) + '%'; ht.appendChild(i);
-    row.appendChild(ht);
-    row.appendChild(el('div', 'hr', `${d.n} · ${pct(d.wonPct)} won`));
-    const lab = row.querySelector('.hl'); lab.textContent = d.zone; lab.style.fontSize = '11px'; lab.style.fontWeight = '700';
-    b.appendChild(row);
-  });
-  b.appendChild(el('p', 'dnote', `${p.ret.n} returns put in play, by depth zone.`));
+  // FH vs BH split
+  const fh = p.ret.fh || 0, bh = p.ret.bh || 0, t = fh + bh || 1;
+  const split = el('div', 'smSplit'); split.style.height = '26px';
+  const wi = el('i', 'w'); wi.style.width = (fh / t * 100) + '%';
+  const ei = el('i', 'e'); ei.style.width = (bh / t * 100) + '%';
+  split.appendChild(wi); split.appendChild(ei);
+  b.appendChild(split);
+  const cap = el('div', 'smSplitCap');
+  cap.innerHTML = `<span class="w">${fh} forehand</span><span class="e">${bh} backhand</span>`;
+  b.appendChild(cap);
+  // direction bars
+  if (p.ret.dir && p.ret.dir.length) {
+    const tot = p.ret.dir.reduce((s, d) => s + d.n, 0) || 1;
+    const wrap = el('div'); wrap.style.marginTop = '14px';
+    p.ret.dir.sort((a, c) => c.n - a.n).forEach(d => {
+      const row = el('div', 'hbar');
+      const lab = el('div', 'hl', d.dir); lab.style.fontSize = '11px'; lab.style.fontWeight = '700';
+      row.appendChild(lab);
+      const ht = el('div', 'ht'); const i = el('i'); i.style.width = Math.round(d.n / tot * 100) + '%'; ht.appendChild(i);
+      row.appendChild(ht);
+      row.appendChild(el('div', 'hr', `${d.n} · ${pct(d.wonPct)} won`));
+      wrap.appendChild(row);
+    });
+    b.appendChild(wrap);
+  }
+  b.appendChild(el('p', 'dnote', `${p.ret.n} returns put in play, wing split and direction.`));
   return b;
 }

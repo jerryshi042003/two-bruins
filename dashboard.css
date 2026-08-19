@@ -55,7 +55,7 @@
 .sSideLabel { grid-column: 1 / -1; font-size: 10px; font-weight: 700; letter-spacing: .1em; color: var(--muted); margin-top: 4px; }
 
 /* horizontal count bars (rally, generic) */
-.hbar { display: grid; grid-template-columns: 58px 1fr 84px; gap: 12px; align-items: center; padding: 8px 0; border-bottom: 1px solid var(--rule); }
+.hbar { display: grid; grid-template-columns: 96px 1fr 92px; gap: 10px; align-items: center; padding: 8px 0; border-bottom: 1px solid var(--rule); }
 .hbar .hl { font-size: 13px; font-weight: 700; font-variant-numeric: tabular-nums; }
 .hbar .ht { position: relative; height: 20px; background: var(--blue-bg); border-radius: 2px; overflow: hidden; }
 .hbar .ht > i { position: absolute; left: 0; top: 0; bottom: 0; background: var(--blue); }
@@ -84,3 +84,12 @@
 .pairStat .ps .l { color: var(--muted); font-size: 11px; font-weight: 700; letter-spacing: .06em; }
 
 .naNote { color: var(--faint); font-size: 13px; font-style: italic; }
+
+/* match list */
+.matchList { border-top: 1px solid var(--line); }
+.matchRow { display: grid; grid-template-columns: 1fr 70px 70px; gap: 12px; align-items: baseline; padding: 10px 2px; border-bottom: 1px solid var(--rule); font-size: 14px; }
+.matchRow .mo { font-weight: 700; }
+.matchRow .mn { color: var(--muted); font-variant-numeric: tabular-nums; text-align: right; font-size: 13px; }
+.matchRow .mw { text-align: right; }
+.matchRow .mw a { color: var(--blue); font-weight: 700; font-size: 12px; text-decoration: none; }
+.matchRow .mw a:hover { text-decoration: underline; }

@@ -21,9 +21,10 @@
   </header>
 
   <section class="dashIntro">
-    <h1>Every tracked Bruin,<br>read shot by shot.</h1>
-    <p class="lede">Pick a player. Every number below is counted from their raw match exports &mdash;
-      serve, return, rally length, net play, and what ends the points. No tags added by hand.</p>
+    <h1>Every tracked Bruin,<br>point by point.</h1>
+    <p class="lede">Pick a player. Every number is counted from the tagged points of every match
+      they have in the team's match database &mdash; serve, return, rally length, break points,
+      and what ends the points.</p>
     <p class="backLink"><a href="./">&larr; Back to the Two Bruins report</a></p>
   </section>
 
@@ -39,12 +40,11 @@
   <section class="method">
     <h3>HOW THIS WAS BUILT</h3>
     <p>
-      Two raw sources, both one export per match: shot-level SwingVision-style exports (one row per
-      ball) and point-level Hawk-Eye exports (one row per point). Each player's panel pools every
-      tracked match they have. Serve, serve+1, rally length and point endings are computed the same
-      way from both; net and return depth exist only in the shot-level source, so they are shown
-      only where the underlying data supports them. Counts are shown next to every rate because most
-      samples are one or two matches.
+      Source: the team's match-tagging database, one tagged point per row. Each player's panel pools
+      every match they have in it. Win rate, serve placement, rally length, break points, returns
+      and point endings are counted directly from those points; nothing is estimated. Matches still
+      being tagged, doubles, and intra-squad practice sets are left out. Counts are shown next to
+      every rate because samples range from one match to six.
     </p>
     <p id="coverageNote"></p>
   </section>

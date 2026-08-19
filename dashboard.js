@@ -4,14 +4,16 @@
 const pct = (x) => (x == null ? '—' : Math.round(x * 100) + '%');
 const el = (tag, cls, html) => { const e = document.createElement(tag); if (cls) e.className = cls; if (html != null) e.innerHTML = html; return e; };
 
-let DATA = null, ENRICH = {}, gender = 'men', current = {};
+let DATA = null, ENRICH = {}, PAT = {}, gender = 'men', current = {};
 const enr = (p) => ENRICH[`${gender}::${p.name}`] || {};
+const pat = (p) => PAT[`${gender}::${p.name}`] || {};
 
 Promise.all([
   fetch('dashboard-data.json').then(r => r.json()),
   fetch('player_enrich.json').then(r => r.json()).catch(() => ({})),
-]).then(([d, e]) => {
-  DATA = d; ENRICH = e || {};
+  fetch('player_patterns.json').then(r => r.json()).catch(() => ({})),
+]).then(([d, e, pt]) => {
+  DATA = d; ENRICH = e || {}; PAT = pt || {};
   const totals = ['men', 'women'].reduce((a, g) => {
     a.players += d[g].length; a.pts += d[g].reduce((s, p) => s + p.points, 0); return a;
   }, { players: 0, pts: 0 });
@@ -113,6 +115,7 @@ function renderPanel(p) {
 
   // ---- LEAD: how they win/lose, level & schedule, what's working ----
   panel.appendChild(signatureBlock(p, e));
+  panel.appendChild(courtPatternBlock(p));
   panel.appendChild(levelBlock(p, e));
   panel.appendChild(trendBlock(p, e));
   panel.appendChild(effectivenessBlock(p));
@@ -214,6 +217,53 @@ function levelBlock(p, e) {
   b.appendChild(el('p', 'dnote',
     `Avg opponent UTR <b>${s.avgOppUtr || 'n/a'}</b> vs their own <b>${e.playerUtr ? e.playerUtr.toFixed(1) : 'n/a'}</b>. ` +
     `Against opponents rated at or above them: ${vs(s.vsStronger)}; against lower-rated: ${vs(s.vsWeaker)}. ` + recency));
+  return b;
+}
+
+function courtPatternBlock(p) {
+  const P = pat(p);
+  const b = block('SERVE PATTERN', 'Where they serve — and what comes back');
+  if (!P.serve || !P.serve.length) { b.appendChild(el('p', 'naNote', 'No serve-placement data for this player.')); return b; }
+  const byKey = {}; P.serve.forEach(s => byKey[s.side + '|' + s.zone] = s);
+  const W = 440, H = 400, netY = 34, svcY = 200, baseY = 350, cx0 = 70, cx1 = 370, midX = 220, sw = 50;
+  const svg = d3.create('svg').attr('viewBox', `0 0 ${W} ${H}`).attr('class', 'd3svg');
+  const g = svg.append('g');
+  const line = (x1, y1, x2, y2, c, w) => g.append('line').attr('x1', x1).attr('y1', y1).attr('x2', x2).attr('y2', y2).attr('stroke', c || '#c4c4c4').attr('stroke-width', w || 1.2);
+  g.append('rect').attr('x', cx0).attr('y', netY).attr('width', cx1 - cx0).attr('height', baseY - netY).attr('fill', '#f7faf7').attr('stroke', '#c4c4c4').attr('stroke-width', 1.2);
+  line(cx0, svcY, cx1, svcY); line(midX, netY, midX, svcY); line(midX, svcY, midX, baseY, '#e2e2e2');
+  line(cx0, netY, cx1, netY, '#333', 2.5);
+  g.append('text').attr('x', cx0 - 6).attr('y', netY + 4).attr('text-anchor', 'end').attr('font-size', 9).attr('fill', C.muted).text('NET');
+  const win = d3.scaleLinear().domain([0.3, 0.85]).range(['#e7edf7', '#123f7f']).clamp(true);
+  const zones = [['Deuce', 'Wide', cx0], ['Deuce', 'Body', cx0 + sw], ['Deuce', 'T', cx0 + 2 * sw],
+                 ['Ad', 'T', midX], ['Ad', 'Body', midX + sw], ['Ad', 'Wide', midX + 2 * sw]];
+  zones.forEach(([side, zone, x]) => {
+    const s = byKey[side + '|' + zone];
+    g.append('rect').attr('x', x).attr('y', netY).attr('width', sw).attr('height', svcY - netY)
+      .attr('fill', s && s.winPct != null ? win(s.winPct) : '#eee').attr('stroke', '#fff').attr('stroke-width', 1);
+    g.append('text').attr('x', x + sw / 2).attr('y', netY + 15).attr('text-anchor', 'middle').attr('font-size', 8).attr('font-weight', 700).attr('fill', s && s.winPct >= 0.6 ? '#dfe8f7' : '#888').text(zone.toUpperCase());
+    if (s) {
+      const dark = s.winPct != null && s.winPct >= 0.6;
+      g.append('text').attr('x', x + sw / 2).attr('y', (netY + svcY) / 2 + 4).attr('text-anchor', 'middle').attr('font-size', 14).attr('font-weight', 700).attr('fill', dark ? '#fff' : '#333').text(s.n);
+      g.append('text').attr('x', x + sw / 2).attr('y', (netY + svcY) / 2 + 20).attr('text-anchor', 'middle').attr('font-size', 10).attr('fill', dark ? '#cfe' : '#666').text(s.winPct != null ? pctI(s.winPct) : '');
+    }
+  });
+  g.append('text').attr('x', (cx0 + midX) / 2).attr('y', baseY + 18).attr('text-anchor', 'middle').attr('font-size', 10).attr('font-weight', 700).attr('fill', C.muted).text('DEUCE COURT');
+  g.append('text').attr('x', (midX + cx1) / 2).attr('y', baseY + 18).attr('text-anchor', 'middle').attr('font-size', 10).attr('font-weight', 700).attr('fill', C.muted).text('AD COURT');
+  const sig = P.signature;
+  if (sig && sig.topReturn) {
+    const zx = { 'Deuce|Wide': cx0 + 25, 'Deuce|Body': cx0 + 75, 'Deuce|T': cx0 + 125, 'Ad|T': midX + 25, 'Ad|Body': midX + 75, 'Ad|Wide': midX + 125 }[sig.side + '|' + sig.zone];
+    const crosscourt = /cross/i.test(sig.topReturn);
+    const ex = crosscourt ? (sig.side === 'Deuce' ? cx1 - 34 : cx0 + 34) : zx;
+    g.append('defs').html('<marker id="ah" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="' + C.gold + '"/></marker>');
+    g.append('line').attr('x1', zx).attr('y1', svcY - 16).attr('x2', ex).attr('y2', baseY - 16).attr('stroke', C.gold).attr('stroke-width', 3).attr('marker-end', 'url(#ah)').attr('opacity', 0.9);
+    g.append('circle').attr('cx', zx).attr('cy', svcY - 16).attr('r', 4).attr('fill', C.gold);
+  }
+  b.appendChild(svg.node());
+  b.appendChild(el('div', 'd3legend', `<span><i style="background:#e7edf7"></i>loses more</span><span><i style="background:#123f7f"></i>wins more</span><span><i style="background:${C.gold};border-radius:0;width:16px;height:3px"></i>return comes back</span>`));
+  if (sig) b.appendChild(el('p', 'dnote',
+    `Cells are their serve targets, shaded by how often they win the point from that spot; the gold arrow is where the return usually comes back. ` +
+    `Their signature serve is the <b>${sig.side} ${sig.zone}</b> — ${sig.n} times, <b>${pctI(sig.winPct)}</b> won (${sig.lift >= 0 ? '+' : ''}${Math.round(sig.lift * 100)} vs their average), returned mostly <b>${sig.topReturn.toLowerCase()}</b>` +
+    (sig.s1winPct != null ? `; <b>${pctI(sig.s1winPct)}</b> of those points are won inside three shots — the serve+1 quick strike.` : '.')));
   return b;
 }
 

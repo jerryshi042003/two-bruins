@@ -1,0 +1,2119 @@
+{
+ "women::Tian Fang Ran": {
+  "baseWin": 0.54,
+  "servePts": 218,
+  "serve": [
+   {
+    "side": "Deuce",
+    "zone": "Wide",
+    "n": 35,
+    "won": 17,
+    "winPct": 0.486,
+    "ace": 3,
+    "quickWin": 8,
+    "s1winPct": 0.229,
+    "topReturn": "Down the Line"
+   },
+   {
+    "side": "Ad",
+    "zone": "Wide",
+    "n": 44,
+    "won": 26,
+    "winPct": 0.591,
+    "ace": 1,
+    "quickWin": 13,
+    "s1winPct": 0.295,
+    "topReturn": "Crosscourt"
+   },
+   {
+    "side": "Deuce",
+    "zone": "T",
+    "n": 44,
+    "won": 26,
+    "winPct": 0.591,
+    "ace": 4,
+    "quickWin": 13,
+    "s1winPct": 0.295,
+    "topReturn": "Crosscourt"
+   },
+   {
+    "side": "Deuce",
+    "zone": "Body",
+    "n": 32,
+    "won": 15,
+    "winPct": 0.469,
+    "ace": 1,
+    "quickWin": 4,
+    "s1winPct": 0.125,
+    "topReturn": "Down the Line"
+   },
+   {
+    "side": "Ad",
+    "zone": "Body",
+    "n": 24,
+    "won": 13,
+    "winPct": 0.542,
+    "ace": 0,
+    "quickWin": 4,
+    "s1winPct": 0.167,
+    "topReturn": "Crosscourt"
+   },
+   {
+    "side": "Ad",
+    "zone": "T",
+    "n": 33,
+    "won": 20,
+    "winPct": 0.606,
+    "ace": 2,
+    "quickWin": 10,
+    "s1winPct": 0.303,
+    "topReturn": "Crosscourt"
+   }
+  ],
+  "ret": [
+   {
+    "wing": "Backhand",
+    "dir": "Down the Line",
+    "n": 18,
+    "winPct": 0.667
+   },
+   {
+    "wing": "Backhand",
+    "dir": "Crosscourt",
+    "n": 73,
+    "winPct": 0.466
+   },
+   {
+    "wing": "Forehand",
+    "dir": "Down the Line",
+    "n": 24,
+    "winPct": 0.583
+   },
+   {
+    "wing": "Forehand",
+    "dir": "Crosscourt",
+    "n": 44,
+    "winPct": 0.591
+   }
+  ],
+  "winners": [
+   {
+    "wing": "Forehand",
+    "dir": "Down the Line",
+    "n": 30
+   },
+   {
+    "wing": "Forehand",
+    "dir": "Crosscourt",
+    "n": 27
+   },
+   {
+    "wing": "Backhand",
+    "dir": "Crosscourt",
+    "n": 11
+   },
+   {
+    "wing": "Backhand",
+    "dir": "Down the Line",
+    "n": 5
+   }
+  ],
+  "errors": [
+   {
+    "wing": "Forehand",
+    "dir": "Crosscourt",
+    "n": 55
+   },
+   {
+    "wing": "Backhand",
+    "dir": "Crosscourt",
+    "n": 34
+   },
+   {
+    "wing": "Backhand",
+    "dir": "Down the Line",
+    "n": 23
+   },
+   {
+    "wing": "Forehand",
+    "dir": "Down the Line",
+    "n": 18
+   }
+  ],
+  "signature": {
+   "kind": "serve",
+   "side": "Deuce",
+   "zone": "Body",
+   "n": 32,
+   "winPct": 0.469,
+   "lift": -0.071,
+   "s1winPct": 0.125,
+   "topReturn": "Down the Line"
+  }
+ },
+ "men::Gianluca Ballotta": {
+  "baseWin": 0.333,
+  "servePts": 42,
+  "serve": [
+   {
+    "side": "Deuce",
+    "zone": "T",
+    "n": 12,
+    "won": 6,
+    "winPct": 0.5,
+    "ace": 0,
+    "quickWin": 1,
+    "s1winPct": 0.083,
+    "topReturn": "Crosscourt"
+   },
+   {
+    "side": "Ad",
+    "zone": "Body",
+    "n": 7,
+    "won": 4,
+    "winPct": 0.571,
+    "ace": 0,
+    "quickWin": 1,
+    "s1winPct": 0.143,
+    "topReturn": "Crosscourt"
+   },
+   {
+    "side": "Deuce",
+    "zone": "Wide",
+    "n": 2,
+    "won": 1,
+    "winPct": 0.5,
+    "ace": 0,
+    "quickWin": 1,
+    "s1winPct": 0.5,
+    "topReturn": "Crosscourt"
+   },
+   {
+    "side": "Ad",
+    "zone": "Wide",
+    "n": 10,
+    "won": 4,
+    "winPct": 0.4,
+    "ace": 0,
+    "quickWin": 3,
+    "s1winPct": 0.3,
+    "topReturn": "Down the Line"
+   },
+   {
+    "side": "Ad",
+    "zone": "T",
+    "n": 2,
+    "won": 1,
+    "winPct": 0.5,
+    "ace": 0,
+    "quickWin": 0,
+    "s1winPct": 0.0,
+    "topReturn": "Down the Line"
+   },
+   {
+    "side": "Deuce",
+    "zone": "Body",
+    "n": 6,
+    "won": 5,
+    "winPct": 0.833,
+    "ace": 0,
+    "quickWin": 2,
+    "s1winPct": 0.333,
+    "topReturn": "Down the Line"
+   }
+  ],
+  "ret": [
+   {
+    "wing": "Forehand",
+    "dir": "Crosscourt",
+    "n": 10,
+    "winPct": 0.2
+   },
+   {
+    "wing": "Backhand",
+    "dir": "Crosscourt",
+    "n": 12,
+    "winPct": 0.167
+   },
+   {
+    "wing": "Backhand",
+    "dir": "Down the Line",
+    "n": 5,
+    "winPct": 0.0
+   },
+   {
+    "wing": "Forehand",
+    "dir": "Down the Line",
+    "n": 5,
+    "winPct": 0.2
+   }
+  ],
+  "winners": [
+   {
+    "wing": "Backhand",
+    "dir": "Crosscourt",
+    "n": 5
+   },
+   {
+    "wing": "Forehand",
+    "dir": "Crosscourt",
+    "n": 3
+   },
+   {
+    "wing": "Forehand",
+    "dir": "Down the Line",
+    "n": 2
+   },
+   {
+    "wing": "Backhand",
+    "dir": "Down the Line",
+    "n": 1
+   }
+  ],
+  "errors": [
+   {
+    "wing": "Forehand",
+    "dir": "Crosscourt",
+    "n": 13
+   },
+   {
+    "wing": "Forehand",
+    "dir": "Down the Line",
+    "n": 7
+   },
+   {
+    "wing": "Backhand",
+    "dir": "Crosscourt",
+    "n": 4
+   },
+   {
+    "wing": "Backhand",
+    "dir": "Down the Line",
+    "n": 3
+   }
+  ],
+  "signature": {
+   "kind": "serve",
+   "side": "Deuce",
+   "zone": "T",
+   "n": 12,
+   "winPct": 0.5,
+   "lift": 0.167,
+   "s1winPct": 0.083,
+   "topReturn": "Crosscourt"
+  }
+ },
+ "women::Sasha Vagramov": {
+  "baseWin": 0.556,
+  "servePts": 53,
+  "serve": [
+   {
+    "side": "Deuce",
+    "zone": "Body",
+    "n": 12,
+    "won": 9,
+    "winPct": 0.75,
+    "ace": 0,
+    "quickWin": 2,
+    "s1winPct": 0.167,
+    "topReturn": "Down the Line"
+   },
+   {
+    "side": "Ad",
+    "zone": "Wide",
+    "n": 14,
+    "won": 8,
+    "winPct": 0.571,
+    "ace": 1,
+    "quickWin": 4,
+    "s1winPct": 0.286,
+    "topReturn": "Crosscourt"
+   },
+   {
+    "side": "Ad",
+    "zone": "Body",
+    "n": 12,
+    "won": 6,
+    "winPct": 0.5,
+    "ace": 0,
+    "quickWin": 2,
+    "s1winPct": 0.167,
+    "topReturn": "Crosscourt"
+   },
+   {
+    "side": "Deuce",
+    "zone": "T",
+    "n": 11,
+    "won": 7,
+    "winPct": 0.636,
+    "ace": 0,
+    "quickWin": 6,
+    "s1winPct": 0.545,
+    "topReturn": "Down the Line"
+   },
+   {
+    "side": "Deuce",
+    "zone": "Wide",
+    "n": 2,
+    "won": 2,
+    "winPct": 1.0,
+    "ace": 0,
+    "quickWin": 2,
+    "s1winPct": 1.0,
+    "topReturn": "Crosscourt"
+   }
+  ],
+  "ret": [
+   {
+    "wing": "Backhand",
+    "dir": "Crosscourt",
+    "n": 13,
+    "winPct": 0.385
+   },
+   {
+    "wing": "Backhand",
+    "dir": "Down the Line",
+    "n": 13,
+    "winPct": 0.538
+   },
+   {
+    "wing": "Forehand",
+    "dir": "Crosscourt",
+    "n": 7,
+    "winPct": 0.714
+   },
+   {
+    "wing": "Forehand",
+    "dir": "Down the Line",
+    "n": 7,
+    "winPct": 0.286
+   }
+  ],
+  "winners": [
+   {
+    "wing": "Forehand",
+    "dir": "Down the Line",
+    "n": 4
+   },
+   {
+    "wing": "Forehand",
+    "dir": "Crosscourt",
+    "n": 2
+   },
+   {
+    "wing": "Backhand",
+    "dir": "Down the Line",
+    "n": 2
+   },
+   {
+    "wing": "Backhand",
+    "dir": "Crosscourt",
+    "n": 2
+   }
+  ],
+  "errors": [
+   {
+    "wing": "Forehand",
+    "dir": "Down the Line",
+    "n": 8
+   },
+   {
+    "wing": "Forehand",
+    "dir": "Crosscourt",
+    "n": 7
+   },
+   {
+    "wing": "Backhand",
+    "dir": "Down the Line",
+    "n": 5
+   },
+   {
+    "wing": "Backhand",
+    "dir": "Crosscourt",
+    "n": 4
+   }
+  ],
+  "signature": {
+   "kind": "serve",
+   "side": "Deuce",
+   "zone": "Body",
+   "n": 12,
+   "winPct": 0.75,
+   "lift": 0.194,
+   "s1winPct": 0.167,
+   "topReturn": "Down the Line"
+  }
+ },
+ "women::Elise Wagle": {
+  "baseWin": 0.569,
+  "servePts": 315,
+  "serve": [
+   {
+    "side": "Deuce",
+    "zone": "Body",
+    "n": 73,
+    "won": 44,
+    "winPct": 0.603,
+    "ace": 1,
+    "quickWin": 14,
+    "s1winPct": 0.192,
+    "topReturn": "Down the Line"
+   },
+   {
+    "side": "Ad",
+    "zone": "Body",
+    "n": 84,
+    "won": 49,
+    "winPct": 0.583,
+    "ace": 0,
+    "quickWin": 18,
+    "s1winPct": 0.214,
+    "topReturn": "Crosscourt"
+   },
+   {
+    "side": "Deuce",
+    "zone": "Wide",
+    "n": 47,
+    "won": 32,
+    "winPct": 0.681,
+    "ace": 0,
+    "quickWin": 17,
+    "s1winPct": 0.362,
+    "topReturn": "Crosscourt"
+   },
+   {
+    "side": "Ad",
+    "zone": "Wide",
+    "n": 50,
+    "won": 38,
+    "winPct": 0.76,
+    "ace": 5,
+    "quickWin": 19,
+    "s1winPct": 0.38,
+    "topReturn": "Crosscourt"
+   },
+   {
+    "side": "Deuce",
+    "zone": "T",
+    "n": 37,
+    "won": 24,
+    "winPct": 0.649,
+    "ace": 4,
+    "quickWin": 14,
+    "s1winPct": 0.378,
+    "topReturn": "Down the Line"
+   },
+   {
+    "side": "Ad",
+    "zone": "T",
+    "n": 23,
+    "won": 13,
+    "winPct": 0.565,
+    "ace": 0,
+    "quickWin": 7,
+    "s1winPct": 0.304,
+    "topReturn": "Down the Line"
+   }
+  ],
+  "ret": [
+   {
+    "wing": "Forehand",
+    "dir": "Down the Line",
+    "n": 84,
+    "winPct": 0.464
+   },
+   {
+    "wing": "Backhand",
+    "dir": "Crosscourt",
+    "n": 68,
+    "winPct": 0.426
+   },
+   {
+    "wing": "Forehand",
+    "dir": "Crosscourt",
+    "n": 95,
+    "winPct": 0.505
+   },
+   {
+    "wing": "Backhand",
+    "dir": "Down the Line",
+    "n": 55,
+    "winPct": 0.4
+   }
+  ],
+  "winners": [
+   {
+    "wing": "Forehand",
+    "dir": "Down the Line",
+    "n": 26
+   },
+   {
+    "wing": "Backhand",
+    "dir": "Crosscourt",
+    "n": 14
+   },
+   {
+    "wing": "Backhand",
+    "dir": "Down the Line",
+    "n": 13
+   },
+   {
+    "wing": "Forehand",
+    "dir": "Crosscourt",
+    "n": 12
+   }
+  ],
+  "errors": [
+   {
+    "wing": "Forehand",
+    "dir": "Down the Line",
+    "n": 64
+   },
+   {
+    "wing": "Forehand",
+    "dir": "Crosscourt",
+    "n": 47
+   },
+   {
+    "wing": "Backhand",
+    "dir": "Down the Line",
+    "n": 40
+   },
+   {
+    "wing": "Backhand",
+    "dir": "Crosscourt",
+    "n": 37
+   }
+  ],
+  "signature": {
+   "kind": "serve",
+   "side": "Ad",
+   "zone": "Wide",
+   "n": 50,
+   "winPct": 0.76,
+   "lift": 0.191,
+   "s1winPct": 0.38,
+   "topReturn": "Crosscourt"
+  }
+ },
+ "men::Alexander Hoogmartens": {
+  "baseWin": 0.564,
+  "servePts": 260,
+  "serve": [
+   {
+    "side": "Deuce",
+    "zone": "Wide",
+    "n": 39,
+    "won": 27,
+    "winPct": 0.692,
+    "ace": 4,
+    "quickWin": 17,
+    "s1winPct": 0.436,
+    "topReturn": "Crosscourt"
+   },
+   {
+    "side": "Ad",
+    "zone": "Body",
+    "n": 44,
+    "won": 26,
+    "winPct": 0.591,
+    "ace": 1,
+    "quickWin": 11,
+    "s1winPct": 0.25,
+    "topReturn": "Crosscourt"
+   },
+   {
+    "side": "Deuce",
+    "zone": "T",
+    "n": 41,
+    "won": 32,
+    "winPct": 0.78,
+    "ace": 10,
+    "quickWin": 23,
+    "s1winPct": 0.561,
+    "topReturn": "Down the Line"
+   },
+   {
+    "side": "Ad",
+    "zone": "T",
+    "n": 47,
+    "won": 33,
+    "winPct": 0.702,
+    "ace": 2,
+    "quickWin": 21,
+    "s1winPct": 0.447,
+    "topReturn": "Crosscourt"
+   },
+   {
+    "side": "Deuce",
+    "zone": "Body",
+    "n": 48,
+    "won": 32,
+    "winPct": 0.667,
+    "ace": 1,
+    "quickWin": 18,
+    "s1winPct": 0.375,
+    "topReturn": "Crosscourt"
+   },
+   {
+    "side": "Ad",
+    "zone": "Wide",
+    "n": 28,
+    "won": 24,
+    "winPct": 0.857,
+    "ace": 4,
+    "quickWin": 15,
+    "s1winPct": 0.536,
+    "topReturn": "Crosscourt"
+   }
+  ],
+  "ret": [
+   {
+    "wing": "Forehand",
+    "dir": "Crosscourt",
+    "n": 51,
+    "winPct": 0.392
+   },
+   {
+    "wing": "Backhand",
+    "dir": "Down the Line",
+    "n": 51,
+    "winPct": 0.373
+   },
+   {
+    "wing": "Backhand",
+    "dir": "Crosscourt",
+    "n": 82,
+    "winPct": 0.537
+   },
+   {
+    "wing": "Forehand",
+    "dir": "Down the Line",
+    "n": 38,
+    "winPct": 0.421
+   }
+  ],
+  "winners": [
+   {
+    "wing": "Forehand",
+    "dir": "Crosscourt",
+    "n": 28
+   },
+   {
+    "wing": "Forehand",
+    "dir": "Down the Line",
+    "n": 22
+   },
+   {
+    "wing": "Backhand",
+    "dir": "Down the Line",
+    "n": 9
+   },
+   {
+    "wing": "Backhand",
+    "dir": "Crosscourt",
+    "n": 4
+   }
+  ],
+  "errors": [
+   {
+    "wing": "Forehand",
+    "dir": "Crosscourt",
+    "n": 51
+   },
+   {
+    "wing": "Forehand",
+    "dir": "Down the Line",
+    "n": 50
+   },
+   {
+    "wing": "Backhand",
+    "dir": "Down the Line",
+    "n": 28
+   },
+   {
+    "wing": "Backhand",
+    "dir": "Crosscourt",
+    "n": 26
+   }
+  ],
+  "signature": {
+   "kind": "serve",
+   "side": "Ad",
+   "zone": "Wide",
+   "n": 28,
+   "winPct": 0.857,
+   "lift": 0.293,
+   "s1winPct": 0.536,
+   "topReturn": "Crosscourt"
+  }
+ },
+ "women::Kimmi Hance": {
+  "baseWin": 0.479,
+  "servePts": 233,
+  "serve": [
+   {
+    "side": "Deuce",
+    "zone": "Body",
+    "n": 72,
+    "won": 33,
+    "winPct": 0.458,
+    "ace": 0,
+    "quickWin": 5,
+    "s1winPct": 0.069,
+    "topReturn": "Down the Line"
+   },
+   {
+    "side": "Ad",
+    "zone": "Wide",
+    "n": 37,
+    "won": 19,
+    "winPct": 0.514,
+    "ace": 0,
+    "quickWin": 4,
+    "s1winPct": 0.108,
+    "topReturn": "Crosscourt"
+   },
+   {
+    "side": "Deuce",
+    "zone": "T",
+    "n": 23,
+    "won": 14,
+    "winPct": 0.609,
+    "ace": 0,
+    "quickWin": 4,
+    "s1winPct": 0.174,
+    "topReturn": "Down the Line"
+   },
+   {
+    "side": "Ad",
+    "zone": "T",
+    "n": 22,
+    "won": 13,
+    "winPct": 0.591,
+    "ace": 2,
+    "quickWin": 5,
+    "s1winPct": 0.227,
+    "topReturn": "Crosscourt"
+   },
+   {
+    "side": "Ad",
+    "zone": "Body",
+    "n": 47,
+    "won": 24,
+    "winPct": 0.511,
+    "ace": 0,
+    "quickWin": 1,
+    "s1winPct": 0.021,
+    "topReturn": "Crosscourt"
+   },
+   {
+    "side": "Deuce",
+    "zone": "Wide",
+    "n": 22,
+    "won": 17,
+    "winPct": 0.773,
+    "ace": 0,
+    "quickWin": 7,
+    "s1winPct": 0.318,
+    "topReturn": "Down the Line"
+   }
+  ],
+  "ret": [
+   {
+    "wing": "Backhand",
+    "dir": "Crosscourt",
+    "n": 54,
+    "winPct": 0.463
+   },
+   {
+    "wing": "Forehand",
+    "dir": "Crosscourt",
+    "n": 91,
+    "winPct": 0.385
+   },
+   {
+    "wing": "Backhand",
+    "dir": "Down the Line",
+    "n": 41,
+    "winPct": 0.463
+   },
+   {
+    "wing": "Forehand",
+    "dir": "Down the Line",
+    "n": 45,
+    "winPct": 0.467
+   }
+  ],
+  "winners": [
+   {
+    "wing": "Forehand",
+    "dir": "Crosscourt",
+    "n": 19
+   },
+   {
+    "wing": "Forehand",
+    "dir": "Down the Line",
+    "n": 18
+   },
+   {
+    "wing": "Backhand",
+    "dir": "Down the Line",
+    "n": 14
+   },
+   {
+    "wing": "Backhand",
+    "dir": "Crosscourt",
+    "n": 8
+   }
+  ],
+  "errors": [
+   {
+    "wing": "Forehand",
+    "dir": "Down the Line",
+    "n": 48
+   },
+   {
+    "wing": "Backhand",
+    "dir": "Crosscourt",
+    "n": 44
+   },
+   {
+    "wing": "Forehand",
+    "dir": "Crosscourt",
+    "n": 43
+   },
+   {
+    "wing": "Backhand",
+    "dir": "Down the Line",
+    "n": 41
+   }
+  ],
+  "signature": {
+   "kind": "serve",
+   "side": "Deuce",
+   "zone": "Wide",
+   "n": 22,
+   "winPct": 0.773,
+   "lift": 0.294,
+   "s1winPct": 0.318,
+   "topReturn": "Down the Line"
+  }
+ },
+ "men::Giacomo Revelli": {
+  "baseWin": 0.523,
+  "servePts": 232,
+  "serve": [
+   {
+    "side": "Deuce",
+    "zone": "Body",
+    "n": 50,
+    "won": 26,
+    "winPct": 0.52,
+    "ace": 1,
+    "quickWin": 8,
+    "s1winPct": 0.16,
+    "topReturn": "Down the Line"
+   },
+   {
+    "side": "Ad",
+    "zone": "T",
+    "n": 26,
+    "won": 17,
+    "winPct": 0.654,
+    "ace": 1,
+    "quickWin": 8,
+    "s1winPct": 0.308,
+    "topReturn": "Crosscourt"
+   },
+   {
+    "side": "Deuce",
+    "zone": "T",
+    "n": 39,
+    "won": 28,
+    "winPct": 0.718,
+    "ace": 5,
+    "quickWin": 13,
+    "s1winPct": 0.333,
+    "topReturn": "Down the Line"
+   },
+   {
+    "side": "Ad",
+    "zone": "Body",
+    "n": 57,
+    "won": 35,
+    "winPct": 0.614,
+    "ace": 0,
+    "quickWin": 13,
+    "s1winPct": 0.228,
+    "topReturn": "Crosscourt"
+   },
+   {
+    "side": "Deuce",
+    "zone": "Wide",
+    "n": 25,
+    "won": 14,
+    "winPct": 0.56,
+    "ace": 3,
+    "quickWin": 7,
+    "s1winPct": 0.28,
+    "topReturn": "Down the Line"
+   },
+   {
+    "side": "Ad",
+    "zone": "Wide",
+    "n": 29,
+    "won": 14,
+    "winPct": 0.483,
+    "ace": 2,
+    "quickWin": 8,
+    "s1winPct": 0.276,
+    "topReturn": "Crosscourt"
+   }
+  ],
+  "ret": [
+   {
+    "wing": "Backhand",
+    "dir": "Down the Line",
+    "n": 44,
+    "winPct": 0.409
+   },
+   {
+    "wing": "Forehand",
+    "dir": "Crosscourt",
+    "n": 101,
+    "winPct": 0.515
+   },
+   {
+    "wing": "Backhand",
+    "dir": "Crosscourt",
+    "n": 42,
+    "winPct": 0.452
+   },
+   {
+    "wing": "Forehand",
+    "dir": "Down the Line",
+    "n": 48,
+    "winPct": 0.375
+   }
+  ],
+  "winners": [
+   {
+    "wing": "Forehand",
+    "dir": "Down the Line",
+    "n": 26
+   },
+   {
+    "wing": "Forehand",
+    "dir": "Crosscourt",
+    "n": 21
+   },
+   {
+    "wing": "Backhand",
+    "dir": "Down the Line",
+    "n": 8
+   },
+   {
+    "wing": "Backhand",
+    "dir": "Crosscourt",
+    "n": 6
+   }
+  ],
+  "errors": [
+   {
+    "wing": "Forehand",
+    "dir": "Crosscourt",
+    "n": 53
+   },
+   {
+    "wing": "Backhand",
+    "dir": "Crosscourt",
+    "n": 37
+   },
+   {
+    "wing": "Forehand",
+    "dir": "Down the Line",
+    "n": 37
+   },
+   {
+    "wing": "Backhand",
+    "dir": "Down the Line",
+    "n": 30
+   }
+  ],
+  "signature": {
+   "kind": "serve",
+   "side": "Deuce",
+   "zone": "T",
+   "n": 39,
+   "winPct": 0.718,
+   "lift": 0.195,
+   "s1winPct": 0.333,
+   "topReturn": "Down the Line"
+  }
+ },
+ "women::Anne Lutkemeyer": {
+  "baseWin": 0.534,
+  "servePts": 203,
+  "serve": [
+   {
+    "side": "Deuce",
+    "zone": "Body",
+    "n": 35,
+    "won": 18,
+    "winPct": 0.514,
+    "ace": 0,
+    "quickWin": 3,
+    "s1winPct": 0.086,
+    "topReturn": "Down the Line"
+   },
+   {
+    "side": "Ad",
+    "zone": "Body",
+    "n": 34,
+    "won": 17,
+    "winPct": 0.5,
+    "ace": 0,
+    "quickWin": 4,
+    "s1winPct": 0.118,
+    "topReturn": "Crosscourt"
+   },
+   {
+    "side": "Deuce",
+    "zone": "T",
+    "n": 16,
+    "won": 14,
+    "winPct": 0.875,
+    "ace": 3,
+    "quickWin": 6,
+    "s1winPct": 0.375,
+    "topReturn": "Crosscourt"
+   },
+   {
+    "side": "Ad",
+    "zone": "T",
+    "n": 34,
+    "won": 17,
+    "winPct": 0.5,
+    "ace": 1,
+    "quickWin": 4,
+    "s1winPct": 0.118,
+    "topReturn": "Crosscourt"
+   },
+   {
+    "side": "Deuce",
+    "zone": "Wide",
+    "n": 46,
+    "won": 27,
+    "winPct": 0.587,
+    "ace": 1,
+    "quickWin": 15,
+    "s1winPct": 0.326,
+    "topReturn": "Crosscourt"
+   },
+   {
+    "side": "Ad",
+    "zone": "Wide",
+    "n": 24,
+    "won": 18,
+    "winPct": 0.75,
+    "ace": 0,
+    "quickWin": 5,
+    "s1winPct": 0.208,
+    "topReturn": "Crosscourt"
+   }
+  ],
+  "ret": [
+   {
+    "wing": "Forehand",
+    "dir": "Crosscourt",
+    "n": 54,
+    "winPct": 0.463
+   },
+   {
+    "wing": "Forehand",
+    "dir": "Down the Line",
+    "n": 52,
+    "winPct": 0.404
+   },
+   {
+    "wing": "Backhand",
+    "dir": "Down the Line",
+    "n": 30,
+    "winPct": 0.533
+   },
+   {
+    "wing": "Backhand",
+    "dir": "Crosscourt",
+    "n": 54,
+    "winPct": 0.519
+   }
+  ],
+  "winners": [
+   {
+    "wing": "Forehand",
+    "dir": "Crosscourt",
+    "n": 34
+   },
+   {
+    "wing": "Forehand",
+    "dir": "Down the Line",
+    "n": 24
+   },
+   {
+    "wing": "Backhand",
+    "dir": "Down the Line",
+    "n": 11
+   },
+   {
+    "wing": "Backhand",
+    "dir": "Crosscourt",
+    "n": 3
+   }
+  ],
+  "errors": [
+   {
+    "wing": "Forehand",
+    "dir": "Crosscourt",
+    "n": 42
+   },
+   {
+    "wing": "Forehand",
+    "dir": "Down the Line",
+    "n": 41
+   },
+   {
+    "wing": "Backhand",
+    "dir": "Down the Line",
+    "n": 33
+   },
+   {
+    "wing": "Backhand",
+    "dir": "Crosscourt",
+    "n": 21
+   }
+  ],
+  "signature": {
+   "kind": "serve",
+   "side": "Deuce",
+   "zone": "T",
+   "n": 16,
+   "winPct": 0.875,
+   "lift": 0.341,
+   "s1winPct": 0.375,
+   "topReturn": "Crosscourt"
+  }
+ },
+ "women::Ahmani Guichard": {
+  "baseWin": 0.555,
+  "servePts": 194,
+  "serve": [
+   {
+    "side": "Deuce",
+    "zone": "Wide",
+    "n": 37,
+    "won": 16,
+    "winPct": 0.432,
+    "ace": 0,
+    "quickWin": 6,
+    "s1winPct": 0.162,
+    "topReturn": "Crosscourt"
+   },
+   {
+    "side": "Ad",
+    "zone": "Wide",
+    "n": 16,
+    "won": 11,
+    "winPct": 0.688,
+    "ace": 0,
+    "quickWin": 3,
+    "s1winPct": 0.188,
+    "topReturn": "Crosscourt"
+   },
+   {
+    "side": "Ad",
+    "zone": "T",
+    "n": 31,
+    "won": 20,
+    "winPct": 0.645,
+    "ace": 2,
+    "quickWin": 11,
+    "s1winPct": 0.355,
+    "topReturn": "Crosscourt"
+   },
+   {
+    "side": "Deuce",
+    "zone": "Body",
+    "n": 49,
+    "won": 29,
+    "winPct": 0.592,
+    "ace": 0,
+    "quickWin": 10,
+    "s1winPct": 0.204,
+    "topReturn": "Crosscourt"
+   },
+   {
+    "side": "Ad",
+    "zone": "Body",
+    "n": 39,
+    "won": 21,
+    "winPct": 0.538,
+    "ace": 0,
+    "quickWin": 6,
+    "s1winPct": 0.154,
+    "topReturn": "Crosscourt"
+   },
+   {
+    "side": "Deuce",
+    "zone": "T",
+    "n": 15,
+    "won": 12,
+    "winPct": 0.8,
+    "ace": 0,
+    "quickWin": 1,
+    "s1winPct": 0.067,
+    "topReturn": "Crosscourt"
+   }
+  ],
+  "ret": [
+   {
+    "wing": "Forehand",
+    "dir": "Crosscourt",
+    "n": 92,
+    "winPct": 0.511
+   },
+   {
+    "wing": "Forehand",
+    "dir": "Down the Line",
+    "n": 47,
+    "winPct": 0.617
+   },
+   {
+    "wing": "Backhand",
+    "dir": "Crosscourt",
+    "n": 24,
+    "winPct": 0.417
+   },
+   {
+    "wing": "Backhand",
+    "dir": "Down the Line",
+    "n": 19,
+    "winPct": 0.421
+   }
+  ],
+  "winners": [
+   {
+    "wing": "Forehand",
+    "dir": "Down the Line",
+    "n": 29
+   },
+   {
+    "wing": "Forehand",
+    "dir": "Crosscourt",
+    "n": 15
+   },
+   {
+    "wing": "Backhand",
+    "dir": "Down the Line",
+    "n": 8
+   },
+   {
+    "wing": "Backhand",
+    "dir": "Crosscourt",
+    "n": 3
+   }
+  ],
+  "errors": [
+   {
+    "wing": "Forehand",
+    "dir": "Crosscourt",
+    "n": 24
+   },
+   {
+    "wing": "Backhand",
+    "dir": "Crosscourt",
+    "n": 20
+   },
+   {
+    "wing": "Forehand",
+    "dir": "Down the Line",
+    "n": 15
+   },
+   {
+    "wing": "Backhand",
+    "dir": "Down the Line",
+    "n": 12
+   }
+  ],
+  "signature": {
+   "kind": "serve",
+   "side": "Deuce",
+   "zone": "T",
+   "n": 15,
+   "winPct": 0.8,
+   "lift": 0.245,
+   "s1winPct": 0.067,
+   "topReturn": "Crosscourt"
+  }
+ },
+ "men::Spencer Johnson": {
+  "baseWin": 0.512,
+  "servePts": 320,
+  "serve": [
+   {
+    "side": "Deuce",
+    "zone": "T",
+    "n": 82,
+    "won": 52,
+    "winPct": 0.634,
+    "ace": 7,
+    "quickWin": 33,
+    "s1winPct": 0.402,
+    "topReturn": "Down the Line"
+   },
+   {
+    "side": "Ad",
+    "zone": "T",
+    "n": 54,
+    "won": 36,
+    "winPct": 0.667,
+    "ace": 5,
+    "quickWin": 26,
+    "s1winPct": 0.481,
+    "topReturn": "Down the Line"
+   },
+   {
+    "side": "Ad",
+    "zone": "Body",
+    "n": 54,
+    "won": 30,
+    "winPct": 0.556,
+    "ace": 4,
+    "quickWin": 17,
+    "s1winPct": 0.315,
+    "topReturn": "Crosscourt"
+   },
+   {
+    "side": "Ad",
+    "zone": "Wide",
+    "n": 40,
+    "won": 26,
+    "winPct": 0.65,
+    "ace": 6,
+    "quickWin": 17,
+    "s1winPct": 0.425,
+    "topReturn": "Down the Line"
+   },
+   {
+    "side": "Deuce",
+    "zone": "Body",
+    "n": 51,
+    "won": 32,
+    "winPct": 0.627,
+    "ace": 4,
+    "quickWin": 20,
+    "s1winPct": 0.392,
+    "topReturn": "Crosscourt"
+   },
+   {
+    "side": "Deuce",
+    "zone": "Wide",
+    "n": 33,
+    "won": 24,
+    "winPct": 0.727,
+    "ace": 5,
+    "quickWin": 18,
+    "s1winPct": 0.545,
+    "topReturn": "Down the Line"
+   }
+  ],
+  "ret": [
+   {
+    "wing": "Forehand",
+    "dir": "Crosscourt",
+    "n": 99,
+    "winPct": 0.394
+   },
+   {
+    "wing": "Backhand",
+    "dir": "Crosscourt",
+    "n": 81,
+    "winPct": 0.383
+   },
+   {
+    "wing": "Forehand",
+    "dir": "Down the Line",
+    "n": 62,
+    "winPct": 0.419
+   },
+   {
+    "wing": "Backhand",
+    "dir": "Down the Line",
+    "n": 75,
+    "winPct": 0.373
+   }
+  ],
+  "winners": [
+   {
+    "wing": "Forehand",
+    "dir": "Crosscourt",
+    "n": 35
+   },
+   {
+    "wing": "Backhand",
+    "dir": "Crosscourt",
+    "n": 21
+   },
+   {
+    "wing": "Forehand",
+    "dir": "Down the Line",
+    "n": 19
+   },
+   {
+    "wing": "Backhand",
+    "dir": "Down the Line",
+    "n": 10
+   }
+  ],
+  "errors": [
+   {
+    "wing": "Forehand",
+    "dir": "Crosscourt",
+    "n": 67
+   },
+   {
+    "wing": "Forehand",
+    "dir": "Down the Line",
+    "n": 63
+   },
+   {
+    "wing": "Backhand",
+    "dir": "Down the Line",
+    "n": 48
+   },
+   {
+    "wing": "Backhand",
+    "dir": "Crosscourt",
+    "n": 41
+   }
+  ],
+  "signature": {
+   "kind": "serve",
+   "side": "Deuce",
+   "zone": "Wide",
+   "n": 33,
+   "winPct": 0.727,
+   "lift": 0.215,
+   "s1winPct": 0.545,
+   "topReturn": "Down the Line"
+  }
+ },
+ "women::Bianca Fernandez": {
+  "baseWin": 0.527,
+  "servePts": 66,
+  "serve": [
+   {
+    "side": "Deuce",
+    "zone": "Body",
+    "n": 22,
+    "won": 13,
+    "winPct": 0.591,
+    "ace": 0,
+    "quickWin": 2,
+    "s1winPct": 0.091,
+    "topReturn": "Down the Line"
+   },
+   {
+    "side": "Ad",
+    "zone": "Wide",
+    "n": 5,
+    "won": 5,
+    "winPct": 1.0,
+    "ace": 0,
+    "quickWin": 4,
+    "s1winPct": 0.8,
+    "topReturn": "Crosscourt"
+   },
+   {
+    "side": "Deuce",
+    "zone": "T",
+    "n": 9,
+    "won": 7,
+    "winPct": 0.778,
+    "ace": 0,
+    "quickWin": 2,
+    "s1winPct": 0.222,
+    "topReturn": "Down the Line"
+   },
+   {
+    "side": "Ad",
+    "zone": "T",
+    "n": 5,
+    "won": 3,
+    "winPct": 0.6,
+    "ace": 0,
+    "quickWin": 0,
+    "s1winPct": 0.0,
+    "topReturn": "Down the Line"
+   },
+   {
+    "side": "Deuce",
+    "zone": "Wide",
+    "n": 4,
+    "won": 2,
+    "winPct": 0.5,
+    "ace": 0,
+    "quickWin": 1,
+    "s1winPct": 0.25,
+    "topReturn": "Crosscourt"
+   },
+   {
+    "side": "Ad",
+    "zone": "Body",
+    "n": 19,
+    "won": 9,
+    "winPct": 0.474,
+    "ace": 0,
+    "quickWin": 3,
+    "s1winPct": 0.158,
+    "topReturn": "Crosscourt"
+   }
+  ],
+  "ret": [
+   {
+    "wing": "Forehand",
+    "dir": "Crosscourt",
+    "n": 20,
+    "winPct": 0.55
+   },
+   {
+    "wing": "Forehand",
+    "dir": "Down the Line",
+    "n": 11,
+    "winPct": 0.364
+   },
+   {
+    "wing": "Backhand",
+    "dir": "Down the Line",
+    "n": 10,
+    "winPct": 0.3
+   },
+   {
+    "wing": "Backhand",
+    "dir": "Crosscourt",
+    "n": 18,
+    "winPct": 0.333
+   }
+  ],
+  "winners": [
+   {
+    "wing": "Forehand",
+    "dir": "Crosscourt",
+    "n": 8
+   },
+   {
+    "wing": "Backhand",
+    "dir": "Down the Line",
+    "n": 6
+   },
+   {
+    "wing": "Forehand",
+    "dir": "Down the Line",
+    "n": 5
+   },
+   {
+    "wing": "Backhand",
+    "dir": "Crosscourt",
+    "n": 2
+   }
+  ],
+  "errors": [
+   {
+    "wing": "Backhand",
+    "dir": "Crosscourt",
+    "n": 17
+   },
+   {
+    "wing": "Forehand",
+    "dir": "Crosscourt",
+    "n": 13
+   },
+   {
+    "wing": "Forehand",
+    "dir": "Down the Line",
+    "n": 13
+   },
+   {
+    "wing": "Backhand",
+    "dir": "Down the Line",
+    "n": 10
+   }
+  ],
+  "signature": {
+   "kind": "serve",
+   "side": "Deuce",
+   "zone": "T",
+   "n": 9,
+   "winPct": 0.778,
+   "lift": 0.251,
+   "s1winPct": 0.222,
+   "topReturn": "Down the Line"
+  }
+ },
+ "men::Govind Nanda": {
+  "baseWin": 0.607,
+  "servePts": 80,
+  "serve": [
+   {
+    "side": "Ad",
+    "zone": "T",
+    "n": 15,
+    "won": 11,
+    "winPct": 0.733,
+    "ace": 2,
+    "quickWin": 6,
+    "s1winPct": 0.4,
+    "topReturn": "Down the Line"
+   },
+   {
+    "side": "Ad",
+    "zone": "Wide",
+    "n": 18,
+    "won": 10,
+    "winPct": 0.556,
+    "ace": 1,
+    "quickWin": 5,
+    "s1winPct": 0.278,
+    "topReturn": "Crosscourt"
+   },
+   {
+    "side": "Deuce",
+    "zone": "T",
+    "n": 17,
+    "won": 12,
+    "winPct": 0.706,
+    "ace": 1,
+    "quickWin": 5,
+    "s1winPct": 0.294,
+    "topReturn": "Down the Line"
+   },
+   {
+    "side": "Deuce",
+    "zone": "Body",
+    "n": 9,
+    "won": 8,
+    "winPct": 0.889,
+    "ace": 0,
+    "quickWin": 5,
+    "s1winPct": 0.556,
+    "topReturn": "Down the Line"
+   },
+   {
+    "side": "Deuce",
+    "zone": "Wide",
+    "n": 13,
+    "won": 11,
+    "winPct": 0.846,
+    "ace": 1,
+    "quickWin": 5,
+    "s1winPct": 0.385,
+    "topReturn": "Crosscourt"
+   },
+   {
+    "side": "Ad",
+    "zone": "Body",
+    "n": 7,
+    "won": 4,
+    "winPct": 0.571,
+    "ace": 0,
+    "quickWin": 2,
+    "s1winPct": 0.286,
+    "topReturn": "Crosscourt"
+   }
+  ],
+  "ret": [
+   {
+    "wing": "Forehand",
+    "dir": "Down the Line",
+    "n": 21,
+    "winPct": 0.429
+   },
+   {
+    "wing": "Forehand",
+    "dir": "Crosscourt",
+    "n": 18,
+    "winPct": 0.444
+   },
+   {
+    "wing": "Backhand",
+    "dir": "Crosscourt",
+    "n": 29,
+    "winPct": 0.621
+   },
+   {
+    "wing": "Backhand",
+    "dir": "Down the Line",
+    "n": 19,
+    "winPct": 0.421
+   }
+  ],
+  "winners": [
+   {
+    "wing": "Forehand",
+    "dir": "Down the Line",
+    "n": 14
+   },
+   {
+    "wing": "Forehand",
+    "dir": "Crosscourt",
+    "n": 11
+   },
+   {
+    "wing": "Backhand",
+    "dir": "Crosscourt",
+    "n": 5
+   },
+   {
+    "wing": "Backhand",
+    "dir": "Down the Line",
+    "n": 5
+   }
+  ],
+  "errors": [
+   {
+    "wing": "Forehand",
+    "dir": "Down the Line",
+    "n": 17
+   },
+   {
+    "wing": "Forehand",
+    "dir": "Crosscourt",
+    "n": 14
+   },
+   {
+    "wing": "Backhand",
+    "dir": "Crosscourt",
+    "n": 8
+   },
+   {
+    "wing": "Backhand",
+    "dir": "Down the Line",
+    "n": 5
+   }
+  ],
+  "signature": {
+   "kind": "serve",
+   "side": "Deuce",
+   "zone": "Body",
+   "n": 9,
+   "winPct": 0.889,
+   "lift": 0.282,
+   "s1winPct": 0.556,
+   "topReturn": "Down the Line"
+  }
+ },
+ "men::Rudy Quan": {
+  "baseWin": 0.484,
+  "servePts": 146,
+  "serve": [
+   {
+    "side": "Deuce",
+    "zone": "Body",
+    "n": 41,
+    "won": 20,
+    "winPct": 0.488,
+    "ace": 1,
+    "quickWin": 5,
+    "s1winPct": 0.122,
+    "topReturn": "Down the Line"
+   },
+   {
+    "side": "Ad",
+    "zone": "Body",
+    "n": 47,
+    "won": 24,
+    "winPct": 0.511,
+    "ace": 0,
+    "quickWin": 1,
+    "s1winPct": 0.021,
+    "topReturn": "Crosscourt"
+   },
+   {
+    "side": "Deuce",
+    "zone": "T",
+    "n": 22,
+    "won": 11,
+    "winPct": 0.5,
+    "ace": 0,
+    "quickWin": 4,
+    "s1winPct": 0.182,
+    "topReturn": "Down the Line"
+   },
+   {
+    "side": "Ad",
+    "zone": "T",
+    "n": 13,
+    "won": 7,
+    "winPct": 0.538,
+    "ace": 0,
+    "quickWin": 1,
+    "s1winPct": 0.077,
+    "topReturn": "Down the Line"
+   },
+   {
+    "side": "Deuce",
+    "zone": "Wide",
+    "n": 11,
+    "won": 5,
+    "winPct": 0.455,
+    "ace": 0,
+    "quickWin": 2,
+    "s1winPct": 0.182,
+    "topReturn": "Crosscourt"
+   },
+   {
+    "side": "Ad",
+    "zone": "Wide",
+    "n": 10,
+    "won": 3,
+    "winPct": 0.3,
+    "ace": 0,
+    "quickWin": 2,
+    "s1winPct": 0.2,
+    "topReturn": "Crosscourt"
+   }
+  ],
+  "ret": [
+   {
+    "wing": "Backhand",
+    "dir": "Crosscourt",
+    "n": 38,
+    "winPct": 0.553
+   },
+   {
+    "wing": "Forehand",
+    "dir": "Down the Line",
+    "n": 14,
+    "winPct": 0.571
+   },
+   {
+    "wing": "Backhand",
+    "dir": "Down the Line",
+    "n": 27,
+    "winPct": 0.296
+   },
+   {
+    "wing": "Forehand",
+    "dir": "Crosscourt",
+    "n": 24,
+    "winPct": 0.542
+   }
+  ],
+  "winners": [
+   {
+    "wing": "Forehand",
+    "dir": "Down the Line",
+    "n": 8
+   },
+   {
+    "wing": "Forehand",
+    "dir": "Crosscourt",
+    "n": 6
+   },
+   {
+    "wing": "Backhand",
+    "dir": "Crosscourt",
+    "n": 3
+   },
+   {
+    "wing": "Backhand",
+    "dir": "Down the Line",
+    "n": 2
+   }
+  ],
+  "errors": [
+   {
+    "wing": "Forehand",
+    "dir": "Down the Line",
+    "n": 37
+   },
+   {
+    "wing": "Forehand",
+    "dir": "Crosscourt",
+    "n": 21
+   },
+   {
+    "wing": "Backhand",
+    "dir": "Down the Line",
+    "n": 20
+   },
+   {
+    "wing": "Backhand",
+    "dir": "Crosscourt",
+    "n": 16
+   }
+  ],
+  "signature": {
+   "kind": "serve",
+   "side": "Ad",
+   "zone": "Wide",
+   "n": 10,
+   "winPct": 0.3,
+   "lift": -0.184,
+   "s1winPct": 0.2,
+   "topReturn": "Crosscourt"
+  }
+ },
+ "men::Jorge Plans Gonzalez": {
+  "baseWin": 0.562,
+  "servePts": 125,
+  "serve": [
+   {
+    "side": "Deuce",
+    "zone": "Body",
+    "n": 34,
+    "won": 24,
+    "winPct": 0.706,
+    "ace": 2,
+    "quickWin": 11,
+    "s1winPct": 0.324,
+    "topReturn": "Down the Line"
+   },
+   {
+    "side": "Ad",
+    "zone": "Body",
+    "n": 32,
+    "won": 17,
+    "winPct": 0.531,
+    "ace": 0,
+    "quickWin": 7,
+    "s1winPct": 0.219,
+    "topReturn": "Crosscourt"
+   },
+   {
+    "side": "Ad",
+    "zone": "Wide",
+    "n": 21,
+    "won": 13,
+    "winPct": 0.619,
+    "ace": 1,
+    "quickWin": 4,
+    "s1winPct": 0.19,
+    "topReturn": "Crosscourt"
+   },
+   {
+    "side": "Deuce",
+    "zone": "T",
+    "n": 17,
+    "won": 10,
+    "winPct": 0.588,
+    "ace": 2,
+    "quickWin": 6,
+    "s1winPct": 0.353,
+    "topReturn": "Down the Line"
+   },
+   {
+    "side": "Deuce",
+    "zone": "Wide",
+    "n": 13,
+    "won": 9,
+    "winPct": 0.692,
+    "ace": 2,
+    "quickWin": 6,
+    "s1winPct": 0.462,
+    "topReturn": "Down the Line"
+   },
+   {
+    "side": "Ad",
+    "zone": "T",
+    "n": 5,
+    "won": 3,
+    "winPct": 0.6,
+    "ace": 1,
+    "quickWin": 2,
+    "s1winPct": 0.4,
+    "topReturn": "Crosscourt"
+   }
+  ],
+  "ret": [
+   {
+    "wing": "Backhand",
+    "dir": "Crosscourt",
+    "n": 42,
+    "winPct": 0.548
+   },
+   {
+    "wing": "Forehand",
+    "dir": "Crosscourt",
+    "n": 30,
+    "winPct": 0.433
+   },
+   {
+    "wing": "Backhand",
+    "dir": "Down the Line",
+    "n": 31,
+    "winPct": 0.452
+   },
+   {
+    "wing": "Forehand",
+    "dir": "Down the Line",
+    "n": 20,
+    "winPct": 0.6
+   }
+  ],
+  "winners": [
+   {
+    "wing": "Forehand",
+    "dir": "Crosscourt",
+    "n": 14
+   },
+   {
+    "wing": "Forehand",
+    "dir": "Down the Line",
+    "n": 14
+   },
+   {
+    "wing": "Backhand",
+    "dir": "Down the Line",
+    "n": 4
+   },
+   {
+    "wing": "Backhand",
+    "dir": "Crosscourt",
+    "n": 3
+   }
+  ],
+  "errors": [
+   {
+    "wing": "Forehand",
+    "dir": "Down the Line",
+    "n": 27
+   },
+   {
+    "wing": "Backhand",
+    "dir": "Crosscourt",
+    "n": 21
+   },
+   {
+    "wing": "Forehand",
+    "dir": "Crosscourt",
+    "n": 19
+   },
+   {
+    "wing": "Backhand",
+    "dir": "Down the Line",
+    "n": 11
+   }
+  ],
+  "signature": {
+   "kind": "serve",
+   "side": "Deuce",
+   "zone": "Body",
+   "n": 34,
+   "winPct": 0.706,
+   "lift": 0.144,
+   "s1winPct": 0.324,
+   "topReturn": "Down the Line"
+  }
+ }
+}

@@ -18,7 +18,7 @@ def clean_school(t):
 ucla_utr = {}
 for n in utr.UCLA_MEN + utr.UCLA_WOMEN:
     r = utr.lookup(n, 'UCLA')
-    ucla_utr[n] = r.get('singlesUtr') if r.get('status') == 'Rated' else None
+    ucla_utr[n] = r.get('singlesUtr') if (r.get('singlesUtr') or 0) > 0 else None
 
 rows = []
 for key, (col, f, rc) in F2.best.items():
@@ -38,7 +38,7 @@ for key, (col, f, rc) in F2.best.items():
     won = sum(1 for p in f['points'] if p.get('pointWonBy') == U)
     lost = sum(1 for p in f['points'] if p.get('pointWonBy') == oppName)
     ur = utr.lookup(oppName, school) if oppName else None
-    opp_utr = ur.get('singlesUtr') if ur and ur.get('status') == 'Rated' and (ur.get('singlesUtr') or 0) > 0 else None
+    opp_utr = ur.get('singlesUtr') if ur and (ur.get('singlesUtr') or 0) > 0 else None
     # canonical UCLA UTR (by canon display name)
     canon_u = disp
     p_utr = None

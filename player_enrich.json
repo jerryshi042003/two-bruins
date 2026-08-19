@@ -22,15 +22,15 @@
    "backhand": 57
   },
   "sos": {
-   "avgOppUtr": null,
-   "nRated": 0,
+   "avgOppUtr": 9.67,
+   "nRated": 3,
    "vsStronger": [
     0,
     0
    ],
    "vsWeaker": [
-    0,
-    0
+    186,
+    140
    ]
   },
   "trend": [
@@ -45,7 +45,7 @@
    {
     "date": "2024-02-23",
     "opp": "Carlota Molina",
-    "oppUtr": null,
+    "oppUtr": 9.0,
     "won": 54,
     "lost": 36,
     "winPct": 0.6
@@ -53,7 +53,7 @@
    {
     "date": "2024-03-09",
     "opp": "Erika Matsuda",
-    "oppUtr": null,
+    "oppUtr": 10.0,
     "won": 64,
     "lost": 30,
     "winPct": 0.681
@@ -61,7 +61,7 @@
    {
     "date": null,
     "opp": "Sabina Zeynalova",
-    "oppUtr": null,
+    "oppUtr": 10.0,
     "won": 68,
     "lost": 74,
     "winPct": 0.479
@@ -159,7 +159,7 @@
   ]
  },
  "women::Elise Wagle": {
-  "playerUtr": null,
+  "playerUtr": 10.0,
   "winSig": {
    "ownWinnerPct": 0.198,
    "oppErrorPct": 0.802,
@@ -181,22 +181,22 @@
    "backhand": 77
   },
   "sos": {
-   "avgOppUtr": 9.9,
-   "nRated": 3,
+   "avgOppUtr": 9.62,
+   "nRated": 6,
    "vsStronger": [
-    0,
-    0
+    183,
+    142
    ],
    "vsWeaker": [
-    0,
-    0
+    188,
+    139
    ]
   },
   "trend": [
    {
     "date": "2024-02-24",
     "opp": "Natalie Duffy",
-    "oppUtr": null,
+    "oppUtr": 9.0,
     "won": 55,
     "lost": 51,
     "winPct": 0.519
@@ -212,7 +212,7 @@
    {
     "date": "2024-03-15",
     "opp": "Sara Svetac",
-    "oppUtr": null,
+    "oppUtr": 10.0,
     "won": 63,
     "lost": 43,
     "winPct": 0.594
@@ -236,7 +236,7 @@
    {
     "date": "2024-05-04",
     "opp": "Motka Komac",
-    "oppUtr": null,
+    "oppUtr": 9.0,
     "won": 72,
     "lost": 58,
     "winPct": 0.554
@@ -244,7 +244,7 @@
   ]
  },
  "men::Alexander Hoogmartens": {
-  "playerUtr": null,
+  "playerUtr": 13.0,
   "winSig": {
    "ownWinnerPct": 0.257,
    "oppErrorPct": 0.743,
@@ -266,15 +266,15 @@
    "backhand": 54
   },
   "sos": {
-   "avgOppUtr": 13.28,
-   "nRated": 1,
+   "avgOppUtr": 12.43,
+   "nRated": 3,
    "vsStronger": [
-    0,
-    0
+    169,
+    131
    ],
    "vsWeaker": [
-    0,
-    0
+    57,
+    39
    ]
   },
   "trend": [
@@ -289,7 +289,7 @@
    {
     "date": "2024-03-17",
     "opp": "Ronan Jachuck",
-    "oppUtr": null,
+    "oppUtr": 13.0,
     "won": 77,
     "lost": 58,
     "winPct": 0.57
@@ -305,7 +305,7 @@
    {
     "date": "2024-04-05",
     "opp": "Lenn Luemkemann",
-    "oppUtr": null,
+    "oppUtr": 11.0,
     "won": 57,
     "lost": 39,
     "winPct": 0.594
@@ -335,15 +335,15 @@
    "backhand": 85
   },
   "sos": {
-   "avgOppUtr": 11.3,
-   "nRated": 1,
+   "avgOppUtr": 10.65,
+   "nRated": 2,
    "vsStronger": [
     0,
     0
    ],
    "vsWeaker": [
-    62,
-    72
+    126,
+    130
    ]
   },
   "trend": [
@@ -358,7 +358,7 @@
    {
     "date": "2024-02-04",
     "opp": "Sydni Ratliff",
-    "oppUtr": null,
+    "oppUtr": 10.0,
     "won": 64,
     "lost": 58,
     "winPct": 0.525
@@ -374,7 +374,7 @@
   ]
  },
  "men::Giacomo Revelli": {
-  "playerUtr": null,
+  "playerUtr": 12.0,
   "winSig": {
    "ownWinnerPct": 0.265,
    "oppErrorPct": 0.735,
@@ -399,8 +399,8 @@
    "avgOppUtr": 13.44,
    "nRated": 1,
    "vsStronger": [
-    0,
-    0
+    52,
+    44
    ],
    "vsWeaker": [
     0,
@@ -465,15 +465,15 @@
    "backhand": 54
   },
   "sos": {
-   "avgOppUtr": null,
-   "nRated": 0,
+   "avgOppUtr": 5.5,
+   "nRated": 2,
    "vsStronger": [
     0,
     0
    ],
    "vsWeaker": [
-    0,
-    0
+    86,
+    94
    ]
   },
   "trend": [
@@ -496,7 +496,7 @@
    {
     "date": "2024-03-09",
     "opp": "Catherine Gagnon",
-    "oppUtr": null,
+    "oppUtr": 1.0,
     "won": 53,
     "lost": 55,
     "winPct": 0.491
@@ -504,7 +504,7 @@
    {
     "date": "2024-05-03",
     "opp": "Andreea Velcea",
-    "oppUtr": null,
+    "oppUtr": 10.0,
     "won": 33,
     "lost": 39,
     "winPct": 0.458
@@ -595,15 +595,15 @@
    "backhand": 89
   },
   "sos": {
-   "avgOppUtr": 13.35,
-   "nRated": 3,
+   "avgOppUtr": 13.01,
+   "nRated": 4,
    "vsStronger": [
     0,
     0
    ],
    "vsWeaker": [
-    241,
-    236
+    337,
+    321
    ]
   },
   "trend": [
@@ -618,7 +618,7 @@
    {
     "date": "2024-02-18",
     "opp": "L. Carlsson Halldin",
-    "oppUtr": null,
+    "oppUtr": 12.0,
     "won": 96,
     "lost": 85,
     "winPct": 0.53
@@ -687,7 +687,7 @@
   ]
  },
  "men::Govind Nanda": {
-  "playerUtr": null,
+  "playerUtr": 13.0,
   "winSig": {
    "ownWinnerPct": 0.385,
    "oppErrorPct": 0.615,
@@ -712,8 +712,8 @@
    "avgOppUtr": 14.08,
    "nRated": 2,
    "vsStronger": [
-    0,
-    0
+    105,
+    68
    ],
    "vsWeaker": [
     0,
@@ -815,22 +815,22 @@
    "backhand": 32
   },
   "sos": {
-   "avgOppUtr": 12.59,
-   "nRated": 1,
+   "avgOppUtr": 11.79,
+   "nRated": 2,
    "vsStronger": [
     0,
     0
    ],
    "vsWeaker": [
-    65,
-    43
+    145,
+    113
    ]
   },
   "trend": [
    {
     "date": "2024-02-25",
     "opp": "Aaron Bailey",
-    "oppUtr": null,
+    "oppUtr": 11.0,
     "won": 80,
     "lost": 70,
     "winPct": 0.533

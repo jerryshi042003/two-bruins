@@ -49,17 +49,25 @@ def lookup(name, college=None, save=True):
             col = pc.get('name') or ''
         col = col or s.get('collegeName') or ''
         colmatch = 1 if (want_col and want_col in col.lower()) else 0
+        hr = s.get('historicRatings') or {}
+        live = s.get('singlesUtr') or 0
+        hist = hr.get('historicSinglesRating') or 0
+        eff = live if live > 0 else hist           # last-known UTR when currently inactive/unrated
         cands.append(dict(name=dn, id=s.get('id'),
-                          singlesUtr=s.get('singlesUtr'), doublesUtr=s.get('doublesUtr'),
-                          status=s.get('ratingStatusSingles'), college=col, nationality=s.get('nationality'),
-                          _col=colmatch, _rated=1 if (s.get('ratingStatusSingles') == 'Rated' and (s.get('singlesUtr') or 0) > 0) else 0,
-                          _utr=s.get('singlesUtr') or 0, _overlap=len(want_name & nt)))
-    # college is a strong preference, not a hard filter (school-name formats vary widely)
+                          singlesUtr=round(eff, 2) if eff else None,
+                          utrKind='live' if live > 0 else ('historic' if hist > 0 else 'none'),
+                          ratingDate=None if live > 0 else hr.get('historicSinglesRatingDate'),
+                          status='Rated' if live > 0 else ('Historic' if hist > 0 else 'Unrated'),
+                          doublesUtr=s.get('doublesUtr'), college=col, nationality=s.get('nationality'),
+                          _col=colmatch, _rated=1 if eff > 0 else 0, _live=1 if live > 0 else 0,
+                          _utr=eff, _overlap=len(want_name & nt)))
+    # college is a strong preference, not a hard filter (school-name formats vary widely).
+    # Prefer any real rating (live or last-known historic), live over historic on ties.
     pool = cands
     if pool:
-        pool.sort(key=lambda c: (c['_col'], c['_rated'], c['_utr'], c['_overlap']), reverse=True)
+        pool.sort(key=lambda c: (c['_col'], c['_rated'], c['_live'], c['_utr'], c['_overlap']), reverse=True)
         best = {k: v for k, v in pool[0].items() if not k.startswith('_')}
-    result = best or {'name': name, 'notfound': True, 'reason': 'no college/surname match' if want_col else 'no surname match'}
+    result = best or {'name': name, 'notfound': True, 'reason': 'no surname/college match'}
     if save:
         CACHE[key] = result
         json.dump(CACHE, open(CACHE_PATH, 'w'), indent=1)

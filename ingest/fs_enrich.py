@@ -25,7 +25,7 @@ def parse_date(name):
 
 def player_utr(disp):
     r = utr.lookup(disp, 'UCLA')
-    return r.get('singlesUtr') if r.get('status') == 'Rated' and (r.get('singlesUtr') or 0) > 0 else None
+    return r.get('singlesUtr') if (r.get('singlesUtr') or 0) > 0 else None
 
 # gather per (gender,player) -> list of match docs (deduped)
 groups = defaultdict(list)

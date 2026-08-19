@@ -114,6 +114,7 @@ function renderPanel(p) {
   // ---- LEAD: how they win/lose, level & schedule, what's working ----
   panel.appendChild(signatureBlock(p, e));
   panel.appendChild(levelBlock(p, e));
+  panel.appendChild(trendBlock(p, e));
   panel.appendChild(effectivenessBlock(p));
 
   // serve placement + rally (two columns)
@@ -211,6 +212,42 @@ function levelBlock(p, e) {
     `Avg opponent UTR <b>${s.avgOppUtr || 'n/a'}</b> vs their own <b>${e.playerUtr ? e.playerUtr.toFixed(1) : 'n/a'}</b>. ` +
     `Against opponents rated at or above them: ${vs(s.vsStronger)}; against lower-rated: ${vs(s.vsWeaker)}. ` +
     `UTR is current (${new Date().getFullYear()}); most matches are 2024, so read it as an approximate level, not point-in-time.`));
+  return b;
+}
+
+function trendBlock(p, e) {
+  const b = block('OVER TIME', 'Has the level of play changed?');
+  const t = (e.trend || []).filter(x => x.date && x.winPct != null);
+  if (t.length < 2) { b.appendChild(el('p', 'naNote', 'Only one dated match tracked — no trajectory yet.')); return b; }
+  const W = 700, H = 210, m = { l: 40, r: 16, t: 18, b: 46 };
+  const svg = d3.create('svg').attr('viewBox', `0 0 ${W} ${H}`).attr('class', 'd3svg');
+  const g = svg.append('g');
+  const x = d3.scalePoint().domain(t.map((_, i) => i)).range([m.l, W - m.r]).padding(0.5);
+  const y = d3.scaleLinear().domain([0, 1]).range([H - m.b, m.t]);
+  // 50% gridline
+  g.append('line').attr('x1', m.l).attr('x2', W - m.r).attr('y1', y(0.5)).attr('y2', y(0.5)).attr('stroke', '#ddd').attr('stroke-dasharray', '4 4');
+  [0.25, 0.5, 0.75].forEach(v => g.append('text').attr('x', m.l - 8).attr('y', y(v) + 4).attr('text-anchor', 'end').attr('font-size', 10).attr('fill', C.muted).text(Math.round(v * 100) + '%'));
+  // UTR color scale for opponent strength
+  const utrs = t.map(d => d.oppUtr).filter(Boolean);
+  const col = d3.scaleLinear().domain([Math.min(...utrs, 10), Math.max(...utrs, 14)]).range(['#9cc0f0', '#123f7f']);
+  // line
+  const line = d3.line().x((_, i) => x(i)).y(d => y(d.winPct));
+  g.append('path').datum(t).attr('fill', 'none').attr('stroke', C.blue).attr('stroke-width', 2.5).attr('d', line);
+  // dots + date labels
+  t.forEach((d, i) => {
+    g.append('circle').attr('cx', x(i)).attr('cy', y(d.winPct)).attr('r', 6)
+      .attr('fill', d.oppUtr ? col(d.oppUtr) : '#bbb').attr('stroke', '#fff').attr('stroke-width', 1.5)
+      .append('title').text(`${d.opp || 'opp'}${d.oppUtr ? ' · UTR ' + d.oppUtr : ''} · ${pctI(d.winPct)} pts won · ${d.date}`);
+    g.append('text').attr('x', x(i)).attr('y', H - m.b + 16).attr('text-anchor', 'middle').attr('font-size', 9).attr('fill', C.muted)
+      .text((d.date || '').slice(5));
+  });
+  b.appendChild(svg.node());
+  b.appendChild(el('div', 'd3legend', `<span><i style="background:#9cc0f0"></i>weaker opp</span><span><i style="background:#123f7f"></i>stronger opp</span>`));
+  const first = t[0].winPct, last = t[t.length - 1].winPct, dir = last > first + 0.05 ? 'up' : (last < first - 0.05 ? 'down' : 'flat');
+  b.appendChild(el('p', 'dnote',
+    `Point-win rate per match, oldest to newest (dot colour = opponent strength). ` +
+    (dir === 'flat' ? 'Steady across the tracked span.' : `Trending ${dir}: ${pctI(first)} in the earliest tracked match, ${pctI(last)} in the latest.`) +
+    ` A rising line against darker dots is the real sign of improvement.`));
   return b;
 }
 

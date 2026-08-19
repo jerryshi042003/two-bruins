@@ -38,7 +38,7 @@ for key, (col, f, rc) in F2.best.items():
     won = sum(1 for p in f['points'] if p.get('pointWonBy') == U)
     lost = sum(1 for p in f['points'] if p.get('pointWonBy') == oppName)
     ur = utr.lookup(oppName, school) if oppName else None
-    opp_utr = ur.get('singlesUtr') if ur and (ur.get('singlesUtr') or 0) > 0 else None
+    opp_utr = ur.get('singlesUtr') if ur and (ur.get('singlesUtr') or 0) >= 6 else None  # floor: <6 = mismatch
     # canonical UCLA UTR (by canon display name)
     canon_u = disp
     p_utr = None

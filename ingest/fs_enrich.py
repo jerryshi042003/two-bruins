@@ -15,6 +15,15 @@ WING = {'Forehand': 'forehand', 'Backhand': 'backhand',
 PH = B.PLACEHOLDER
 
 ctx = {(r['player'], r['oppName']): r for r in json.load(open(os.path.join(HERE, 'match_context.json')))}
+UTR2024 = json.load(open(os.path.join(HERE, 'utr_2024.json'))) if os.path.exists(os.path.join(HERE, 'utr_2024.json')) else {}
+
+def utr_at_2024(disp, trend):
+    b = UTR2024.get(disp)
+    if not b:
+        return None
+    months = sorted(t['date'][:7] for t in trend if t.get('date'))
+    med = months[len(months) // 2] if months else '2024-03'
+    return b.get(med) or b.get('2024-03') or sorted(b.values())[len(b) // 2]
 
 def parse_date(name):
     m = re.search(r'(\d{1,2})[/-](\d{1,2})[/-](\d{2,4})', name or '')
@@ -85,6 +94,7 @@ for (gender, disp), matches in groups.items():
     ltot = sum(lossEnd.values()) or 1
     enrich[f'{gender}::{disp}'] = dict(
         playerUtr=p_utr,
+        playerUtr2024=utr_at_2024(disp, trend),
         winSig=dict(ownWinnerPct=round(winEnd['own winner'] / wtot, 3),
                     oppErrorPct=round(winEnd['opponent error'] / wtot, 3),
                     topWing=winWing.most_common(1)[0][0] if winWing else None,

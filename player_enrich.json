@@ -1,6 +1,7 @@
 {
  "women::Tian Fang Ran": {
   "playerUtr": 11.45,
+  "playerUtr2024": null,
   "winSig": {
    "ownWinnerPct": 0.349,
    "oppErrorPct": 0.651,
@@ -69,7 +70,8 @@
   ]
  },
  "men::Gianluca Ballotta": {
-  "playerUtr": null,
+  "playerUtr": 12.0,
+  "playerUtr2024": null,
   "winSig": {
    "ownWinnerPct": 0.423,
    "oppErrorPct": 0.577,
@@ -94,8 +96,8 @@
    "avgOppUtr": 13.83,
    "nRated": 1,
    "vsStronger": [
-    0,
-    0
+    27,
+    54
    ],
    "vsWeaker": [
     0,
@@ -115,6 +117,7 @@
  },
  "women::Sasha Vagramov": {
   "playerUtr": 10.43,
+  "playerUtr2024": null,
   "winSig": {
    "ownWinnerPct": 0.2,
    "oppErrorPct": 0.8,
@@ -160,6 +163,7 @@
  },
  "women::Elise Wagle": {
   "playerUtr": 10.0,
+  "playerUtr2024": null,
   "winSig": {
    "ownWinnerPct": 0.198,
    "oppErrorPct": 0.802,
@@ -181,15 +185,15 @@
    "backhand": 77
   },
   "sos": {
-   "avgOppUtr": 9.62,
-   "nRated": 6,
+   "avgOppUtr": 9.98,
+   "nRated": 4,
    "vsStronger": [
     183,
     142
    ],
    "vsWeaker": [
-    188,
-    139
+    55,
+    51
    ]
   },
   "trend": [
@@ -204,7 +208,7 @@
    {
     "date": "2024-03-08",
     "opp": "Fifa Kumhom",
-    "oppUtr": 8.75,
+    "oppUtr": null,
     "won": 61,
     "lost": 30,
     "winPct": 0.67
@@ -236,7 +240,7 @@
    {
     "date": "2024-05-04",
     "opp": "Motka Komac",
-    "oppUtr": 9.0,
+    "oppUtr": null,
     "won": 72,
     "lost": 58,
     "winPct": 0.554
@@ -245,6 +249,7 @@
  },
  "men::Alexander Hoogmartens": {
   "playerUtr": 13.0,
+  "playerUtr2024": null,
   "winSig": {
    "ownWinnerPct": 0.257,
    "oppErrorPct": 0.743,
@@ -313,7 +318,8 @@
   ]
  },
  "women::Kimmi Hance": {
-  "playerUtr": 13.69,
+  "playerUtr": 10.0,
+  "playerUtr2024": null,
   "winSig": {
    "ownWinnerPct": 0.273,
    "oppErrorPct": 0.727,
@@ -338,12 +344,12 @@
    "avgOppUtr": 10.65,
    "nRated": 2,
    "vsStronger": [
-    0,
-    0
-   ],
-   "vsWeaker": [
     126,
     130
+   ],
+   "vsWeaker": [
+    0,
+    0
    ]
   },
   "trend": [
@@ -375,6 +381,7 @@
  },
  "men::Giacomo Revelli": {
   "playerUtr": 12.0,
+  "playerUtr2024": null,
   "winSig": {
    "ownWinnerPct": 0.265,
    "oppErrorPct": 0.735,
@@ -444,6 +451,7 @@
  },
  "women::Anne Lutkemeyer": {
   "playerUtr": 10.8,
+  "playerUtr2024": null,
   "winSig": {
    "ownWinnerPct": 0.36,
    "oppErrorPct": 0.64,
@@ -465,15 +473,15 @@
    "backhand": 54
   },
   "sos": {
-   "avgOppUtr": 5.5,
-   "nRated": 2,
+   "avgOppUtr": 10.0,
+   "nRated": 1,
    "vsStronger": [
     0,
     0
    ],
    "vsWeaker": [
-    86,
-    94
+    33,
+    39
    ]
   },
   "trend": [
@@ -496,7 +504,7 @@
    {
     "date": "2024-03-09",
     "opp": "Catherine Gagnon",
-    "oppUtr": 1.0,
+    "oppUtr": null,
     "won": 53,
     "lost": 55,
     "winPct": 0.491
@@ -513,6 +521,7 @@
  },
  "women::Ahmani Guichard": {
   "playerUtr": 10.15,
+  "playerUtr2024": null,
   "winSig": {
    "ownWinnerPct": 0.367,
    "oppErrorPct": 0.633,
@@ -534,11 +543,11 @@
    "backhand": 32
   },
   "sos": {
-   "avgOppUtr": 12.33,
-   "nRated": 1,
+   "avgOppUtr": null,
+   "nRated": 0,
    "vsStronger": [
-    74,
-    54
+    0,
+    0
    ],
    "vsWeaker": [
     0,
@@ -557,7 +566,7 @@
    {
     "date": "2024-05-04",
     "opp": "Jermine Sherif",
-    "oppUtr": 12.33,
+    "oppUtr": null,
     "won": 74,
     "lost": 54,
     "winPct": 0.578
@@ -574,6 +583,7 @@
  },
  "men::Spencer Johnson": {
   "playerUtr": 14.24,
+  "playerUtr2024": 12.93,
   "winSig": {
    "ownWinnerPct": 0.306,
    "oppErrorPct": 0.694,
@@ -643,6 +653,7 @@
  },
  "women::Bianca Fernandez": {
   "playerUtr": 10.03,
+  "playerUtr2024": null,
   "winSig": {
    "ownWinnerPct": 0.333,
    "oppErrorPct": 0.667,
@@ -664,11 +675,11 @@
    "forehand": 26
   },
   "sos": {
-   "avgOppUtr": 11.01,
-   "nRated": 1,
+   "avgOppUtr": null,
+   "nRated": 0,
    "vsStronger": [
-    69,
-    62
+    0,
+    0
    ],
    "vsWeaker": [
     0,
@@ -679,7 +690,7 @@
    {
     "date": "2024-03-01",
     "opp": "Grace Piper",
-    "oppUtr": 11.01,
+    "oppUtr": null,
     "won": 69,
     "lost": 62,
     "winPct": 0.527
@@ -688,6 +699,7 @@
  },
  "men::Govind Nanda": {
   "playerUtr": 13.0,
+  "playerUtr2024": null,
   "winSig": {
    "ownWinnerPct": 0.385,
    "oppErrorPct": 0.615,
@@ -741,6 +753,7 @@
  },
  "men::Rudy Quan": {
   "playerUtr": 13.59,
+  "playerUtr2024": 13.13,
   "winSig": {
    "ownWinnerPct": 0.158,
    "oppErrorPct": 0.842,
@@ -794,6 +807,7 @@
  },
  "men::Jorge Plans Gonzalez": {
   "playerUtr": 13.25,
+  "playerUtr2024": 12.55,
   "winSig": {
    "ownWinnerPct": 0.267,
    "oppErrorPct": 0.733,

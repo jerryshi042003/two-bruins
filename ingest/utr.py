@@ -18,11 +18,42 @@ def _tokens(s):
 def _norm(s):
     return ''.join(sorted(re.findall('[a-z]+', (s or '').lower())))
 
+# verified nickname -> UTR-profile-name aliases for known UCLA players
+ALIAS = {
+    'Kimmi Hance': 'Kimberly Hance',
+    'Sasha Vagramov': 'Alexandra Vagramov',
+    'Jorge Plans Gonzalez': 'Jorge Plans',
+    'Jorge Gonzalez': 'Jorge Plans',
+}
+
+# Verified UTR pins for the 14 known UCLA players (duplicate profiles make name-search
+# unreliable). Values confirmed against each player's UTR profile via the authed session.
+# kind: 'live' current rating, 'historic' last reliable rating for a between-seasons player.
+PINNED = {
+    'Spencer Johnson':      {'id': 2580878, 'singlesUtr': 14.24, 'status': 'Rated',    'utrKind': 'live'},
+    'Rudy Quan':            {'id': 168171,  'singlesUtr': 13.59, 'status': 'Rated',    'utrKind': 'live'},
+    'Jorge Plans Gonzalez': {'id': 5004687, 'singlesUtr': 13.25, 'status': 'Rated',    'utrKind': 'live'},
+    'Gianluca Ballotta':    {'id': 2920230, 'singlesUtr': 12.00, 'status': 'Rated',    'utrKind': 'live'},
+    'Alexander Hoogmartens':{'id': 2871883, 'singlesUtr': 13.00, 'status': 'Historic', 'utrKind': 'historic', 'ratingDate': '2025-05-11'},
+    'Giacomo Revelli':      {'id': 277105,  'singlesUtr': 12.00, 'status': 'Historic', 'utrKind': 'historic'},
+    'Govind Nanda':         {'id': 4337229, 'singlesUtr': 13.00, 'status': 'Historic', 'utrKind': 'historic'},
+    'Elise Wagle':          {'singlesUtr': 10.00, 'status': 'Historic', 'utrKind': 'historic'},
+    'Kimmi Hance':          {'singlesUtr': 10.00, 'status': 'Historic', 'utrKind': 'historic'},
+    'Ahmani Guichard':      {'id': 4333248, 'singlesUtr': 10.15, 'status': 'Rated', 'utrKind': 'live'},
+    'Anne Lutkemeyer':      {'id': 4843357, 'singlesUtr': 10.80, 'status': 'Rated', 'utrKind': 'live'},
+    'Tian Fang Ran':        {'id': 4338119, 'singlesUtr': 11.45, 'status': 'Rated', 'utrKind': 'live'},
+    'Bianca Fernandez':     {'id': 809877,  'singlesUtr': 10.03, 'status': 'Rated', 'utrKind': 'live'},
+    'Sasha Vagramov':       {'id': 4392698, 'singlesUtr': 10.43, 'status': 'Rated', 'utrKind': 'live'},
+}
+
 def lookup(name, college=None, save=True):
     """Return dict with singles/doubles UTR + matched profile, or None."""
+    if name in PINNED:
+        return dict(PINNED[name], name=name, college='UCLA')
     key = f'{name}||{college or ""}'
     if key in CACHE:
         return CACHE[key]
+    name = ALIAS.get(name, name)
     try:
         hits = _get(name)
     except Exception as e:
@@ -30,7 +61,9 @@ def lookup(name, college=None, save=True):
     want_name = _tokens(name)
     want_col = (college or '').lower()
     best, best_score = None, -1
-    want_last = name.strip().split()[-1].lower() if name.strip().split() else ''
+    _parts = name.strip().split()
+    want_last = _parts[-1].lower() if _parts else ''
+    want_first = re.sub(r'[^a-z]', '', _parts[0].lower()) if _parts else ''
     cands = []
     for h in hits:
         s = h.get('source', {})
@@ -38,10 +71,17 @@ def lookup(name, college=None, save=True):
         if not dn:
             continue
         nt = _tokens(dn)
-        # Require a real identity match — surname, OR >=2 shared tokens, OR normalized
-        # full-name match (handles reordered/spelling variants). This kills same-first-name
-        # mismatches (Hoogmartens -> Zverev share only "alexander") without over-filtering.
-        if not (want_last in nt or len(want_name & nt) >= 2 or _norm(name) == _norm(dn)):
+        # Require BOTH surname and a compatible first name (equal, or one is an initial
+        # of the other). Surname-alone let "Kimmi Hance" match "Keaton Hance"; first-name-
+        # alone let "Alexander Hoogmartens" match "Alexander Zverev". Normalized full-name
+        # match is the escape hatch for reordered/spelling variants.
+        def _firstok():
+            for t in nt:
+                if t == want_first: return True
+                if len(want_first) == 1 and t.startswith(want_first): return True
+                if len(t) == 1 and want_first.startswith(t): return True
+            return False
+        if not ((want_last in nt and _firstok()) or _norm(name) == _norm(dn)):
             continue
         col = ''
         pc = s.get('playerCollege') or s.get('college')

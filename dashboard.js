@@ -208,10 +208,12 @@ function levelBlock(p, e) {
   const vs = (a) => a && (a[0] + a[1]) ? `${Math.round(100 * a[0] / (a[0] + a[1]))}% pts (${a[0]}–${a[1]})` : 'n/a';
   b.appendChild(el('div', 'd3legend',
     `<span><i style="background:${C.win}"></i>won the match</span><span><i style="background:${C.loss}"></i>lost</span>`));
+  const recency = e.playerUtr2024
+    ? `Their UTR was about <b>${e.playerUtr2024.toFixed(1)}</b> during the 2024 season these matches are from &mdash; below today's ${e.playerUtr ? e.playerUtr.toFixed(1) : '—'}, so these results came when they were a lower-rated player. Opponent UTRs shown are current.`
+    : `UTR shown is current${e.playerUtr ? '' : ' where a rating exists'}; most matches are from 2024, so read it as an approximate level, not point-in-time.`;
   b.appendChild(el('p', 'dnote',
     `Avg opponent UTR <b>${s.avgOppUtr || 'n/a'}</b> vs their own <b>${e.playerUtr ? e.playerUtr.toFixed(1) : 'n/a'}</b>. ` +
-    `Against opponents rated at or above them: ${vs(s.vsStronger)}; against lower-rated: ${vs(s.vsWeaker)}. ` +
-    `UTR is current (${new Date().getFullYear()}); most matches are 2024, so read it as an approximate level, not point-in-time.`));
+    `Against opponents rated at or above them: ${vs(s.vsStronger)}; against lower-rated: ${vs(s.vsWeaker)}. ` + recency));
   return b;
 }
 

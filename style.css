@@ -474,3 +474,29 @@ footer {
 .read.tight { padding-bottom: 16px; }
 .tag.orange { background: #b84a1c; }
 @media (max-width: 740px) { .twoUp { grid-template-columns: 1fr; gap: 30px; } }
+
+/* ---------- roster board ---------- */
+.roster { max-width: 660px; margin: 20px auto 0; }
+.roster .rrow {
+  display: grid;
+  grid-template-columns: 1fr 58px 168px;
+  gap: 14px;
+  align-items: center;
+  padding: 12px 2px;
+  border-bottom: 1px solid var(--rule);
+}
+.roster .rhead {
+  font-size: 10px; font-weight: 700; letter-spacing: .1em;
+  color: var(--muted); border-bottom: 1px solid var(--line); padding-bottom: 8px;
+}
+.roster .rhead span:nth-child(2) { text-align: right; }
+.roster .who { font-size: 15px; font-weight: 700; color: var(--ink); }
+.roster .who small { display: block; font-size: 11px; font-weight: 500; color: var(--muted); letter-spacing: .02em; }
+.roster .reach { font-variant-numeric: tabular-nums; font-size: 14px; color: #444; text-align: right; }
+.roster .bar { position: relative; height: 24px; background: var(--blue-bg); border-radius: 2px; overflow: hidden; }
+.roster .bar > i { position: absolute; left: 0; top: 0; bottom: 0; background: var(--blue); }
+.roster .bar > b { position: absolute; right: 9px; top: 0; line-height: 24px; font-size: 12px; font-weight: 700; font-variant-numeric: tabular-nums; color: var(--ink); }
+@media (max-width: 560px) {
+  .roster .rrow { grid-template-columns: 1fr 44px 120px; gap: 10px; }
+  .roster .bar > b { right: 5px; font-size: 11px; }
+}

@@ -1,0 +1,744 @@
+{
+ "men": [
+  {
+   "name": "Spencer Johnson",
+   "gender": "men",
+   "hand": "Left",
+   "matchesTracked": 2,
+   "matches": [
+    {
+     "opp": "Oscar Pinto Sansano",
+     "date": "09/28/24",
+     "event": "ITA All-American Championships",
+     "fmt": "shot"
+    },
+    {
+     "opp": "Glanluca Brunkow",
+     "date": "2023-10-7",
+     "event": "UCSB Classic",
+     "fmt": "point"
+    }
+   ],
+   "points": 342,
+   "ptsWon": 175,
+   "winPct": 0.512,
+   "servePts": 169,
+   "firstInPct": 0.609,
+   "aces": 14,
+   "df": 10,
+   "placement": [
+    {
+     "side": "Ad",
+     "spot": "Body",
+     "n": 33,
+     "won": 19,
+     "wonPct": 0.576
+    },
+    {
+     "side": "Ad",
+     "spot": "T",
+     "n": 19,
+     "won": 13,
+     "wonPct": 0.684
+    },
+    {
+     "side": "Ad",
+     "spot": "Wide",
+     "n": 20,
+     "won": 16,
+     "wonPct": 0.8
+    },
+    {
+     "side": "Deuce",
+     "spot": "Body",
+     "n": 32,
+     "won": 24,
+     "wonPct": 0.75
+    },
+    {
+     "side": "Deuce",
+     "spot": "T",
+     "n": 35,
+     "won": 23,
+     "wonPct": 0.657
+    },
+    {
+     "side": "Deuce",
+     "spot": "Wide",
+     "n": 17,
+     "won": 15,
+     "wonPct": 0.882
+    }
+   ],
+   "plus1N": 117,
+   "plus1FhSharePct": 0.641,
+   "rally": [
+    {
+     "bucket": "1-4",
+     "n": 186,
+     "wonPct": 0.527
+    },
+    {
+     "bucket": "5-8",
+     "n": 92,
+     "wonPct": 0.446
+    },
+    {
+     "bucket": "9-12",
+     "n": 30,
+     "wonPct": 0.567
+    },
+    {
+     "bucket": "13+",
+     "n": 34,
+     "wonPct": 0.559
+    }
+   ],
+   "winners": {
+    "Forehand": 38,
+    "Backhand": 20,
+    "Approach": 2,
+    "Overhead": 1
+   },
+   "errors": {
+    "Forehand": 47,
+    "Backhand": 51,
+    "Approach": 1
+   },
+   "winTotal": 61,
+   "errTotal": 99,
+   "net": {
+    "n": 33,
+    "won": 23,
+    "pct": 0.697
+   },
+   "ret": {
+    "n": 80,
+    "depth": [
+     {
+      "zone": "Short",
+      "n": 55,
+      "wonPct": 0.382
+     },
+     {
+      "zone": "Deep",
+      "n": 23,
+      "wonPct": 0.478
+     },
+     {
+      "zone": "Long",
+      "n": 2,
+      "wonPct": 0.0
+     }
+    ]
+   },
+   "seasonMatches": 11
+  },
+  {
+   "name": "Rudy Quan",
+   "gender": "men",
+   "hand": "Right",
+   "matchesTracked": 1,
+   "matches": [
+    {
+     "opp": "Aristotelis Thanos",
+     "date": "19/25/24",
+     "event": "ITA All-American Championships",
+     "fmt": "shot"
+    }
+   ],
+   "points": 123,
+   "ptsWon": 64,
+   "winPct": 0.52,
+   "servePts": 66,
+   "firstInPct": 0.758,
+   "aces": 0,
+   "df": 0,
+   "placement": [
+    {
+     "side": "Ad",
+     "spot": "Body",
+     "n": 24,
+     "won": 17,
+     "wonPct": 0.708
+    },
+    {
+     "side": "Ad",
+     "spot": "T",
+     "n": 2,
+     "won": 2,
+     "wonPct": 1.0
+    },
+    {
+     "side": "Ad",
+     "spot": "Wide",
+     "n": 5,
+     "won": 3,
+     "wonPct": 0.6
+    },
+    {
+     "side": "Deuce",
+     "spot": "Body",
+     "n": 17,
+     "won": 5,
+     "wonPct": 0.294
+    },
+    {
+     "side": "Deuce",
+     "spot": "T",
+     "n": 15,
+     "won": 7,
+     "wonPct": 0.467
+    },
+    {
+     "side": "Deuce",
+     "spot": "Wide",
+     "n": 2,
+     "won": 0,
+     "wonPct": 0.0
+    }
+   ],
+   "plus1N": 62,
+   "plus1FhSharePct": 0.452,
+   "rally": [
+    {
+     "bucket": "1-4",
+     "n": 41,
+     "wonPct": 0.512
+    },
+    {
+     "bucket": "5-8",
+     "n": 42,
+     "wonPct": 0.5
+    },
+    {
+     "bucket": "9-12",
+     "n": 21,
+     "wonPct": 0.524
+    },
+    {
+     "bucket": "13+",
+     "n": 19,
+     "wonPct": 0.579
+    }
+   ],
+   "winners": {
+    "Forehand": 7,
+    "Backhand": 2
+   },
+   "errors": {
+    "Forehand": 26,
+    "Backhand": 17
+   },
+   "winTotal": 9,
+   "errTotal": 43,
+   "net": null,
+   "ret": {
+    "n": 52,
+    "depth": [
+     {
+      "zone": "Short",
+      "n": 32,
+      "wonPct": 0.5
+     },
+     {
+      "zone": "Deep",
+      "n": 16,
+      "wonPct": 0.688
+     },
+     {
+      "zone": "Long",
+      "n": 4,
+      "wonPct": 0.0
+     }
+    ]
+   },
+   "seasonMatches": 19
+  },
+  {
+   "name": "Govind Nanda",
+   "gender": "men",
+   "hand": "Right",
+   "matchesTracked": 1,
+   "matches": [
+    {
+     "opp": "Nishesh Basavareddy",
+     "date": "04/12/24",
+     "event": "Stanford",
+     "fmt": "shot"
+    }
+   ],
+   "points": 94,
+   "ptsWon": 43,
+   "winPct": 0.457,
+   "servePts": 42,
+   "firstInPct": 0.595,
+   "aces": 2,
+   "df": 2,
+   "placement": [
+    {
+     "side": "Ad",
+     "spot": "Body",
+     "n": 8,
+     "won": 2,
+     "wonPct": 0.25
+    },
+    {
+     "side": "Ad",
+     "spot": "T",
+     "n": 9,
+     "won": 5,
+     "wonPct": 0.556
+    },
+    {
+     "side": "Ad",
+     "spot": "Wide",
+     "n": 4,
+     "won": 2,
+     "wonPct": 0.5
+    },
+    {
+     "side": "Deuce",
+     "spot": "Body",
+     "n": 7,
+     "won": 6,
+     "wonPct": 0.857
+    },
+    {
+     "side": "Deuce",
+     "spot": "T",
+     "n": 6,
+     "won": 3,
+     "wonPct": 0.5
+    },
+    {
+     "side": "Deuce",
+     "spot": "Wide",
+     "n": 6,
+     "won": 4,
+     "wonPct": 0.667
+    }
+   ],
+   "plus1N": 29,
+   "plus1FhSharePct": 0.517,
+   "rally": [
+    {
+     "bucket": "1-4",
+     "n": 38,
+     "wonPct": 0.553
+    },
+    {
+     "bucket": "5-8",
+     "n": 33,
+     "wonPct": 0.242
+    },
+    {
+     "bucket": "9-12",
+     "n": 15,
+     "wonPct": 0.667
+    },
+    {
+     "bucket": "13+",
+     "n": 8,
+     "wonPct": 0.5
+    }
+   ],
+   "winners": {
+    "Forehand": 3,
+    "Backhand": 5
+   },
+   "errors": {
+    "Backhand": 13,
+    "Forehand": 22
+   },
+   "winTotal": 8,
+   "errTotal": 35,
+   "net": {
+    "n": 11,
+    "won": 6,
+    "pct": 0.545
+   },
+   "ret": {
+    "n": 41,
+    "depth": [
+     {
+      "zone": "Short",
+      "n": 29,
+      "wonPct": 0.414
+     },
+     {
+      "zone": "Deep",
+      "n": 12,
+      "wonPct": 0.5
+     }
+    ]
+   },
+   "seasonMatches": null
+  }
+ ],
+ "women": [
+  {
+   "name": "Elise Wagle",
+   "gender": "women",
+   "hand": "Right",
+   "matchesTracked": 2,
+   "matches": [
+    {
+     "opp": "Jo-Yee Chan",
+     "date": "4/13/24",
+     "event": "Oregon",
+     "fmt": "shot"
+    },
+    {
+     "opp": "Motka Komac",
+     "date": "5/4/14",
+     "event": "NCAA",
+     "fmt": "shot"
+    }
+   ],
+   "points": 226,
+   "ptsWon": 130,
+   "winPct": 0.575,
+   "servePts": 108,
+   "firstInPct": 0.62,
+   "aces": 3,
+   "df": 5,
+   "placement": [
+    {
+     "side": "Ad",
+     "spot": "Body",
+     "n": 28,
+     "won": 18,
+     "wonPct": 0.643
+    },
+    {
+     "side": "Ad",
+     "spot": "T",
+     "n": 8,
+     "won": 5,
+     "wonPct": 0.625
+    },
+    {
+     "side": "Ad",
+     "spot": "Wide",
+     "n": 17,
+     "won": 15,
+     "wonPct": 0.882
+    },
+    {
+     "side": "Deuce",
+     "spot": "Body",
+     "n": 24,
+     "won": 16,
+     "wonPct": 0.667
+    },
+    {
+     "side": "Deuce",
+     "spot": "T",
+     "n": 14,
+     "won": 10,
+     "wonPct": 0.714
+    },
+    {
+     "side": "Deuce",
+     "spot": "Wide",
+     "n": 12,
+     "won": 8,
+     "wonPct": 0.667
+    }
+   ],
+   "plus1N": 72,
+   "plus1FhSharePct": 0.597,
+   "rally": [
+    {
+     "bucket": "1-4",
+     "n": 117,
+     "wonPct": 0.624
+    },
+    {
+     "bucket": "5-8",
+     "n": 68,
+     "wonPct": 0.5
+    },
+    {
+     "bucket": "9-12",
+     "n": 26,
+     "wonPct": 0.577
+    },
+    {
+     "bucket": "13+",
+     "n": 15,
+     "wonPct": 0.533
+    }
+   ],
+   "winners": {
+    "Backhand": 11,
+    "Forehand": 13
+   },
+   "errors": {
+    "Backhand": 23,
+    "Forehand": 37
+   },
+   "winTotal": 24,
+   "errTotal": 60,
+   "net": {
+    "n": 9,
+    "won": 5,
+    "pct": 0.556
+   },
+   "ret": {
+    "n": 41,
+    "depth": [
+     {
+      "zone": "Short",
+      "n": 34,
+      "wonPct": 0.5
+     },
+     {
+      "zone": "Deep",
+      "n": 6,
+      "wonPct": 0.5
+     },
+     {
+      "zone": "Long",
+      "n": 1,
+      "wonPct": 0.0
+     }
+    ]
+   },
+   "seasonMatches": null
+  },
+  {
+   "name": "Ahmani Guichard",
+   "gender": "women",
+   "hand": "",
+   "matchesTracked": 1,
+   "matches": [
+    {
+     "opp": "Naomi Cheong",
+     "date": "2023-10-19",
+     "event": "Regionals",
+     "fmt": "point"
+    }
+   ],
+   "points": 164,
+   "ptsWon": 74,
+   "winPct": 0.451,
+   "servePts": 81,
+   "firstInPct": 0.556,
+   "aces": 0,
+   "df": 4,
+   "placement": [
+    {
+     "side": "Ad",
+     "spot": "Body",
+     "n": 16,
+     "won": 7,
+     "wonPct": 0.438
+    },
+    {
+     "side": "Ad",
+     "spot": "T",
+     "n": 12,
+     "won": 11,
+     "wonPct": 0.917
+    },
+    {
+     "side": "Ad",
+     "spot": "Wide",
+     "n": 10,
+     "won": 8,
+     "wonPct": 0.8
+    },
+    {
+     "side": "Deuce",
+     "spot": "Body",
+     "n": 20,
+     "won": 6,
+     "wonPct": 0.3
+    },
+    {
+     "side": "Deuce",
+     "spot": "T",
+     "n": 4,
+     "won": 2,
+     "wonPct": 0.5
+    },
+    {
+     "side": "Deuce",
+     "spot": "Wide",
+     "n": 14,
+     "won": 7,
+     "wonPct": 0.5
+    }
+   ],
+   "plus1N": 61,
+   "plus1FhSharePct": 0.557,
+   "rally": [
+    {
+     "bucket": "1-4",
+     "n": 81,
+     "wonPct": 0.457
+    },
+    {
+     "bucket": "5-8",
+     "n": 48,
+     "wonPct": 0.354
+    },
+    {
+     "bucket": "9-12",
+     "n": 22,
+     "wonPct": 0.545
+    },
+    {
+     "bucket": "13+",
+     "n": 12,
+     "wonPct": 0.583
+    }
+   ],
+   "winners": {
+    "Backhand": 4,
+    "Forehand": 7,
+    "Dropshot": 1,
+    "Overhead": 1
+   },
+   "errors": {
+    "Forehand": 23,
+    "Backhand": 24,
+    "Dropshot": 2,
+    "Lob": 1,
+    "Overhead": 1
+   },
+   "winTotal": 13,
+   "errTotal": 51,
+   "net": null,
+   "ret": null,
+   "seasonMatches": null
+  },
+  {
+   "name": "Anne Lutkemeyer",
+   "gender": "women",
+   "hand": "Right",
+   "matchesTracked": 1,
+   "matches": [
+    {
+     "opp": "Catherine Gagnon",
+     "date": "3/9/24",
+     "event": "Michigan State University",
+     "fmt": "shot"
+    }
+   ],
+   "points": 108,
+   "ptsWon": 59,
+   "winPct": 0.546,
+   "servePts": 54,
+   "firstInPct": 0.611,
+   "aces": 2,
+   "df": 7,
+   "placement": [
+    {
+     "side": "Ad",
+     "spot": "Body",
+     "n": 12,
+     "won": 7,
+     "wonPct": 0.583
+    },
+    {
+     "side": "Ad",
+     "spot": "T",
+     "n": 9,
+     "won": 6,
+     "wonPct": 0.667
+    },
+    {
+     "side": "Ad",
+     "spot": "Wide",
+     "n": 4,
+     "won": 3,
+     "wonPct": 0.75
+    },
+    {
+     "side": "Deuce",
+     "spot": "Body",
+     "n": 5,
+     "won": 2,
+     "wonPct": 0.4
+    },
+    {
+     "side": "Deuce",
+     "spot": "T",
+     "n": 6,
+     "won": 5,
+     "wonPct": 0.833
+    },
+    {
+     "side": "Deuce",
+     "spot": "Wide",
+     "n": 11,
+     "won": 6,
+     "wonPct": 0.545
+    }
+   ],
+   "plus1N": 43,
+   "plus1FhSharePct": 0.721,
+   "rally": [
+    {
+     "bucket": "1-4",
+     "n": 49,
+     "wonPct": 0.49
+    },
+    {
+     "bucket": "5-8",
+     "n": 36,
+     "wonPct": 0.583
+    },
+    {
+     "bucket": "9-12",
+     "n": 14,
+     "wonPct": 0.571
+    },
+    {
+     "bucket": "13+",
+     "n": 9,
+     "wonPct": 0.667
+    }
+   ],
+   "winners": {
+    "Forehand": 15,
+    "Backhand": 5
+   },
+   "errors": {
+    "Forehand": 25,
+    "Backhand": 7
+   },
+   "winTotal": 20,
+   "errTotal": 32,
+   "net": {
+    "n": 18,
+    "won": 10,
+    "pct": 0.556
+   },
+   "ret": {
+    "n": 43,
+    "depth": [
+     {
+      "zone": "Short",
+      "n": 21,
+      "wonPct": 0.714
+     },
+     {
+      "zone": "Deep",
+      "n": 21,
+      "wonPct": 0.524
+     },
+     {
+      "zone": "Long",
+      "n": 1,
+      "wonPct": 0.0
+     }
+    ]
+   },
+   "seasonMatches": null
+  }
+ ]
+}

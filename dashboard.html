@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>UCLA Tennis — Player Dashboards</title>
+<meta name="description" content="Deep-dive shot-level dashboards for every tracked UCLA singles player, men's and women's — serve, return, rally, net, and shot-making from raw match data.">
+<meta property="og:title" content="UCLA Tennis — Player Dashboards">
+<meta property="og:description" content="Every tracked Bruin, read shot by shot: serve placement, serve+1, rally length, net, winners and errors.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="dashboard.css">
+</head>
+<body>
+<main class="report dash">
+
+  <header class="matchHeader">
+    <p>UCLA MEN'S &amp; WOMEN'S TENNIS &middot; PLAYER DASHBOARDS &middot; 2024&ndash;26</p>
+  </header>
+
+  <section class="dashIntro">
+    <h1>Every tracked Bruin,<br>read shot by shot.</h1>
+    <p class="lede">Pick a player. Every number below is counted from their raw match exports &mdash;
+      serve, return, rally length, net play, and what ends the points. No tags added by hand.</p>
+    <p class="backLink"><a href="./">&larr; Back to the Two Bruins report</a></p>
+  </section>
+
+  <div class="genderTabs" id="genderTabs">
+    <button class="gTab on" data-g="men">MEN'S</button>
+    <button class="gTab" data-g="women">WOMEN'S</button>
+  </div>
+
+  <div class="playerTabs" id="playerTabs"></div>
+
+  <section class="playerPanel" id="playerPanel"></section>
+
+  <section class="method">
+    <h3>HOW THIS WAS BUILT</h3>
+    <p>
+      Two raw sources, both one export per match: shot-level SwingVision-style exports (one row per
+      ball) and point-level Hawk-Eye exports (one row per point). Each player's panel pools every
+      tracked match they have. Serve, serve+1, rally length and point endings are computed the same
+      way from both; net and return depth exist only in the shot-level source, so they are shown
+      only where the underlying data supports them. Counts are shown next to every rate because most
+      samples are one or two matches.
+    </p>
+    <p id="coverageNote"></p>
+  </section>
+
+  <footer>
+    <span>UCLA TENNIS &middot; PLAYER DASHBOARDS</span>
+    <span id="footTotals"></span>
+  </footer>
+
+</main>
+
+<script src="dashboard.js"></script>
+</body>
+</html>

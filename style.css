@@ -59,6 +59,9 @@ h2 { font-size: clamp(28px, 5vw, 42px); max-width: 780px; }
   border-bottom: 1px solid var(--ink);
 }
 .event { color: var(--muted); font-weight: 500 !important; }
+.navLink { margin: 8px 0 0 !important; }
+.navLink a { color: var(--blue); font-weight: 700; font-size: 12px; letter-spacing: .04em; text-decoration: none; }
+.navLink a:hover { text-decoration: underline; }
 
 /* ---------- opening read ---------- */
 .read { padding: 26px 0 20px; text-align: center; }

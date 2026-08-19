@@ -1,0 +1,86 @@
+/* ===== UCLA player dashboards ===== */
+.dash { padding-bottom: 40px; }
+
+.dashIntro { text-align: center; padding: 26px 0 18px; }
+.dashIntro h1 { font-size: clamp(34px, 6vw, 58px); line-height: 1.02; letter-spacing: -0.02em; margin: 0; }
+.dashIntro .lede { max-width: 560px; margin: 16px auto 0; color: var(--muted); font-size: 16px; line-height: 1.5; }
+.backLink { margin: 14px 0 0; }
+.backLink a { color: var(--blue); font-weight: 700; font-size: 13px; text-decoration: none; letter-spacing: .02em; }
+.backLink a:hover { text-decoration: underline; }
+
+/* gender + player selectors */
+.genderTabs { display: flex; justify-content: center; gap: 0; margin: 8px auto 0; border: 1px solid var(--ink); border-radius: 999px; width: max-content; overflow: hidden; }
+.gTab { border: 0; background: var(--paper); color: var(--ink); font: inherit; font-weight: 700; font-size: 13px; letter-spacing: .08em; padding: 10px 26px; cursor: pointer; }
+.gTab.on { background: var(--ink); color: #fff; }
+
+.playerTabs { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin: 20px auto 4px; max-width: 760px; }
+.pTab { border: 1px solid var(--line); background: var(--paper); color: var(--ink); font: inherit; font-weight: 700; font-size: 14px; padding: 9px 16px; border-radius: 8px; cursor: pointer; }
+.pTab small { display: block; font-size: 11px; font-weight: 500; color: var(--muted); letter-spacing: .02em; }
+.pTab.on { background: var(--blue); border-color: var(--blue); color: #fff; }
+.pTab.on small { color: rgba(255,255,255,.85); }
+.pTab.w.on { background: var(--gold); border-color: var(--gold); color: #1a1a1a; }
+.pTab.w.on small { color: rgba(0,0,0,.6); }
+
+/* player panel */
+.playerPanel { margin-top: 22px; }
+.pHead { display: flex; justify-content: space-between; align-items: flex-end; gap: 16px; border-bottom: 2px solid var(--ink); padding-bottom: 12px; }
+.pHead h2 { margin: 0; font-size: clamp(28px, 5vw, 44px); }
+.pHead .pMeta { color: var(--muted); font-size: 12px; font-weight: 700; letter-spacing: .06em; text-align: right; line-height: 1.5; }
+.pHead .pMeta .tag { margin-left: 4px; }
+
+/* KPI row */
+.kpis { display: grid; grid-template-columns: repeat(4, 1fr); border: 1px solid var(--line); border-radius: 10px; overflow: hidden; margin-top: 20px; }
+.kpi { padding: 18px 14px; border-right: 1px solid var(--line); }
+.kpi:last-child { border-right: 0; }
+.kpi .v { font-size: clamp(24px, 4vw, 34px); font-weight: 700; font-variant-numeric: tabular-nums; letter-spacing: -0.01em; }
+.kpi .l { color: var(--muted); font-size: 10px; font-weight: 700; letter-spacing: .09em; margin-top: 4px; }
+.kpi .s { color: var(--faint); font-size: 12px; font-weight: 500; margin-top: 3px; }
+
+/* section block */
+.dblock { margin-top: 30px; }
+.dblock > h3 { font-size: 10px; font-weight: 700; letter-spacing: .1em; color: var(--muted); margin: 0 0 4px; }
+.dblock > .dh { font-size: 21px; font-weight: 700; margin: 0 0 14px; }
+.dblock .dnote { color: var(--muted); font-size: 13px; line-height: 1.5; margin: 12px 0 0; max-width: 620px; }
+
+/* two-column layout for blocks */
+.dgrid { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; }
+@media (max-width: 720px) { .dgrid { grid-template-columns: 1fr; gap: 26px; } .kpis { grid-template-columns: repeat(2, 1fr); } .kpi:nth-child(2){border-right:0;} .kpi:nth-child(1),.kpi:nth-child(2){border-bottom:1px solid var(--line);} }
+
+/* serve placement grid */
+.serveGrid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; }
+.sCell { border: 1px solid var(--line); border-radius: 7px; padding: 12px 8px; text-align: center; position: relative; }
+.sCell .z { font-size: 10px; font-weight: 700; letter-spacing: .07em; color: var(--muted); }
+.sCell .cn { font-size: 22px; font-weight: 700; font-variant-numeric: tabular-nums; margin-top: 3px; }
+.sCell .cw { font-size: 12px; font-weight: 700; margin-top: 2px; }
+.sSideLabel { grid-column: 1 / -1; font-size: 10px; font-weight: 700; letter-spacing: .1em; color: var(--muted); margin-top: 4px; }
+
+/* horizontal count bars (rally, generic) */
+.hbar { display: grid; grid-template-columns: 58px 1fr 84px; gap: 12px; align-items: center; padding: 8px 0; border-bottom: 1px solid var(--rule); }
+.hbar .hl { font-size: 13px; font-weight: 700; font-variant-numeric: tabular-nums; }
+.hbar .ht { position: relative; height: 20px; background: var(--blue-bg); border-radius: 2px; overflow: hidden; }
+.hbar .ht > i { position: absolute; left: 0; top: 0; bottom: 0; background: var(--blue); }
+.hbar .hr { font-size: 12px; color: #444; text-align: right; font-variant-numeric: tabular-nums; }
+
+/* shot-making split */
+.smLegend { display: flex; gap: 20px; margin: 0 0 12px; }
+.smLegend span { display: inline-flex; align-items: center; gap: 7px; font-size: 12px; font-weight: 700; color: #444; letter-spacing: .03em; }
+.smLegend i { width: 12px; height: 12px; border-radius: 2px; display: inline-block; }
+.smSplit { display: flex; height: 30px; border-radius: 3px; overflow: hidden; }
+.smSplit i { display: block; height: 100%; }
+.smSplit .w { background: var(--blue); }
+.smSplit .e { background: var(--gold); }
+.smSplitCap { display: flex; justify-content: space-between; margin-top: 6px; font-size: 12px; font-weight: 700; }
+.smSplitCap .w { color: var(--blue); } .smSplitCap .e { color: #a8790a; }
+.wingRow { display: grid; grid-template-columns: 92px 1fr 1fr; gap: 10px; align-items: center; padding: 8px 0; border-bottom: 1px solid var(--rule); font-size: 13px; }
+.wingRow .wn { font-weight: 700; }
+.wingRow .mini { display: flex; height: 14px; border-radius: 2px; overflow: hidden; background: #f0f0f0; }
+.wingRow .mini .w { background: var(--blue); } .wingRow .mini .e { background: var(--gold); }
+.wingRow .wc { font-variant-numeric: tabular-nums; color: #444; }
+
+/* net / return simple stat pair */
+.pairStat { display: flex; gap: 26px; flex-wrap: wrap; }
+.pairStat .ps { }
+.pairStat .ps .v { font-size: 28px; font-weight: 700; font-variant-numeric: tabular-nums; }
+.pairStat .ps .l { color: var(--muted); font-size: 11px; font-weight: 700; letter-spacing: .06em; }
+
+.naNote { color: var(--faint); font-size: 13px; font-style: italic; }

@@ -1,0 +1,114 @@
+{
+ "men::Spencer Johnson": {
+  "name": "Spencer Johnson",
+  "gender": "men",
+  "archetype": "big server",
+  "strength": "the deuce t serve is a weapon \u2014 63% won over 82 tries",
+  "weakness": "leaves breaks out there \u2014 only 35% of break points converted",
+  "keyStat": null
+ },
+ "men::Alexander Hoogmartens": {
+  "name": "Alexander Hoogmartens",
+  "gender": "men",
+  "archetype": "big server",
+  "strength": "the ad wide serve is a weapon \u2014 86% won over 28 tries",
+  "weakness": "the backhand is a liability \u2014 13 winners against 54 errors",
+  "keyStat": null
+ },
+ "men::Giacomo Revelli": {
+  "name": "Giacomo Revelli",
+  "gender": "men",
+  "archetype": "all-court",
+  "strength": "the deuce t serve is a weapon \u2014 72% won over 39 tries",
+  "weakness": "the backhand is a liability \u2014 14 winners against 67 errors",
+  "keyStat": null
+ },
+ "men::Rudy Quan": {
+  "name": "Rudy Quan",
+  "gender": "men",
+  "archetype": "grinder",
+  "strength": "relentless consistency \u2014 84% of won points come from forcing errors, not swinging for winners",
+  "weakness": "the forehand is a liability \u2014 14 winners against 58 errors",
+  "keyStat": null
+ },
+ "men::Jorge Plans Gonzalez": {
+  "name": "Jorge Plans Gonzalez",
+  "gender": "men",
+  "archetype": "all-court",
+  "strength": "the deuce body serve is a weapon \u2014 71% won over 34 tries",
+  "weakness": "the backhand is a liability \u2014 7 winners against 32 errors",
+  "keyStat": null
+ },
+ "men::Govind Nanda": {
+  "name": "Govind Nanda",
+  "gender": "men",
+  "archetype": "ball-striker",
+  "strength": "the deuce body serve is a weapon \u2014 89% won over 9 tries",
+  "weakness": null,
+  "keyStat": null
+ },
+ "men::Gianluca Ballotta": {
+  "name": "Gianluca Ballotta",
+  "gender": "men",
+  "archetype": "ball-striker",
+  "strength": "a first-strike game \u2014 ends 42% of won points with an outright winner (backhand)",
+  "weakness": null,
+  "keyStat": null
+ },
+ "women::Elise Wagle": {
+  "name": "Elise Wagle",
+  "gender": "women",
+  "archetype": "grinder",
+  "strength": "the ad wide serve is a weapon \u2014 76% won over 50 tries",
+  "weakness": null,
+  "keyStat": null
+ },
+ "women::Kimmi Hance": {
+  "name": "Kimmi Hance",
+  "gender": "women",
+  "archetype": "all-court",
+  "strength": "the deuce wide serve is a weapon \u2014 77% won over 22 tries",
+  "weakness": "the backhand is a liability \u2014 22 winners against 85 errors",
+  "keyStat": null
+ },
+ "women::Tian Fang Ran": {
+  "name": "Tian Fang Ran",
+  "gender": "women",
+  "archetype": "all-court",
+  "strength": "a first-strike game \u2014 ends 35% of won points with an outright winner (forehand)",
+  "weakness": "the backhand is a liability \u2014 16 winners against 57 errors",
+  "keyStat": null
+ },
+ "women::Anne Lutkemeyer": {
+  "name": "Anne Lutkemeyer",
+  "gender": "women",
+  "archetype": "ball-striker",
+  "strength": "the deuce t serve is a weapon \u2014 88% won over 16 tries",
+  "weakness": "the backhand is a liability \u2014 14 winners against 54 errors",
+  "keyStat": null
+ },
+ "women::Ahmani Guichard": {
+  "name": "Ahmani Guichard",
+  "gender": "women",
+  "archetype": "ball-striker",
+  "strength": "the forehand does damage \u2014 44 winners to 39 errors",
+  "weakness": "the deuce wide serve leaks \u2014 only 43% won (37 tries)",
+  "keyStat": null
+ },
+ "women::Bianca Fernandez": {
+  "name": "Bianca Fernandez",
+  "gender": "women",
+  "archetype": "all-court",
+  "strength": "the deuce t serve is a weapon \u2014 78% won over 9 tries",
+  "weakness": "gives too much away \u2014 91% of lost points are unforced errors, mostly the backhand",
+  "keyStat": null
+ },
+ "women::Sasha Vagramov": {
+  "name": "Sasha Vagramov",
+  "gender": "women",
+  "archetype": "grinder",
+  "strength": "relentless consistency \u2014 80% of won points come from forcing errors, not swinging for winners",
+  "weakness": null,
+  "keyStat": null
+ }
+}

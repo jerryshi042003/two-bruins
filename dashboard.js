@@ -4,16 +4,18 @@
 const pct = (x) => (x == null ? '—' : Math.round(x * 100) + '%');
 const el = (tag, cls, html) => { const e = document.createElement(tag); if (cls) e.className = cls; if (html != null) e.innerHTML = html; return e; };
 
-let DATA = null, ENRICH = {}, PAT = {}, gender = 'men', current = {};
+let DATA = null, ENRICH = {}, PAT = {}, SYN = {}, gender = 'men', current = {};
 const enr = (p) => ENRICH[`${gender}::${p.name}`] || {};
 const pat = (p) => PAT[`${gender}::${p.name}`] || {};
+const syn = (p) => SYN[`${gender}::${p.name}`] || {};
 
 Promise.all([
   fetch('dashboard-data.json').then(r => r.json()),
   fetch('player_enrich.json').then(r => r.json()).catch(() => ({})),
   fetch('player_patterns.json').then(r => r.json()).catch(() => ({})),
-]).then(([d, e, pt]) => {
-  DATA = d; ENRICH = e || {}; PAT = pt || {};
+  fetch('player_synth.json').then(r => r.json()).catch(() => ({})),
+]).then(([d, e, pt, sy]) => {
+  DATA = d; ENRICH = e || {}; PAT = pt || {}; SYN = sy || {};
   const totals = ['men', 'women'].reduce((a, g) => {
     a.players += d[g].length; a.pts += d[g].reduce((s, p) => s + p.points, 0); return a;
   }, { players: 0, pts: 0 });
@@ -113,7 +115,8 @@ function renderPanel(p) {
   });
   panel.appendChild(kpis);
 
-  // ---- LEAD: how they win/lose, level & schedule, what's working ----
+  // ---- LEAD: the one-line read on this player, then the supporting patterns ----
+  panel.appendChild(headlineBlock(p));
   panel.appendChild(signatureBlock(p, e));
   panel.appendChild(courtPatternBlock(p));
   panel.appendChild(levelBlock(p, e));
@@ -217,6 +220,26 @@ function levelBlock(p, e) {
   b.appendChild(el('p', 'dnote',
     `Avg opponent UTR <b>${s.avgOppUtr || 'n/a'}</b> vs their own <b>${e.playerUtr ? e.playerUtr.toFixed(1) : 'n/a'}</b>. ` +
     `Against opponents rated at or above them: ${vs(s.vsStronger)}; against lower-rated: ${vs(s.vsWeaker)}. ` + recency));
+  return b;
+}
+
+function headlineBlock(p) {
+  const s = syn(p);
+  const b = el('div', 'headline');
+  const first = p.name.split(' ')[0];
+  b.appendChild(el('div', 'archeTag', (s.archetype || 'all-court').toUpperCase()));
+  const cap = (t) => t ? t.charAt(0).toUpperCase() + t.slice(1) : t;
+  if (s.strength) {
+    const row = el('div', 'hlRow win');
+    row.innerHTML = `<span class="hlLabel">WHAT WINS FOR ${first.toUpperCase()}</span><span class="hlText">${cap(s.strength)}.</span>`;
+    b.appendChild(row);
+  }
+  if (s.weakness) {
+    const row = el('div', 'hlRow loss');
+    row.innerHTML = `<span class="hlLabel">WHAT COSTS ${first.toUpperCase()}</span><span class="hlText">${cap(s.weakness)}.</span>`;
+    b.appendChild(row);
+  }
+  if (!s.strength && !s.weakness) b.appendChild(el('p', 'naNote', 'Sample still thin — read the sections below directly.'));
   return b;
 }
 

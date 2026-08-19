@@ -104,6 +104,17 @@
 
 .naNote { color: var(--faint); font-size: 13px; font-style: italic; }
 
+/* headline — the one-line read that leads each player */
+.headline { margin-top: 22px; border: 2px solid var(--ink); border-radius: 12px; padding: 18px 20px; }
+.archeTag { display: inline-block; background: var(--ink); color: #fff; font-size: 10px; font-weight: 700; letter-spacing: .12em; padding: 4px 10px; border-radius: 999px; margin-bottom: 12px; }
+.hlRow { display: grid; grid-template-columns: 130px 1fr; gap: 14px; align-items: baseline; padding: 9px 0; }
+.hlRow + .hlRow { border-top: 1px solid var(--rule); }
+.hlLabel { font-size: 10px; font-weight: 700; letter-spacing: .08em; color: var(--muted); }
+.hlRow.win .hlLabel { color: var(--in); }
+.hlRow.loss .hlLabel { color: var(--net); }
+.hlText { font-size: 16px; line-height: 1.45; color: var(--ink); font-weight: 500; }
+@media (max-width: 560px) { .hlRow { grid-template-columns: 1fr; gap: 3px; } }
+
 /* signature (how they win/lose) */
 .sigGrid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
 @media (max-width: 720px) { .sigGrid { grid-template-columns: 1fr; gap: 18px; } }

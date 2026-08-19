@@ -4,18 +4,20 @@
 const pct = (x) => (x == null ? '—' : Math.round(x * 100) + '%');
 const el = (tag, cls, html) => { const e = document.createElement(tag); if (cls) e.className = cls; if (html != null) e.innerHTML = html; return e; };
 
-let DATA = null, ENRICH = {}, PAT = {}, SYN = {}, gender = 'men', current = {};
+let DATA = null, ENRICH = {}, PAT = {}, SYN = {}, RAW = {}, gender = 'men', current = {};
 const enr = (p) => ENRICH[`${gender}::${p.name}`] || {};
 const pat = (p) => PAT[`${gender}::${p.name}`] || {};
 const syn = (p) => SYN[`${gender}::${p.name}`] || {};
+const raw = (p) => RAW[p.name] || null;   // raw SwingVision keyed by full name
 
 Promise.all([
   fetch('dashboard-data.json').then(r => r.json()),
   fetch('player_enrich.json').then(r => r.json()).catch(() => ({})),
   fetch('player_patterns.json').then(r => r.json()).catch(() => ({})),
   fetch('player_synth.json').then(r => r.json()).catch(() => ({})),
-]).then(([d, e, pt, sy]) => {
-  DATA = d; ENRICH = e || {}; PAT = pt || {}; SYN = sy || {};
+  fetch('raw_players.json').then(r => r.json()).catch(() => ({})),
+]).then(([d, e, pt, sy, rw]) => {
+  DATA = d; ENRICH = e || {}; PAT = pt || {}; SYN = sy || {}; RAW = rw || {};
   const totals = ['men', 'women'].reduce((a, g) => {
     a.players += d[g].length; a.pts += d[g].reduce((s, p) => s + p.points, 0); return a;
   }, { players: 0, pts: 0 });
@@ -117,8 +119,11 @@ function renderPanel(p) {
 
   // ---- LEAD: the one-line read on this player, then the supporting patterns ----
   panel.appendChild(headlineBlock(p));
+  const rw = raw(p);
+  if (rw) panel.appendChild(rawMetricsBlock(p, rw));
   panel.appendChild(signatureBlock(p, e));
-  panel.appendChild(courtPatternBlock(p));
+  if (rw) panel.appendChild(rawServeCourt(p, rw));
+  else panel.appendChild(courtPatternBlock(p));
   panel.appendChild(pointEndBlock(p));
   panel.appendChild(levelBlock(p, e));
   panel.appendChild(trendBlock(p, e));
@@ -234,6 +239,62 @@ function headlineBlock(p) {
     b.appendChild(row);
   }
   if (!s.strength && !s.weakness) b.appendChild(el('p', 'naNote', 'Sample still thin — read the sections below directly.'));
+  return b;
+}
+
+function rawMetricsBlock(p, rw) {
+  const b = block('SWINGVISION', `${rw.matches} matches, ${rw.shots.toLocaleString()} shots — from the raw ball-tracking`);
+  const kpis = el('div', 'kpis');
+  const mph = (s) => s ? `${Math.round(s.mean)}` : '—';
+  const m = (s) => s ? `${s.mean.toFixed(2)}m` : '—';
+  const K = [
+    [rw.serveSpeed ? `${Math.round(rw.serveSpeed.mean)}` : '—', 'AVG SERVE MPH', rw.serveSpeed ? `top 10%: ${Math.round(rw.serveSpeed.p90)}` : ''],
+    [rw.fhSpeed ? `${Math.round(rw.fhSpeed.mean)}` : '—', 'AVG FOREHAND MPH', rw.bhSpeed ? `bh ${Math.round(rw.bhSpeed.mean)}` : ''],
+    [m(rw.gsContactHt), 'GROUNDSTROKE CONTACT HT', rw.gsContactHt ? `serve ${m(rw.serveContactHt)}` : ''],
+    [rw.serveP1 && rw.serveP1.fhShare != null ? Math.round(rw.serveP1.fhShare * 100) + '%' : '—', 'SERVE+1 FOREHAND', rw.serveP1 ? `${rw.serveP1.n} serve+1 balls` : ''],
+  ];
+  K.forEach(([v, l, s]) => {
+    const k = el('div', 'kpi');
+    k.appendChild(el('div', 'v', v)); k.appendChild(el('div', 'l', l)); k.appendChild(el('div', 's', s));
+    kpis.appendChild(k);
+  });
+  b.appendChild(kpis);
+  return b;
+}
+
+function rawServeCourt(p, rw) {
+  const b = block('SERVE PLACEMENT', 'Every serve that went in — real bounce locations');
+  const sv = rw.serveBounces || [];
+  if (sv.length < 20) { b.appendChild(el('p', 'naNote', 'Not enough tracked serves.')); return b; }
+  const NET = 11.885, HALF = 6.4, WIDE = 4.115;
+  const W = 460, H = 300, mL = 60, mR = 60, mT = 26, mB = 30;
+  const svg = d3.create('svg').attr('viewBox', `0 0 ${W} ${H}`).attr('class', 'd3svg');
+  const g = svg.append('g');
+  const x = d3.scaleLinear().domain([-WIDE, WIDE]).range([mL, W - mR]);
+  const y = d3.scaleLinear().domain([0, HALF]).range([H - mB, mT]); // 0 = net (bottom), 6.4 = service line (top)
+  // box + lines
+  g.append('rect').attr('x', x(-WIDE)).attr('y', y(HALF)).attr('width', x(WIDE) - x(-WIDE)).attr('height', y(0) - y(HALF)).attr('fill', '#f7faf7').attr('stroke', '#c4c4c4');
+  g.append('line').attr('x1', x(0)).attr('x2', x(0)).attr('y1', y(0)).attr('y2', y(HALF)).attr('stroke', '#d8d8d8'); // center line
+  g.append('line').attr('x1', x(-WIDE)).attr('x2', x(WIDE)).attr('y1', y(0)).attr('y2', y(0)).attr('stroke', '#333').attr('stroke-width', 2); // net
+  g.append('text').attr('x', x(-WIDE) - 6).attr('y', y(0) + 3).attr('text-anchor', 'end').attr('font-size', 9).attr('fill', C.muted).text('net');
+  g.append('text').attr('x', x(-WIDE) - 6).attr('y', y(HALF) + 3).attr('text-anchor', 'end').attr('font-size', 9).attr('fill', C.muted).text('svc line');
+  g.append('text').attr('x', (x(-WIDE) + x(0)) / 2).attr('y', mT - 8).attr('text-anchor', 'middle').attr('font-size', 9).attr('font-weight', 700).attr('fill', C.muted).text('AD BOX');
+  g.append('text').attr('x', (x(0) + x(WIDE)) / 2).attr('y', mT - 8).attr('text-anchor', 'middle').attr('font-size', 9).attr('font-weight', 700).attr('fill', C.muted).text('DEUCE BOX');
+  // fold both ends into one far-box frame, plot alpha dots (density heatmap)
+  let aces = 0;
+  sv.forEach(s => {
+    let bx = s[0], by = s[1];
+    if (by < NET) { by = 23.77 - by; bx = -bx; }
+    const d = by - NET; if (d < 0 || d > HALF + 0.4) return;
+    const isAce = String(s[2]).toLowerCase() === 'ace'; if (isAce) aces++;
+    g.append('circle').attr('cx', x(Math.max(-WIDE, Math.min(WIDE, bx)))).attr('cy', y(Math.min(HALF, d)))
+      .attr('r', isAce ? 4 : 3.2).attr('fill', isAce ? C.gold : C.blue).attr('fill-opacity', isAce ? 0.9 : 0.14).attr('stroke', 'none');
+  });
+  b.appendChild(svg.node());
+  b.appendChild(el('div', 'd3legend', `<span><i style="background:${C.blue};opacity:.5"></i>serve landed</span><span><i style="background:${C.gold}"></i>ace</span>`));
+  b.appendChild(el('p', 'dnote',
+    `Each dot is one serve's real bounce point (both service boxes folded together, both ends overlaid), so the dark clusters are where they actually live. ` +
+    `${sv.length} serves plotted, ${aces} aces. ` + (rw.serveSpeed ? `Averaging ${Math.round(rw.serveSpeed.mean)} mph, up to ${Math.round(rw.serveSpeed.p90)}.` : '')));
   return b;
 }
 

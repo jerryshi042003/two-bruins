@@ -62,6 +62,8 @@ h2 { font-size: clamp(28px, 5vw, 42px); max-width: 780px; }
 .navLink { margin: 8px 0 0 !important; }
 .navLink a { color: var(--blue); font-weight: 700; font-size: 12px; letter-spacing: .04em; text-decoration: none; }
 .navLink a:hover { text-decoration: underline; }
+.navLink.center { text-align: center; margin: 18px 0 0 !important; }
+.navLink.center a { font-size: 13px; }
 
 /* ---------- opening read ---------- */
 .read { padding: 26px 0 20px; text-align: center; }

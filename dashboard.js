@@ -119,6 +119,7 @@ function renderPanel(p) {
   panel.appendChild(headlineBlock(p));
   panel.appendChild(signatureBlock(p, e));
   panel.appendChild(courtPatternBlock(p));
+  panel.appendChild(pointEndBlock(p));
   panel.appendChild(levelBlock(p, e));
   panel.appendChild(trendBlock(p, e));
   panel.appendChild(effectivenessBlock(p));
@@ -287,6 +288,57 @@ function courtPatternBlock(p) {
     `Cells are their serve targets, shaded by how often they win the point from that spot; the gold arrow is where the return usually comes back. ` +
     `Their signature serve is the <b>${sig.side} ${sig.zone}</b> — ${sig.n} times, <b>${pctI(sig.winPct)}</b> won (${sig.lift >= 0 ? '+' : ''}${Math.round(sig.lift * 100)} vs their average), returned mostly <b>${sig.topReturn.toLowerCase()}</b>` +
     (sig.s1winPct != null ? `; <b>${pctI(sig.s1winPct)}</b> of those points are won inside three shots — the serve+1 quick strike.` : '.')));
+  return b;
+}
+
+function pointEndBlock(p) {
+  const P = pat(p);
+  const b = block('POINT ENDINGS', 'How and where they finish — winners vs errors');
+  const wins = P.winners || [], errs = P.errors || [];
+  if (!wins.length && !errs.length) { b.appendChild(el('p', 'naNote', 'No shot-ending data.')); return b; }
+  // aggregate by (wing, dir)
+  const agg = {};
+  const put = (rows, kind) => rows.forEach(r => {
+    if (!r.dir) return; const k = r.wing + '|' + r.dir; (agg[k] = agg[k] || { wing: r.wing, dir: r.dir, w: 0, e: 0 })[kind] += r.n;
+  });
+  put(wins, 'w'); put(errs, 'e');
+  const items = Object.values(agg).filter(a => a.w + a.e >= 3);
+  const W = 440, H = 380, netY = 30, baseY = 330, cx0 = 70, cx1 = 370, midX = 220;
+  const svg = d3.create('svg').attr('viewBox', `0 0 ${W} ${H}`).attr('class', 'd3svg');
+  const g = svg.append('g');
+  g.append('rect').attr('x', cx0).attr('y', netY).attr('width', cx1 - cx0).attr('height', baseY - netY).attr('fill', '#f7faf7').attr('stroke', '#c4c4c4').attr('stroke-width', 1.2);
+  g.append('line').attr('x1', cx0).attr('x2', cx1).attr('y1', (netY + baseY) / 2).attr('y2', (netY + baseY) / 2).attr('stroke', '#333').attr('stroke-width', 2); // net mid
+  g.append('text').attr('x', cx1 + 2).attr('y', (netY + baseY) / 2 + 3).attr('font-size', 9).attr('fill', C.muted).text('net');
+  const player = [midX, baseY - 8];
+  g.append('text').attr('x', player[0]).attr('y', baseY + 14).attr('text-anchor', 'middle').attr('font-size', 10).attr('font-weight', 700).attr('fill', C.muted).text(p.name.split(' ')[0].toUpperCase());
+  // four distinct targets spread across the far baseline (no collisions)
+  const targY = netY + 46;
+  const targX = { 'Forehand|cross': cx0 + 42, 'Forehand|line': midX - 34, 'Backhand|line': midX + 34, 'Backhand|cross': cx1 - 42 };
+  g.append('defs').html(
+    `<marker id="mw" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="${C.blue}"/></marker>` +
+    `<marker id="me" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="${C.gold}"/></marker>`);
+  items.forEach(a => {
+    const cc = /cross/i.test(a.dir);
+    const tx = targX[a.wing + '|' + (cc ? 'cross' : 'line')]; if (tx == null) return;
+    const winnerDom = a.w >= a.e, tot = a.w + a.e, wpx = Math.min(6, 1.5 + tot / 14);
+    g.append('line').attr('x1', player[0]).attr('y1', player[1]).attr('x2', tx).attr('y2', targY + 6)
+      .attr('stroke', winnerDom ? C.blue : C.gold).attr('stroke-width', wpx).attr('opacity', 0.7)
+      .attr('marker-end', winnerDom ? 'url(#mw)' : 'url(#me)');
+    g.append('text').attr('x', tx).attr('y', targY - 6).attr('text-anchor', 'middle').attr('font-size', 10).attr('font-weight', 700).attr('fill', winnerDom ? C.blue : '#a8790a')
+      .text(`${a.wing[0] + (cc ? 'x' : '↓')}`);
+    g.append('text').attr('x', tx).attr('y', targY + 8).attr('text-anchor', 'middle').attr('font-size', 9).attr('fill', C.muted)
+      .text(`${a.w}W·${a.e}E`);
+  });
+  g.append('circle').attr('cx', player[0]).attr('cy', player[1]).attr('r', 5).attr('fill', C.ink);
+  b.appendChild(svg.node());
+  b.appendChild(el('div', 'd3legend', `<span><i style="background:${C.blue}"></i>winner-heavy</span><span><i style="background:${C.gold}"></i>error-heavy</span>`));
+  // biggest winner shot + biggest error shot
+  const topWin = wins.filter(w => w.dir).sort((a, c) => c.n - a.n)[0];
+  const topErr = errs.filter(w => w.dir).sort((a, c) => c.n - a.n)[0];
+  b.appendChild(el('p', 'dnote',
+    `Arrows are their point-ending shots to each target (F/B = forehand/backhand, x = crosscourt, ↓ = down the line), blue where winners outweigh errors, gold where errors do. ` +
+    (topWin ? `Their go-to winner: <b>${topWin.wing.toLowerCase()} ${topWin.dir.toLowerCase()}</b> (${topWin.n}). ` : '') +
+    (topErr ? `Where they miss most: <b>${topErr.wing.toLowerCase()} ${topErr.dir.toLowerCase()}</b> (${topErr.n}).` : '')));
   return b;
 }
 

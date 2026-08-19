@@ -291,7 +291,7 @@
   {
    "name": "Giacomo Revelli",
    "gender": "men",
-   "matchesTracked": 2,
+   "matchesTracked": 4,
    "matches": [
     {
      "name": "Giacomo Revelli UCLA vs. Matthew Burton Oregon 04/05/24",
@@ -301,121 +301,265 @@
      "n": 172
     },
     {
+     "name": "Giacomo Revelli UCLA vs. Henry Vds Harvard 1/27/24",
+     "opp": ". Henry Vds Harvard 1/27/24",
+     "team": "Harvard (M)",
+     "video": "d1EgoBIT_ac",
+     "n": 112
+    },
+    {
      "name": "Giacomo Revelli UCLA vs. Illia Maksymchuk UNLV 2/25/24",
      "opp": ". Illia Maksymchuk UNLV 2/25/24",
      "team": "UNLV (M)",
      "video": "-0J9NYdwn2o",
      "n": 101
+    },
+    {
+     "name": "Giacomo Revelli UCLA vs. Togan Tokac Texas A&M 1/17/24",
+     "opp": ". Togan Tokac Texas A&M 1/17/24",
+     "team": "Texas A&M (M)",
+     "video": "S2uQaPZVmNM",
+     "n": 96
     }
    ],
-   "points": 273,
-   "ptsWon": 148,
-   "winPct": 0.542,
-   "servePts": 140,
-   "firstInPct": 0.657,
-   "aces": 5,
-   "df": 4,
+   "points": 481,
+   "ptsWon": 251,
+   "winPct": 0.522,
+   "servePts": 232,
+   "firstInPct": 0.672,
+   "aces": 12,
+   "df": 9,
    "placement": [
     {
      "side": "Ad",
      "spot": "Body",
-     "n": 31,
-     "won": 25,
-     "wonPct": 0.806
+     "n": 54,
+     "won": 35,
+     "wonPct": 0.648
     },
     {
      "side": "Ad",
      "spot": "T",
-     "n": 16,
-     "won": 10,
-     "wonPct": 0.625
+     "n": 26,
+     "won": 17,
+     "wonPct": 0.654
     },
     {
      "side": "Ad",
      "spot": "Wide",
-     "n": 19,
-     "won": 11,
-     "wonPct": 0.579
+     "n": 28,
+     "won": 14,
+     "wonPct": 0.5
     },
     {
      "side": "Deuce",
      "spot": "Body",
-     "n": 30,
-     "won": 13,
-     "wonPct": 0.433
+     "n": 48,
+     "won": 26,
+     "wonPct": 0.542
     },
     {
      "side": "Deuce",
      "spot": "T",
-     "n": 24,
-     "won": 18,
-     "wonPct": 0.75
+     "n": 39,
+     "won": 28,
+     "wonPct": 0.718
     },
     {
      "side": "Deuce",
      "spot": "Wide",
-     "n": 15,
-     "won": 8,
-     "wonPct": 0.533
+     "n": 25,
+     "won": 14,
+     "wonPct": 0.56
     }
    ],
    "rally": [
     {
      "bucket": "1-4",
-     "n": 118,
-     "wonPct": 0.627
+     "n": 225,
+     "wonPct": 0.573
     },
     {
      "bucket": "5-8",
-     "n": 80,
-     "wonPct": 0.537
+     "n": 144,
+     "wonPct": 0.507
     },
     {
      "bucket": "9-12",
-     "n": 42,
-     "wonPct": 0.429
+     "n": 60,
+     "wonPct": 0.417
     },
     {
      "bucket": "13+",
-     "n": 33,
-     "wonPct": 0.394
+     "n": 52,
+     "wonPct": 0.462
     }
    ],
    "winners": {
-    "Forehand": 35,
-    "Backhand": 9
+    "Forehand": 47,
+    "Backhand": 14
    },
    "errors": {
-    "Forehand": 48,
-    "Backhand": 42
+    "Forehand": 90,
+    "Backhand": 67
    },
-   "winTotal": 44,
-   "errTotal": 90,
+   "winTotal": 61,
+   "errTotal": 157,
    "net": null,
    "ret": {
-    "n": 126,
-    "fh": 86,
-    "bh": 40,
+    "n": 236,
+    "fh": 149,
+    "bh": 87,
     "dir": [
      {
       "dir": "Down the Line",
-      "n": 45,
-      "wonPct": 0.356
+      "n": 93,
+      "wonPct": 0.387
      },
      {
       "dir": "Crosscourt",
-      "n": 81,
-      "wonPct": 0.506
+      "n": 143,
+      "wonPct": 0.497
      }
     ]
    },
    "bp": {
-    "saveN": 15,
-    "saved": 11,
-    "savePct": 0.733,
-    "convN": 12,
-    "conv": 8,
-    "convPct": 0.667
+    "saveN": 22,
+    "saved": 12,
+    "savePct": 0.545,
+    "convN": 21,
+    "conv": 11,
+    "convPct": 0.524
+   }
+  },
+  {
+   "name": "Rudy Quan",
+   "gender": "men",
+   "matchesTracked": 2,
+   "matches": [
+    {
+     "name": "Rudy Quan vs Yuta Shimizu 5/31/24",
+     "opp": "Yuta Shimizu 5/31/24",
+     "team": "Yuta Shimizu (M)",
+     "video": "yuFzKIUP500",
+     "n": 135
+    },
+    {
+     "name": "",
+     "opp": "",
+     "team": "",
+     "video": "p-DOehfaLc0",
+     "n": 123
+    }
+   ],
+   "points": 258,
+   "ptsWon": 125,
+   "winPct": 0.484,
+   "servePts": 146,
+   "firstInPct": 0.781,
+   "aces": 1,
+   "df": 5,
+   "placement": [
+    {
+     "side": "Ad",
+     "spot": "Body",
+     "n": 47,
+     "won": 24,
+     "wonPct": 0.511
+    },
+    {
+     "side": "Ad",
+     "spot": "T",
+     "n": 10,
+     "won": 7,
+     "wonPct": 0.7
+    },
+    {
+     "side": "Ad",
+     "spot": "Wide",
+     "n": 10,
+     "won": 3,
+     "wonPct": 0.3
+    },
+    {
+     "side": "Deuce",
+     "spot": "Body",
+     "n": 41,
+     "won": 20,
+     "wonPct": 0.488
+    },
+    {
+     "side": "Deuce",
+     "spot": "T",
+     "n": 22,
+     "won": 11,
+     "wonPct": 0.5
+    },
+    {
+     "side": "Deuce",
+     "spot": "Wide",
+     "n": 11,
+     "won": 5,
+     "wonPct": 0.455
+    }
+   ],
+   "rally": [
+    {
+     "bucket": "1-4",
+     "n": 93,
+     "wonPct": 0.505
+    },
+    {
+     "bucket": "5-8",
+     "n": 92,
+     "wonPct": 0.446
+    },
+    {
+     "bucket": "9-12",
+     "n": 39,
+     "wonPct": 0.513
+    },
+    {
+     "bucket": "13+",
+     "n": 34,
+     "wonPct": 0.5
+    }
+   ],
+   "winners": {
+    "Backhand": 5,
+    "Forehand": 14
+   },
+   "errors": {
+    "Forehand": 58,
+    "Backhand": 36
+   },
+   "winTotal": 19,
+   "errTotal": 94,
+   "net": null,
+   "ret": {
+    "n": 103,
+    "fh": 38,
+    "bh": 65,
+    "dir": [
+     {
+      "dir": "Crosscourt",
+      "n": 62,
+      "wonPct": 0.548
+     },
+     {
+      "dir": "Down the Line",
+      "n": 41,
+      "wonPct": 0.39
+     }
+    ]
+   },
+   "bp": {
+    "saveN": 32,
+    "saved": 18,
+    "savePct": 0.562,
+    "convN": 14,
+    "conv": 7,
+    "convPct": 0.5
    }
   },
   {
@@ -679,129 +823,6 @@
    }
   },
   {
-   "name": "Rudy Quan",
-   "gender": "men",
-   "matchesTracked": 1,
-   "matches": [
-    {
-     "name": "Rudy Quan vs Yuta Shimizu 5/31/24",
-     "opp": "Yuta Shimizu 5/31/24",
-     "team": "Yuta Shimizu (M)",
-     "video": "yuFzKIUP500",
-     "n": 135
-    }
-   ],
-   "points": 135,
-   "ptsWon": 61,
-   "winPct": 0.452,
-   "servePts": 80,
-   "firstInPct": 0.8,
-   "aces": 1,
-   "df": 4,
-   "placement": [
-    {
-     "side": "Ad",
-     "spot": "Body",
-     "n": 23,
-     "won": 7,
-     "wonPct": 0.304
-    },
-    {
-     "side": "Ad",
-     "spot": "T",
-     "n": 8,
-     "won": 5,
-     "wonPct": 0.625
-    },
-    {
-     "side": "Ad",
-     "spot": "Wide",
-     "n": 5,
-     "won": 0,
-     "wonPct": 0.0
-    },
-    {
-     "side": "Deuce",
-     "spot": "Body",
-     "n": 24,
-     "won": 15,
-     "wonPct": 0.625
-    },
-    {
-     "side": "Deuce",
-     "spot": "T",
-     "n": 7,
-     "won": 4,
-     "wonPct": 0.571
-    },
-    {
-     "side": "Deuce",
-     "spot": "Wide",
-     "n": 9,
-     "won": 5,
-     "wonPct": 0.556
-    }
-   ],
-   "rally": [
-    {
-     "bucket": "1-4",
-     "n": 52,
-     "wonPct": 0.5
-    },
-    {
-     "bucket": "5-8",
-     "n": 50,
-     "wonPct": 0.4
-    },
-    {
-     "bucket": "9-12",
-     "n": 18,
-     "wonPct": 0.5
-    },
-    {
-     "bucket": "13+",
-     "n": 15,
-     "wonPct": 0.4
-    }
-   ],
-   "winners": {
-    "Backhand": 3,
-    "Forehand": 7
-   },
-   "errors": {
-    "Forehand": 32,
-    "Backhand": 19
-   },
-   "winTotal": 10,
-   "errTotal": 51,
-   "net": null,
-   "ret": {
-    "n": 50,
-    "fh": 14,
-    "bh": 36,
-    "dir": [
-     {
-      "dir": "Crosscourt",
-      "n": 30,
-      "wonPct": 0.567
-     },
-     {
-      "dir": "Down the Line",
-      "n": 20,
-      "wonPct": 0.3
-     }
-    ]
-   },
-   "bp": {
-    "saveN": 24,
-    "saved": 14,
-    "savePct": 0.583,
-    "convN": 8,
-    "conv": 4,
-    "convPct": 0.5
-   }
-  },
-  {
    "name": "Gianluca Ballotta",
    "gender": "men",
    "matchesTracked": 1,
@@ -929,8 +950,15 @@
   {
    "name": "Elise Wagle",
    "gender": "women",
-   "matchesTracked": 5,
+   "matchesTracked": 6,
    "matches": [
+    {
+     "name": "Elise Wagle UCLA vs. Matka Komac Texas Tech 5/4/24",
+     "opp": ". Matka Komac Texas Tech 5/4/24",
+     "team": "Texas Christian University (W)",
+     "video": "RJvAmIFB9f8",
+     "n": 130
+    },
     {
      "name": "Elise Wagle UCLA vs. Katherine Hui Stanford 3/31/24",
      "opp": ". Katherine Hui Stanford 3/31/24",
@@ -967,114 +995,114 @@
      "n": 91
     }
    ],
-   "points": 522,
-   "ptsWon": 299,
-   "winPct": 0.573,
-   "servePts": 250,
-   "firstInPct": 0.656,
-   "aces": 9,
-   "df": 3,
+   "points": 652,
+   "ptsWon": 371,
+   "winPct": 0.569,
+   "servePts": 315,
+   "firstInPct": 0.651,
+   "aces": 10,
+   "df": 8,
    "placement": [
     {
      "side": "Ad",
      "spot": "Body",
-     "n": 68,
-     "won": 42,
-     "wonPct": 0.618
+     "n": 81,
+     "won": 49,
+     "wonPct": 0.605
     },
     {
      "side": "Ad",
      "spot": "T",
-     "n": 18,
-     "won": 10,
-     "wonPct": 0.556
+     "n": 23,
+     "won": 13,
+     "wonPct": 0.565
     },
     {
      "side": "Ad",
      "spot": "Wide",
-     "n": 36,
-     "won": 27,
-     "wonPct": 0.75
+     "n": 49,
+     "won": 38,
+     "wonPct": 0.776
     },
     {
      "side": "Deuce",
      "spot": "Body",
-     "n": 56,
-     "won": 33,
-     "wonPct": 0.589
+     "n": 72,
+     "won": 44,
+     "wonPct": 0.611
     },
     {
      "side": "Deuce",
      "spot": "T",
-     "n": 28,
-     "won": 19,
-     "wonPct": 0.679
+     "n": 35,
+     "won": 24,
+     "wonPct": 0.686
     },
     {
      "side": "Deuce",
      "spot": "Wide",
-     "n": 41,
-     "won": 28,
-     "wonPct": 0.683
+     "n": 47,
+     "won": 32,
+     "wonPct": 0.681
     }
    ],
    "rally": [
     {
      "bucket": "1-4",
-     "n": 261,
-     "wonPct": 0.613
+     "n": 327,
+     "wonPct": 0.612
     },
     {
      "bucket": "5-8",
-     "n": 166,
-     "wonPct": 0.494
+     "n": 209,
+     "wonPct": 0.498
     },
     {
      "bucket": "9-12",
-     "n": 60,
-     "wonPct": 0.583
+     "n": 74,
+     "wonPct": 0.554
     },
     {
      "bucket": "13+",
-     "n": 35,
-     "wonPct": 0.629
+     "n": 42,
+     "wonPct": 0.619
     }
    ],
    "winners": {
-    "Forehand": 31,
-    "Backhand": 23
+    "Forehand": 38,
+    "Backhand": 27
    },
    "errors": {
-    "Backhand": 64,
-    "Forehand": 87
+    "Backhand": 77,
+    "Forehand": 111
    },
-   "winTotal": 54,
-   "errTotal": 151,
+   "winTotal": 65,
+   "errTotal": 188,
    "net": null,
    "ret": {
-    "n": 245,
-    "fh": 147,
-    "bh": 98,
+    "n": 302,
+    "fh": 179,
+    "bh": 123,
     "dir": [
      {
       "dir": "Down the Line",
-      "n": 109,
-      "wonPct": 0.44
+      "n": 139,
+      "wonPct": 0.439
      },
      {
       "dir": "Crosscourt",
-      "n": 136,
-      "wonPct": 0.493
+      "n": 163,
+      "wonPct": 0.472
      }
     ]
    },
    "bp": {
-    "saveN": 16,
-    "saved": 7,
-    "savePct": 0.438,
-    "convN": 44,
-    "conv": 25,
-    "convPct": 0.568
+    "saveN": 27,
+    "saved": 15,
+    "savePct": 0.556,
+    "convN": 53,
+    "conv": 28,
+    "convPct": 0.528
    }
   },
   {
@@ -1215,6 +1243,294 @@
    }
   },
   {
+   "name": "Tian Fang Ran",
+   "gender": "women",
+   "matchesTracked": 4,
+   "matches": [
+    {
+     "name": "Tian Fang Ran UCLA (W) vs. Sabina Zeynalova Texas (W)",
+     "opp": ". Sabina Zeynalova Texas (W)",
+     "team": "",
+     "video": "m8dRfSZMumk",
+     "n": 142
+    },
+    {
+     "name": "Tian Fang Ran UCLA vs. Irina Cantos Siemers Ohio State 2/4/24",
+     "opp": ". Irina Cantos Siemers Ohio State 2/4/24",
+     "team": "Ohio State (W)",
+     "video": "WGuttqmGxC8",
+     "n": 107
+    },
+    {
+     "name": "Tian Fangran UCLA vs. Erika Matsuda Washington 3/9/24",
+     "opp": ". Erika Matsuda Washington 3/9/24",
+     "team": "Washington (W)",
+     "video": "HANpPSzKiCQ",
+     "n": 94
+    },
+    {
+     "name": "Tian Fangran UCLA vs. Carlota Molina LMU 2/23/24",
+     "opp": ". Carlota Molina LMU 2/23/24",
+     "team": "Loyola Marymount (W)",
+     "video": "NjqKTl_Kvhs",
+     "n": 90
+    }
+   ],
+   "points": 433,
+   "ptsWon": 234,
+   "winPct": 0.54,
+   "servePts": 218,
+   "firstInPct": 0.628,
+   "aces": 11,
+   "df": 11,
+   "placement": [
+    {
+     "side": "Ad",
+     "spot": "Body",
+     "n": 22,
+     "won": 13,
+     "wonPct": 0.591
+    },
+    {
+     "side": "Ad",
+     "spot": "T",
+     "n": 33,
+     "won": 20,
+     "wonPct": 0.606
+    },
+    {
+     "side": "Ad",
+     "spot": "Wide",
+     "n": 44,
+     "won": 26,
+     "wonPct": 0.591
+    },
+    {
+     "side": "Deuce",
+     "spot": "Body",
+     "n": 29,
+     "won": 15,
+     "wonPct": 0.517
+    },
+    {
+     "side": "Deuce",
+     "spot": "T",
+     "n": 43,
+     "won": 26,
+     "wonPct": 0.605
+    },
+    {
+     "side": "Deuce",
+     "spot": "Wide",
+     "n": 33,
+     "won": 17,
+     "wonPct": 0.515
+    }
+   ],
+   "rally": [
+    {
+     "bucket": "1-4",
+     "n": 225,
+     "wonPct": 0.547
+    },
+    {
+     "bucket": "5-8",
+     "n": 116,
+     "wonPct": 0.56
+    },
+    {
+     "bucket": "9-12",
+     "n": 62,
+     "wonPct": 0.516
+    },
+    {
+     "bucket": "13+",
+     "n": 30,
+     "wonPct": 0.467
+    }
+   ],
+   "winners": {
+    "Forehand": 57,
+    "Backhand": 16
+   },
+   "errors": {
+    "Forehand": 73,
+    "Backhand": 57
+   },
+   "winTotal": 73,
+   "errTotal": 130,
+   "net": null,
+   "ret": {
+    "n": 159,
+    "fh": 68,
+    "bh": 91,
+    "dir": [
+     {
+      "dir": "Down the Line",
+      "n": 58,
+      "wonPct": 0.586
+     },
+     {
+      "dir": "Crosscourt",
+      "n": 138,
+      "wonPct": 0.5
+     }
+    ]
+   },
+   "bp": {
+    "saveN": 24,
+    "saved": 13,
+    "savePct": 0.542,
+    "convN": 20,
+    "conv": 13,
+    "convPct": 0.65
+   }
+  },
+  {
+   "name": "Anne Lutkemeyer",
+   "gender": "women",
+   "matchesTracked": 4,
+   "matches": [
+    {
+     "name": "Anne Lutkemeyer UCLA vs. Katie Codd Duke 2/3/24",
+     "opp": ". Katie Codd Duke 2/3/24",
+     "team": "Duke (W)",
+     "video": "4CGkMywlxs4",
+     "n": 132
+    },
+    {
+     "name": "Anne Lutkemeyer UCLA vs. Catherine Gagnon Washington 3/9/24",
+     "opp": ". Catherine Gagnon Washington 3/9/24",
+     "team": "University of Washington (W)",
+     "video": "BurImjKhUuA",
+     "n": 108
+    },
+    {
+     "name": "Anne-Christine Lutkemeyer UCLA vs. Seha Yu CSU Fullerton 2/24/24",
+     "opp": ". Seha Yu CSU Fullerton 2/24/24",
+     "team": "Cal State Fullerton (W)",
+     "video": "U6T6H2TbL6M",
+     "n": 94
+    },
+    {
+     "name": "Anne Lutkemeyer UCLA vs. Andreea Velcea SDSU 5/3/24",
+     "opp": ". Andreea Velcea SDSU 5/3/24",
+     "team": "San Diego State (W)",
+     "video": "ZY4lTfi632k",
+     "n": 72
+    }
+   ],
+   "points": 406,
+   "ptsWon": 217,
+   "winPct": 0.534,
+   "servePts": 203,
+   "firstInPct": 0.621,
+   "aces": 5,
+   "df": 30,
+   "placement": [
+    {
+     "side": "Ad",
+     "spot": "Body",
+     "n": 28,
+     "won": 17,
+     "wonPct": 0.607
+    },
+    {
+     "side": "Ad",
+     "spot": "T",
+     "n": 31,
+     "won": 16,
+     "wonPct": 0.516
+    },
+    {
+     "side": "Ad",
+     "spot": "Wide",
+     "n": 21,
+     "won": 17,
+     "wonPct": 0.81
+    },
+    {
+     "side": "Deuce",
+     "spot": "Body",
+     "n": 30,
+     "won": 17,
+     "wonPct": 0.567
+    },
+    {
+     "side": "Deuce",
+     "spot": "T",
+     "n": 16,
+     "won": 14,
+     "wonPct": 0.875
+    },
+    {
+     "side": "Deuce",
+     "spot": "Wide",
+     "n": 46,
+     "won": 27,
+     "wonPct": 0.587
+    }
+   ],
+   "rally": [
+    {
+     "bucket": "1-4",
+     "n": 190,
+     "wonPct": 0.511
+    },
+    {
+     "bucket": "5-8",
+     "n": 125,
+     "wonPct": 0.544
+    },
+    {
+     "bucket": "9-12",
+     "n": 53,
+     "wonPct": 0.585
+    },
+    {
+     "bucket": "13+",
+     "n": 38,
+     "wonPct": 0.553
+    }
+   ],
+   "winners": {
+    "Forehand": 58,
+    "Backhand": 14
+   },
+   "errors": {
+    "Forehand": 83,
+    "Backhand": 54
+   },
+   "winTotal": 72,
+   "errTotal": 137,
+   "net": null,
+   "ret": {
+    "n": 190,
+    "fh": 106,
+    "bh": 84,
+    "dir": [
+     {
+      "dir": "Crosscourt",
+      "n": 108,
+      "wonPct": 0.491
+     },
+     {
+      "dir": "Down the Line",
+      "n": 82,
+      "wonPct": 0.451
+     }
+    ]
+   },
+   "bp": {
+    "saveN": 21,
+    "saved": 11,
+    "savePct": 0.524,
+    "convN": 24,
+    "conv": 13,
+    "convPct": 0.542
+   }
+  },
+  {
    "name": "Ahmani Guichard",
    "gender": "women",
    "matchesTracked": 3,
@@ -1349,280 +1665,6 @@
     "convN": 31,
     "conv": 16,
     "convPct": 0.516
-   }
-  },
-  {
-   "name": "Anne Lutkemeyer",
-   "gender": "women",
-   "matchesTracked": 3,
-   "matches": [
-    {
-     "name": "Anne Lutkemeyer UCLA vs. Katie Codd Duke 2/3/24",
-     "opp": ". Katie Codd Duke 2/3/24",
-     "team": "Duke (W)",
-     "video": "4CGkMywlxs4",
-     "n": 132
-    },
-    {
-     "name": "Anne-Christine Lutkemeyer UCLA vs. Seha Yu CSU Fullerton 2/24/24",
-     "opp": ". Seha Yu CSU Fullerton 2/24/24",
-     "team": "Cal State Fullerton (W)",
-     "video": "U6T6H2TbL6M",
-     "n": 94
-    },
-    {
-     "name": "Anne Lutkemeyer UCLA vs. Andreea Velcea SDSU 5/3/24",
-     "opp": ". Andreea Velcea SDSU 5/3/24",
-     "team": "San Diego State (W)",
-     "video": "ZY4lTfi632k",
-     "n": 72
-    }
-   ],
-   "points": 298,
-   "ptsWon": 164,
-   "winPct": 0.55,
-   "servePts": 148,
-   "firstInPct": 0.662,
-   "aces": 3,
-   "df": 17,
-   "placement": [
-    {
-     "side": "Ad",
-     "spot": "Body",
-     "n": 23,
-     "won": 15,
-     "wonPct": 0.652
-    },
-    {
-     "side": "Ad",
-     "spot": "T",
-     "n": 23,
-     "won": 13,
-     "wonPct": 0.565
-    },
-    {
-     "side": "Ad",
-     "spot": "Wide",
-     "n": 14,
-     "won": 11,
-     "wonPct": 0.786
-    },
-    {
-     "side": "Deuce",
-     "spot": "Body",
-     "n": 26,
-     "won": 16,
-     "wonPct": 0.615
-    },
-    {
-     "side": "Deuce",
-     "spot": "T",
-     "n": 11,
-     "won": 9,
-     "wonPct": 0.818
-    },
-    {
-     "side": "Deuce",
-     "spot": "Wide",
-     "n": 34,
-     "won": 22,
-     "wonPct": 0.647
-    }
-   ],
-   "rally": [
-    {
-     "bucket": "1-4",
-     "n": 137,
-     "wonPct": 0.533
-    },
-    {
-     "bucket": "5-8",
-     "n": 91,
-     "wonPct": 0.56
-    },
-    {
-     "bucket": "9-12",
-     "n": 40,
-     "wonPct": 0.6
-    },
-    {
-     "bucket": "13+",
-     "n": 30,
-     "wonPct": 0.533
-    }
-   ],
-   "winners": {
-    "Forehand": 43,
-    "Backhand": 9
-   },
-   "errors": {
-    "Forehand": 55,
-    "Backhand": 45
-   },
-   "winTotal": 52,
-   "errTotal": 100,
-   "net": null,
-   "ret": {
-    "n": 141,
-    "fh": 82,
-    "bh": 59,
-    "dir": [
-     {
-      "dir": "Crosscourt",
-      "n": 81,
-      "wonPct": 0.506
-     },
-     {
-      "dir": "Down the Line",
-      "n": 60,
-      "wonPct": 0.45
-     }
-    ]
-   },
-   "bp": {
-    "saveN": 14,
-    "saved": 7,
-    "savePct": 0.5,
-    "convN": 15,
-    "conv": 7,
-    "convPct": 0.467
-   }
-  },
-  {
-   "name": "Tian Fang Ran",
-   "gender": "women",
-   "matchesTracked": 3,
-   "matches": [
-    {
-     "name": "Tian Fang Ran UCLA vs. Irina Cantos Siemers Ohio State 2/4/24",
-     "opp": ". Irina Cantos Siemers Ohio State 2/4/24",
-     "team": "Ohio State (W)",
-     "video": "WGuttqmGxC8",
-     "n": 107
-    },
-    {
-     "name": "Tian Fangran UCLA vs. Erika Matsuda Washington 3/9/24",
-     "opp": ". Erika Matsuda Washington 3/9/24",
-     "team": "Washington (W)",
-     "video": "HANpPSzKiCQ",
-     "n": 94
-    },
-    {
-     "name": "Tian Fangran UCLA vs. Carlota Molina LMU 2/23/24",
-     "opp": ". Carlota Molina LMU 2/23/24",
-     "team": "Loyola Marymount (W)",
-     "video": "NjqKTl_Kvhs",
-     "n": 90
-    }
-   ],
-   "points": 291,
-   "ptsWon": 166,
-   "winPct": 0.57,
-   "servePts": 146,
-   "firstInPct": 0.61,
-   "aces": 11,
-   "df": 7,
-   "placement": [
-    {
-     "side": "Ad",
-     "spot": "Body",
-     "n": 18,
-     "won": 11,
-     "wonPct": 0.611
-    },
-    {
-     "side": "Ad",
-     "spot": "T",
-     "n": 23,
-     "won": 12,
-     "wonPct": 0.522
-    },
-    {
-     "side": "Ad",
-     "spot": "Wide",
-     "n": 26,
-     "won": 17,
-     "wonPct": 0.654
-    },
-    {
-     "side": "Deuce",
-     "spot": "Body",
-     "n": 21,
-     "won": 11,
-     "wonPct": 0.524
-    },
-    {
-     "side": "Deuce",
-     "spot": "T",
-     "n": 26,
-     "won": 17,
-     "wonPct": 0.654
-    },
-    {
-     "side": "Deuce",
-     "spot": "Wide",
-     "n": 23,
-     "won": 13,
-     "wonPct": 0.565
-    }
-   ],
-   "rally": [
-    {
-     "bucket": "1-4",
-     "n": 143,
-     "wonPct": 0.587
-    },
-    {
-     "bucket": "5-8",
-     "n": 85,
-     "wonPct": 0.565
-    },
-    {
-     "bucket": "9-12",
-     "n": 41,
-     "wonPct": 0.585
-    },
-    {
-     "bucket": "13+",
-     "n": 22,
-     "wonPct": 0.455
-    }
-   ],
-   "winners": {
-    "Forehand": 37,
-    "Backhand": 13
-   },
-   "errors": {
-    "Forehand": 51,
-    "Backhand": 40
-   },
-   "winTotal": 50,
-   "errTotal": 91,
-   "net": null,
-   "ret": {
-    "n": 128,
-    "fh": 51,
-    "bh": 77,
-    "dir": [
-     {
-      "dir": "Down the Line",
-      "n": 36,
-      "wonPct": 0.583
-     },
-     {
-      "dir": "Crosscourt",
-      "n": 92,
-      "wonPct": 0.543
-     }
-    ]
-   },
-   "bp": {
-    "saveN": 16,
-    "saved": 9,
-    "savePct": 0.562,
-    "convN": 14,
-    "conv": 9,
-    "convPct": 0.643
    }
   },
   {

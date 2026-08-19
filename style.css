@@ -500,3 +500,32 @@ footer {
   .roster .rrow { grid-template-columns: 1fr 44px 120px; gap: 10px; }
   .roster .bar > b { right: 5px; font-size: 11px; }
 }
+
+/* ---------- shot-making board (winners vs errors) ---------- */
+.smBoard { max-width: 660px; margin: 16px auto 0; }
+.smBoard .srow {
+  display: grid;
+  grid-template-columns: 168px 1fr 104px;
+  gap: 14px;
+  align-items: center;
+  padding: 12px 2px;
+  border-bottom: 1px solid var(--rule);
+}
+.smBoard .rhead {
+  font-size: 10px; font-weight: 700; letter-spacing: .1em;
+  color: var(--muted); border-bottom: 1px solid var(--line); padding-bottom: 8px;
+}
+.smBoard .rhead span:last-child { text-align: right; }
+.smBoard .who { font-size: 15px; font-weight: 700; color: var(--ink); }
+.smBoard .who small { display: block; font-size: 11px; font-weight: 500; color: var(--muted); letter-spacing: .02em; }
+.smBoard .split { display: flex; height: 22px; border-radius: 2px; overflow: hidden; }
+.smBoard .split i { display: block; height: 100%; }
+.smBoard .split .w { background: var(--blue); }
+.smBoard .split .e { background: var(--gold); }
+.smBoard .cnt { font-variant-numeric: tabular-nums; font-size: 13px; text-align: right; white-space: nowrap; }
+.smBoard .cnt .w { color: var(--blue); font-weight: 700; }
+.smBoard .cnt .e { color: #a8790a; font-weight: 700; }
+.smLegend { display: flex; justify-content: center; gap: 20px; margin: 14px 0 0; }
+.smLegend span { display: inline-flex; align-items: center; gap: 7px; font-size: 12px; font-weight: 700; color: #444; letter-spacing: .03em; }
+.smLegend i { width: 12px; height: 12px; border-radius: 2px; display: inline-block; }
+@media (max-width: 560px) { .smBoard .srow { grid-template-columns: 1fr 40% 84px; gap: 10px; } }

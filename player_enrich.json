@@ -1,0 +1,848 @@
+{
+ "women::Tian Fang Ran": {
+  "playerUtr": 11.45,
+  "winSig": {
+   "ownWinnerPct": 0.349,
+   "oppErrorPct": 0.651,
+   "topWing": "forehand",
+   "n": 209
+  },
+  "lossSig": {
+   "ownErrorPct": 0.765,
+   "oppWinnerPct": 0.235,
+   "topWing": "forehand",
+   "n": 183
+  },
+  "winWings": {
+   "forehand": 57,
+   "backhand": 16
+  },
+  "lossWings": {
+   "forehand": 73,
+   "backhand": 57
+  },
+  "sos": {
+   "avgOppUtr": 10.79,
+   "nRated": 2,
+   "vsStronger": [
+    0,
+    0
+   ],
+   "vsWeaker": [
+    118,
+    66
+   ]
+  },
+  "trend": [
+   {
+    "date": "2024-02-04",
+    "opp": "Irina Cantos Siemers",
+    "oppUtr": null,
+    "won": 48,
+    "lost": 59,
+    "winPct": 0.449
+   },
+   {
+    "date": "2024-02-23",
+    "opp": "Carlota Molina",
+    "oppUtr": 10.53,
+    "won": 54,
+    "lost": 36,
+    "winPct": 0.6
+   },
+   {
+    "date": "2024-03-09",
+    "opp": "Erika Matsuda",
+    "oppUtr": 11.05,
+    "won": 64,
+    "lost": 30,
+    "winPct": 0.681
+   },
+   {
+    "date": null,
+    "opp": "Sabina Zeynalova",
+    "oppUtr": null,
+    "won": 68,
+    "lost": 74,
+    "winPct": 0.479
+   }
+  ]
+ },
+ "men::Gianluca Ballotta": {
+  "playerUtr": 13.67,
+  "winSig": {
+   "ownWinnerPct": 0.423,
+   "oppErrorPct": 0.577,
+   "topWing": "backhand",
+   "n": 26
+  },
+  "lossSig": {
+   "ownErrorPct": 0.574,
+   "oppWinnerPct": 0.426,
+   "topWing": "forehand",
+   "n": 47
+  },
+  "winWings": {
+   "backhand": 6,
+   "forehand": 5
+  },
+  "lossWings": {
+   "forehand": 20,
+   "backhand": 7
+  },
+  "sos": {
+   "avgOppUtr": 13.83,
+   "nRated": 1,
+   "vsStronger": [
+    27,
+    54
+   ],
+   "vsWeaker": [
+    0,
+    0
+   ]
+  },
+  "trend": [
+   {
+    "date": "2024-03-13",
+    "opp": "Lui Maxted",
+    "oppUtr": 13.83,
+    "won": 27,
+    "lost": 54,
+    "winPct": 0.333
+   }
+  ]
+ },
+ "women::Sasha Vagramov": {
+  "playerUtr": 10.43,
+  "winSig": {
+   "ownWinnerPct": 0.2,
+   "oppErrorPct": 0.8,
+   "topWing": "forehand",
+   "n": 50
+  },
+  "lossSig": {
+   "ownErrorPct": 0.706,
+   "oppWinnerPct": 0.294,
+   "topWing": "forehand",
+   "n": 34
+  },
+  "winWings": {
+   "forehand": 6,
+   "backhand": 4
+  },
+  "lossWings": {
+   "forehand": 15,
+   "backhand": 9
+  },
+  "sos": {
+   "avgOppUtr": 12.64,
+   "nRated": 1,
+   "vsStronger": [
+    55,
+    44
+   ],
+   "vsWeaker": [
+    0,
+    0
+   ]
+  },
+  "trend": [
+   {
+    "date": "2024-02-23",
+    "opp": "Anastasia Bozova",
+    "oppUtr": 12.64,
+    "won": 55,
+    "lost": 44,
+    "winPct": 0.556
+   }
+  ]
+ },
+ "women::Elise Wagle": {
+  "playerUtr": 12.67,
+  "winSig": {
+   "ownWinnerPct": 0.198,
+   "oppErrorPct": 0.802,
+   "topWing": "forehand",
+   "n": 328
+  },
+  "lossSig": {
+   "ownErrorPct": 0.694,
+   "oppWinnerPct": 0.306,
+   "topWing": "forehand",
+   "n": 271
+  },
+  "winWings": {
+   "forehand": 38,
+   "backhand": 27
+  },
+  "lossWings": {
+   "forehand": 111,
+   "backhand": 77
+  },
+  "sos": {
+   "avgOppUtr": 10.09,
+   "nRated": 4,
+   "vsStronger": [
+    0,
+    0
+   ],
+   "vsWeaker": [
+    244,
+    172
+   ]
+  },
+  "trend": [
+   {
+    "date": "2024-02-24",
+    "opp": "Natalie Duffy",
+    "oppUtr": null,
+    "won": 55,
+    "lost": 51,
+    "winPct": 0.519
+   },
+   {
+    "date": "2024-03-08",
+    "opp": "Fifa Kumhom",
+    "oppUtr": 8.75,
+    "won": 61,
+    "lost": 30,
+    "winPct": 0.67
+   },
+   {
+    "date": "2024-03-15",
+    "opp": "Sara Svetac",
+    "oppUtr": 10.66,
+    "won": 63,
+    "lost": 43,
+    "winPct": 0.594
+   },
+   {
+    "date": "2024-03-31",
+    "opp": "Katherine Hui",
+    "oppUtr": 10.17,
+    "won": 62,
+    "lost": 61,
+    "winPct": 0.504
+   },
+   {
+    "date": "2024-04-13",
+    "opp": "Jo-Yee Chan",
+    "oppUtr": 10.77,
+    "won": 58,
+    "lost": 38,
+    "winPct": 0.604
+   },
+   {
+    "date": "2024-05-04",
+    "opp": "Motka Komac",
+    "oppUtr": null,
+    "won": 72,
+    "lost": 58,
+    "winPct": 0.554
+   }
+  ]
+ },
+ "men::Alexander Hoogmartens": {
+  "playerUtr": 16.19,
+  "winSig": {
+   "ownWinnerPct": 0.257,
+   "oppErrorPct": 0.743,
+   "topWing": "forehand",
+   "n": 245
+  },
+  "lossSig": {
+   "ownErrorPct": 0.816,
+   "oppWinnerPct": 0.184,
+   "topWing": "forehand",
+   "n": 190
+  },
+  "winWings": {
+   "forehand": 50,
+   "backhand": 13
+  },
+  "lossWings": {
+   "forehand": 101,
+   "backhand": 54
+  },
+  "sos": {
+   "avgOppUtr": 12.44,
+   "nRated": 4,
+   "vsStronger": [
+    0,
+    0
+   ],
+   "vsWeaker": [
+    291,
+    225
+   ]
+  },
+  "trend": [
+   {
+    "date": "2024-01-28",
+    "opp": "Isac Stromberg",
+    "oppUtr": 12.93,
+    "won": 65,
+    "lost": 55,
+    "winPct": 0.542
+   },
+   {
+    "date": "2024-03-17",
+    "opp": "Ronan Jachuck",
+    "oppUtr": 11.23,
+    "won": 77,
+    "lost": 58,
+    "winPct": 0.57
+   },
+   {
+    "date": "2024-03-29",
+    "opp": "Karl Lee",
+    "oppUtr": 13.28,
+    "won": 92,
+    "lost": 73,
+    "winPct": 0.558
+   },
+   {
+    "date": "2024-04-05",
+    "opp": "Lenn Luemkemann",
+    "oppUtr": 12.32,
+    "won": 57,
+    "lost": 39,
+    "winPct": 0.594
+   }
+  ]
+ },
+ "women::Kimmi Hance": {
+  "playerUtr": 13.69,
+  "winSig": {
+   "ownWinnerPct": 0.273,
+   "oppErrorPct": 0.727,
+   "topWing": "forehand",
+   "n": 220
+  },
+  "lossSig": {
+   "ownErrorPct": 0.793,
+   "oppWinnerPct": 0.207,
+   "topWing": "forehand",
+   "n": 222
+  },
+  "winWings": {
+   "forehand": 37,
+   "backhand": 22
+  },
+  "lossWings": {
+   "forehand": 91,
+   "backhand": 85
+  },
+  "sos": {
+   "avgOppUtr": 11.3,
+   "nRated": 1,
+   "vsStronger": [
+    0,
+    0
+   ],
+   "vsWeaker": [
+    62,
+    72
+   ]
+  },
+  "trend": [
+   {
+    "date": "2024-01-19",
+    "opp": "Malaika Rapolu",
+    "oppUtr": 11.3,
+    "won": 62,
+    "lost": 72,
+    "winPct": 0.463
+   },
+   {
+    "date": "2024-02-04",
+    "opp": "Sydni Ratliff",
+    "oppUtr": null,
+    "won": 64,
+    "lost": 58,
+    "winPct": 0.525
+   },
+   {
+    "date": "2024-03-31",
+    "opp": "Connie Ma",
+    "oppUtr": null,
+    "won": 100,
+    "lost": 116,
+    "winPct": 0.463
+   }
+  ]
+ },
+ "men::Giacomo Revelli": {
+  "playerUtr": 13.17,
+  "winSig": {
+   "ownWinnerPct": 0.265,
+   "oppErrorPct": 0.735,
+   "topWing": "forehand",
+   "n": 230
+  },
+  "lossSig": {
+   "ownErrorPct": 0.727,
+   "oppWinnerPct": 0.273,
+   "topWing": "forehand",
+   "n": 216
+  },
+  "winWings": {
+   "forehand": 47,
+   "backhand": 14
+  },
+  "lossWings": {
+   "forehand": 90,
+   "backhand": 67
+  },
+  "sos": {
+   "avgOppUtr": 14.04,
+   "nRated": 2,
+   "vsStronger": [
+    103,
+    104
+   ],
+   "vsWeaker": [
+    0,
+    0
+   ]
+  },
+  "trend": [
+   {
+    "date": "2024-01-17",
+    "opp": "Togan Tokac",
+    "oppUtr": 13.44,
+    "won": 52,
+    "lost": 44,
+    "winPct": 0.542
+   },
+   {
+    "date": "2024-01-27",
+    "opp": "Henry Vds",
+    "oppUtr": 14.64,
+    "won": 51,
+    "lost": 60,
+    "winPct": 0.459
+   },
+   {
+    "date": "2024-02-25",
+    "opp": "Illia Maksymchuk",
+    "oppUtr": null,
+    "won": 60,
+    "lost": 41,
+    "winPct": 0.594
+   },
+   {
+    "date": "2024-04-05",
+    "opp": "Matthew Burton",
+    "oppUtr": null,
+    "won": 88,
+    "lost": 84,
+    "winPct": 0.512
+   }
+  ]
+ },
+ "women::Anne Lutkemeyer": {
+  "playerUtr": 10.8,
+  "winSig": {
+   "ownWinnerPct": 0.36,
+   "oppErrorPct": 0.64,
+   "topWing": "forehand",
+   "n": 200
+  },
+  "lossSig": {
+   "ownErrorPct": 0.83,
+   "oppWinnerPct": 0.17,
+   "topWing": "forehand",
+   "n": 165
+  },
+  "winWings": {
+   "forehand": 58,
+   "backhand": 14
+  },
+  "lossWings": {
+   "forehand": 83,
+   "backhand": 54
+  },
+  "sos": {
+   "avgOppUtr": 10.83,
+   "nRated": 1,
+   "vsStronger": [
+    33,
+    39
+   ],
+   "vsWeaker": [
+    0,
+    0
+   ]
+  },
+  "trend": [
+   {
+    "date": "2024-02-03",
+    "opp": "Katie Codd",
+    "oppUtr": null,
+    "won": 73,
+    "lost": 59,
+    "winPct": 0.553
+   },
+   {
+    "date": "2024-02-24",
+    "opp": "Seha Yu",
+    "oppUtr": null,
+    "won": 58,
+    "lost": 36,
+    "winPct": 0.617
+   },
+   {
+    "date": "2024-03-09",
+    "opp": "Catherine Gagnon",
+    "oppUtr": null,
+    "won": 53,
+    "lost": 55,
+    "winPct": 0.491
+   },
+   {
+    "date": "2024-05-03",
+    "opp": "Andreea Velcea",
+    "oppUtr": 10.83,
+    "won": 33,
+    "lost": 39,
+    "winPct": 0.458
+   }
+  ]
+ },
+ "women::Ahmani Guichard": {
+  "playerUtr": 10.15,
+  "winSig": {
+   "ownWinnerPct": 0.367,
+   "oppErrorPct": 0.633,
+   "topWing": "forehand",
+   "n": 150
+  },
+  "lossSig": {
+   "ownErrorPct": 0.573,
+   "oppWinnerPct": 0.427,
+   "topWing": "forehand",
+   "n": 124
+  },
+  "winWings": {
+   "forehand": 44,
+   "backhand": 11
+  },
+  "lossWings": {
+   "forehand": 39,
+   "backhand": 32
+  },
+  "sos": {
+   "avgOppUtr": 10.43,
+   "nRated": 3,
+   "vsStronger": [
+    156,
+    122
+   ],
+   "vsWeaker": [
+    62,
+    53
+   ]
+  },
+  "trend": [
+   {
+    "date": "2024-03-16",
+    "opp": "Teja Tirunelveli",
+    "oppUtr": 7.45,
+    "won": 62,
+    "lost": 53,
+    "winPct": 0.539
+   },
+   {
+    "date": "2024-05-04",
+    "opp": "Jermine Sherif",
+    "oppUtr": 12.33,
+    "won": 74,
+    "lost": 54,
+    "winPct": 0.578
+   },
+   {
+    "date": "2024-05-10",
+    "opp": "Vivian Ovrootsky",
+    "oppUtr": 11.51,
+    "won": 82,
+    "lost": 68,
+    "winPct": 0.547
+   }
+  ]
+ },
+ "men::Spencer Johnson": {
+  "playerUtr": 14.24,
+  "winSig": {
+   "ownWinnerPct": 0.306,
+   "oppErrorPct": 0.694,
+   "topWing": "forehand",
+   "n": 278
+  },
+  "lossSig": {
+   "ownErrorPct": 0.737,
+   "oppWinnerPct": 0.263,
+   "topWing": "forehand",
+   "n": 297
+  },
+  "winWings": {
+   "forehand": 54,
+   "backhand": 31
+  },
+  "lossWings": {
+   "forehand": 130,
+   "backhand": 89
+  },
+  "sos": {
+   "avgOppUtr": 13.35,
+   "nRated": 3,
+   "vsStronger": [
+    0,
+    0
+   ],
+   "vsWeaker": [
+    241,
+    236
+   ]
+  },
+  "trend": [
+   {
+    "date": "2024-01-30",
+    "opp": "Alessio Basile",
+    "oppUtr": 12.93,
+    "won": 94,
+    "lost": 89,
+    "winPct": 0.514
+   },
+   {
+    "date": "2024-02-18",
+    "opp": "L. Carlsson Halldin",
+    "oppUtr": null,
+    "won": 96,
+    "lost": 85,
+    "winPct": 0.53
+   },
+   {
+    "date": "2024-03-07",
+    "opp": "Noah Zamora",
+    "oppUtr": 13.55,
+    "won": 49,
+    "lost": 53,
+    "winPct": 0.48
+   },
+   {
+    "date": "2024-04-12",
+    "opp": "Samir Banerjee",
+    "oppUtr": 13.56,
+    "won": 98,
+    "lost": 94,
+    "winPct": 0.51
+   }
+  ]
+ },
+ "women::Bianca Fernandez": {
+  "playerUtr": 10.03,
+  "winSig": {
+   "ownWinnerPct": 0.333,
+   "oppErrorPct": 0.667,
+   "topWing": "forehand",
+   "n": 63
+  },
+  "lossSig": {
+   "ownErrorPct": 0.914,
+   "oppWinnerPct": 0.086,
+   "topWing": "backhand",
+   "n": 58
+  },
+  "winWings": {
+   "forehand": 13,
+   "backhand": 8
+  },
+  "lossWings": {
+   "backhand": 27,
+   "forehand": 26
+  },
+  "sos": {
+   "avgOppUtr": 11.01,
+   "nRated": 1,
+   "vsStronger": [
+    69,
+    62
+   ],
+   "vsWeaker": [
+    0,
+    0
+   ]
+  },
+  "trend": [
+   {
+    "date": "2024-03-01",
+    "opp": "Grace Piper",
+    "oppUtr": 11.01,
+    "won": 69,
+    "lost": 62,
+    "winPct": 0.527
+   }
+  ]
+ },
+ "men::Govind Nanda": {
+  "playerUtr": null,
+  "winSig": {
+   "ownWinnerPct": 0.385,
+   "oppErrorPct": 0.615,
+   "topWing": "forehand",
+   "n": 96
+  },
+  "lossSig": {
+   "ownErrorPct": 0.667,
+   "oppWinnerPct": 0.333,
+   "topWing": "forehand",
+   "n": 66
+  },
+  "winWings": {
+   "forehand": 25,
+   "backhand": 10
+  },
+  "lossWings": {
+   "forehand": 31,
+   "backhand": 13
+  },
+  "sos": {
+   "avgOppUtr": 14.08,
+   "nRated": 2,
+   "vsStronger": [
+    0,
+    0
+   ],
+   "vsWeaker": [
+    0,
+    0
+   ]
+  },
+  "trend": [
+   {
+    "date": "2024-01-17",
+    "opp": "Raphael Perot",
+    "oppUtr": 14.02,
+    "won": 68,
+    "lost": 50,
+    "winPct": 0.576
+   },
+   {
+    "date": "2024-01-30",
+    "opp": "Tyler Zink",
+    "oppUtr": 14.14,
+    "won": 37,
+    "lost": 18,
+    "winPct": 0.673
+   }
+  ]
+ },
+ "men::Rudy Quan": {
+  "playerUtr": 13.59,
+  "winSig": {
+   "ownWinnerPct": 0.158,
+   "oppErrorPct": 0.842,
+   "topWing": "forehand",
+   "n": 120
+  },
+  "lossSig": {
+   "ownErrorPct": 0.752,
+   "oppWinnerPct": 0.248,
+   "topWing": "forehand",
+   "n": 125
+  },
+  "winWings": {
+   "forehand": 14,
+   "backhand": 5
+  },
+  "lossWings": {
+   "forehand": 58,
+   "backhand": 36
+  },
+  "sos": {
+   "avgOppUtr": 14.07,
+   "nRated": 2,
+   "vsStronger": [
+    125,
+    133
+   ],
+   "vsWeaker": [
+    0,
+    0
+   ]
+  },
+  "trend": [
+   {
+    "date": "2024-05-31",
+    "opp": "Yuta Shimizu",
+    "oppUtr": 14.24,
+    "won": 61,
+    "lost": 74,
+    "winPct": 0.452
+   },
+   {
+    "date": null,
+    "opp": "Aristotelis Thanos",
+    "oppUtr": 13.9,
+    "won": 64,
+    "lost": 59,
+    "winPct": 0.52
+   }
+  ]
+ },
+ "men::Jorge Plans Gonzalez": {
+  "playerUtr": 13.25,
+  "winSig": {
+   "ownWinnerPct": 0.267,
+   "oppErrorPct": 0.733,
+   "topWing": "forehand",
+   "n": 131
+  },
+  "lossSig": {
+   "ownErrorPct": 0.765,
+   "oppWinnerPct": 0.235,
+   "topWing": "forehand",
+   "n": 102
+  },
+  "winWings": {
+   "forehand": 28,
+   "backhand": 7
+  },
+  "lossWings": {
+   "forehand": 46,
+   "backhand": 32
+  },
+  "sos": {
+   "avgOppUtr": 12.86,
+   "nRated": 2,
+   "vsStronger": [
+    0,
+    0
+   ],
+   "vsWeaker": [
+    145,
+    113
+   ]
+  },
+  "trend": [
+   {
+    "date": "2024-02-25",
+    "opp": "Aaron Bailey",
+    "oppUtr": 13.12,
+    "won": 80,
+    "lost": 70,
+    "winPct": 0.533
+   },
+   {
+    "date": "2024-03-07",
+    "opp": "Rahul Dhokia",
+    "oppUtr": 12.59,
+    "won": 65,
+    "lost": 43,
+    "winPct": 0.602
+   }
+  ]
+ }
+}

@@ -1,3 +1,8 @@
 node_modules/
 .DS_Store
-ingest/
+# ingest: keep the pipeline scripts (repeatable), ignore caches + raw dumps
+ingest/*.json
+ingest/*.csv
+ingest/fs_cache/
+ingest/fs_all_cache/
+ingest/__pycache__/

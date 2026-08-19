@@ -4,10 +4,14 @@
 const pct = (x) => (x == null ? '—' : Math.round(x * 100) + '%');
 const el = (tag, cls, html) => { const e = document.createElement(tag); if (cls) e.className = cls; if (html != null) e.innerHTML = html; return e; };
 
-let DATA = null, gender = 'men', current = {};
+let DATA = null, ENRICH = {}, gender = 'men', current = {};
+const enr = (p) => ENRICH[`${gender}::${p.name}`] || {};
 
-fetch('dashboard-data.json').then(r => r.json()).then(d => {
-  DATA = d;
+Promise.all([
+  fetch('dashboard-data.json').then(r => r.json()),
+  fetch('player_enrich.json').then(r => r.json()).catch(() => ({})),
+]).then(([d, e]) => {
+  DATA = d; ENRICH = e || {};
   const totals = ['men', 'women'].reduce((a, g) => {
     a.players += d[g].length; a.pts += d[g].reduce((s, p) => s + p.points, 0); return a;
   }, { players: 0, pts: 0 });
@@ -81,11 +85,14 @@ function renderPanel(p) {
   const panel = document.getElementById('playerPanel');
   panel.innerHTML = '';
 
+  const e = enr(p);
   // header
   const head = el('div', 'pHead');
   head.appendChild(el('h2', null, p.name));
+  const utrTag = e.playerUtr ? `UTR ${e.playerUtr.toFixed(1)}` : 'UTR n/a';
+  const sos = e.sos && e.sos.avgOppUtr ? ` · OPP AVG ${e.sos.avgOppUtr.toFixed(1)}` : '';
   head.appendChild(el('div', 'pMeta',
-    `${p.matchesTracked} MATCH${p.matchesTracked > 1 ? 'ES' : ''} TRACKED · ${p.points.toLocaleString()} POINTS`));
+    `${utrTag}${sos}<br>${p.matchesTracked} MATCH${p.matchesTracked > 1 ? 'ES' : ''} · ${p.points.toLocaleString()} POINTS`));
   panel.appendChild(head);
 
   // KPI row
@@ -103,6 +110,11 @@ function renderPanel(p) {
     kpis.appendChild(k);
   });
   panel.appendChild(kpis);
+
+  // ---- LEAD: how they win/lose, level & schedule, what's working ----
+  panel.appendChild(signatureBlock(p, e));
+  panel.appendChild(levelBlock(p, e));
+  panel.appendChild(effectivenessBlock(p));
 
   // serve placement + rally (two columns)
   const grid1 = el('div', 'dgrid');
@@ -123,6 +135,117 @@ function renderPanel(p) {
 
   // matches list (with YouTube where available)
   panel.appendChild(matchesBlock(p));
+}
+
+const pctI = (x) => (x == null ? '—' : Math.round(x * 100) + '%');
+const C = { blue: '#2d68c4', gold: '#f2a900', win: '#1c8c4a', loss: '#d1372f', bg: '#e7edf7', ink: '#111', muted: '#666' };
+
+function splitBar(aPct, aLabel, bPct, bLabel, aColor) {
+  const wrap = el('div'); wrap.style.marginTop = '10px';
+  const bar = el('div', 'sigSplit');
+  const ai = el('i'); ai.style.width = Math.round(aPct * 100) + '%'; ai.style.background = aColor || C.blue;
+  const bi = el('i'); bi.style.width = Math.round(bPct * 100) + '%'; bi.style.background = C.bg;
+  bar.appendChild(ai); bar.appendChild(bi); wrap.appendChild(bar);
+  const cap = el('div', 'sigCap');
+  cap.innerHTML = `<span>${pctI(aPct)} ${aLabel}</span><span>${pctI(bPct)} ${bLabel}</span>`;
+  wrap.appendChild(cap); return wrap;
+}
+
+function signatureBlock(p, e) {
+  const b = block('THE SIGNATURE', `How ${p.name.split(' ')[0]} wins — and how they lose`);
+  if (!e.winSig || !e.winSig.n) { b.appendChild(el('p', 'naNote', 'Not enough decided points to read a pattern yet.')); return b; }
+  const ws = e.winSig, ls = e.lossSig;
+  const grid = el('div', 'sigGrid');
+  const win = el('div', 'sigCard');
+  win.appendChild(el('div', 'sigK win', 'HOW THEY WIN'));
+  win.appendChild(el('div', 'sigT', ws.oppErrorPct >= ws.ownWinnerPct
+    ? `Mostly on <b>opponent errors</b> — ${pctI(ws.oppErrorPct)} of won points. Only ${pctI(ws.ownWinnerPct)} end on a winner of their own: a pressure game, not a highlight reel.`
+    : `On their own <b>${ws.topWing || 'shotmaking'}</b> — ${pctI(ws.ownWinnerPct)} of won points are their winner. An aggressive, first-strike game.`));
+  win.appendChild(splitBar(ws.ownWinnerPct, 'own winners', ws.oppErrorPct, 'forced errors', C.blue));
+  grid.appendChild(win);
+  const loss = el('div', 'sigCard');
+  loss.appendChild(el('div', 'sigK loss', 'HOW THEY LOSE'));
+  loss.appendChild(el('div', 'sigT', `Mostly on their own <b>${ls.topWing || 'errors'}</b> — ${pctI(ls.ownErrorPct)} of lost points are unforced errors. ${pctI(ls.oppWinnerPct)} are the opponent hitting through them.`));
+  loss.appendChild(splitBar(ls.ownErrorPct, `own ${ls.topWing || 'errors'}`, ls.oppWinnerPct, 'opp winners', C.loss));
+  grid.appendChild(loss);
+  b.appendChild(grid);
+  return b;
+}
+
+function levelBlock(p, e) {
+  const b = block('LEVEL & SCHEDULE', 'Who they played, and how it went');
+  const rated = (e.trend || []).filter(t => t.oppUtr);
+  if (!e.playerUtr && !rated.length) { b.appendChild(el('p', 'naNote', 'Opponent UTR unavailable for this player’s matches.')); return b; }
+  const W = 700, H = 150, m = { l: 20, r: 20, t: 30, b: 34 };
+  const svg = d3.create('svg').attr('viewBox', `0 0 ${W} ${H}`).attr('class', 'd3svg');
+  const utrs = rated.map(t => t.oppUtr).concat(e.playerUtr ? [e.playerUtr] : []);
+  const lo = Math.floor(Math.min(...utrs) - 0.5), hi = Math.ceil(Math.max(...utrs) + 0.5);
+  const x = d3.scaleLinear().domain([lo, hi]).range([m.l, W - m.r]);
+  const g = svg.append('g');
+  // axis
+  g.append('line').attr('x1', m.l).attr('x2', W - m.r).attr('y1', H - m.b).attr('y2', H - m.b).attr('stroke', '#ccc');
+  x.ticks(Math.min(8, hi - lo)).forEach(t => {
+    g.append('text').attr('x', x(t)).attr('y', H - m.b + 18).attr('text-anchor', 'middle').attr('font-size', 11).attr('fill', C.muted).text(t);
+  });
+  g.append('text').attr('x', W - m.r).attr('y', H - 4).attr('text-anchor', 'end').attr('font-size', 10).attr('fill', C.muted).text('OPPONENT UTR →');
+  // player marker
+  if (e.playerUtr) {
+    g.append('line').attr('x1', x(e.playerUtr)).attr('x2', x(e.playerUtr)).attr('y1', m.t - 10).attr('y2', H - m.b).attr('stroke', C.ink).attr('stroke-dasharray', '3 3');
+    g.append('text').attr('x', x(e.playerUtr)).attr('y', m.t - 14).attr('text-anchor', 'middle').attr('font-size', 12).attr('font-weight', 700).attr('fill', C.ink).text(`${p.name.split(' ')[0]} ${e.playerUtr.toFixed(1)}`);
+  }
+  // opponent dots (win = green if won majority of points that match)
+  const yBase = (m.t + H - m.b) / 2;
+  rated.forEach((t, i) => {
+    const won = t.winPct != null && t.winPct > 0.5;
+    g.append('circle').attr('cx', x(t.oppUtr)).attr('cy', yBase + (i % 2 ? 12 : -12))
+      .attr('r', 7).attr('fill', won ? C.win : C.loss).attr('fill-opacity', 0.85)
+      .append('title').text(`${t.opp || 'opp'} · UTR ${t.oppUtr} · ${pctI(t.winPct)} pts won${t.date ? ' · ' + t.date : ''}`);
+  });
+  b.appendChild(svg.node());
+  // legend + record vs stronger/weaker
+  const s = e.sos || {};
+  const vs = (a) => a && (a[0] + a[1]) ? `${Math.round(100 * a[0] / (a[0] + a[1]))}% pts (${a[0]}–${a[1]})` : 'n/a';
+  b.appendChild(el('div', 'd3legend',
+    `<span><i style="background:${C.win}"></i>won the match</span><span><i style="background:${C.loss}"></i>lost</span>`));
+  b.appendChild(el('p', 'dnote',
+    `Avg opponent UTR <b>${s.avgOppUtr || 'n/a'}</b> vs their own <b>${e.playerUtr ? e.playerUtr.toFixed(1) : 'n/a'}</b>. ` +
+    `Against opponents rated at or above them: ${vs(s.vsStronger)}; against lower-rated: ${vs(s.vsWeaker)}. ` +
+    `UTR is current (${new Date().getFullYear()}); most matches are 2024, so read it as an approximate level, not point-in-time.`));
+  return b;
+}
+
+function effectivenessBlock(p) {
+  const b = block("WHAT'S WORKING", 'Not what they do most — what actually wins');
+  const cells = (p.placement || []).filter(c => c.n >= 4 && c.wonPct != null);
+  if (cells.length < 2) { b.appendChild(el('p', 'naNote', 'Not enough serve volume to compare.')); return b; }
+  const total = cells.reduce((s, c) => s + c.n, 0);
+  cells.forEach(c => c.freq = c.n / total);
+  const W = 700, H = 300, m = { l: 48, r: 20, t: 20, b: 44 };
+  const svg = d3.create('svg').attr('viewBox', `0 0 ${W} ${H}`).attr('class', 'd3svg');
+  const x = d3.scaleLinear().domain([0, Math.max(0.35, d3.max(cells, c => c.freq) * 1.15)]).range([m.l, W - m.r]);
+  const y = d3.scaleLinear().domain([Math.min(0.3, d3.min(cells, c => c.wonPct) - 0.05), Math.max(0.8, d3.max(cells, c => c.wonPct) + 0.05)]).range([H - m.b, m.t]);
+  const g = svg.append('g');
+  // 50% reference
+  g.append('line').attr('x1', m.l).attr('x2', W - m.r).attr('y1', y(0.5)).attr('y2', y(0.5)).attr('stroke', '#bbb').attr('stroke-dasharray', '4 4');
+  g.append('text').attr('x', W - m.r).attr('y', y(0.5) - 5).attr('text-anchor', 'end').attr('font-size', 10).attr('fill', C.muted).text('break-even 50%');
+  // axes labels
+  g.append('text').attr('x', (m.l + W - m.r) / 2).attr('y', H - 6).attr('text-anchor', 'middle').attr('font-size', 11).attr('fill', C.muted).text('HOW OFTEN USED →');
+  g.append('text').attr('transform', `rotate(-90)`).attr('x', -(m.t + H - m.b) / 2).attr('y', 14).attr('text-anchor', 'middle').attr('font-size', 11).attr('fill', C.muted).text('WIN % →');
+  x.ticks(5).forEach(t => g.append('text').attr('x', x(t)).attr('y', H - m.b + 16).attr('text-anchor', 'middle').attr('font-size', 10).attr('fill', C.muted).text(Math.round(t * 100) + '%'));
+  y.ticks(4).forEach(t => g.append('text').attr('x', m.l - 8).attr('y', y(t) + 4).attr('text-anchor', 'end').attr('font-size', 10).attr('fill', C.muted).text(Math.round(t * 100) + '%'));
+  cells.forEach(c => {
+    const eff = c.wonPct >= 0.5;
+    g.append('circle').attr('cx', x(c.freq)).attr('cy', y(c.wonPct)).attr('r', 6 + Math.sqrt(c.n)).attr('fill', eff ? C.blue : C.gold).attr('fill-opacity', 0.35).attr('stroke', eff ? C.blue : C.gold);
+    g.append('text').attr('x', x(c.freq)).attr('y', y(c.wonPct) - 6 - Math.sqrt(c.n)).attr('text-anchor', 'middle').attr('font-size', 11).attr('font-weight', 700).attr('fill', C.ink).text(`${c.side[0]}·${c.spot}`);
+  });
+  b.appendChild(svg.node());
+  const best = cells.slice().sort((a, c) => c.wonPct - a.wonPct)[0];
+  const most = cells.slice().sort((a, c) => c.freq - a.freq)[0];
+  b.appendChild(el('p', 'dnote',
+    `Each dot is a serve target; size is how many went there. Their most effective serve: <b>${best.side} ${best.spot}</b>, ${pctI(best.wonPct)} won. ` +
+    `Their most-used: <b>${most.side} ${most.spot}</b> at ${pctI(most.freq)} of serves, winning ${pctI(most.wonPct)}. ` +
+    (most.wonPct < best.wonPct - 0.08 ? `The habit isn’t the payoff — there’s a better target being under-used.` : `Their go-to is also their best — keep feeding it.`)));
+  return b;
 }
 
 function bpBlock(p) {

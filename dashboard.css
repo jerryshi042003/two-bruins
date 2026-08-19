@@ -104,6 +104,24 @@
 
 .naNote { color: var(--faint); font-size: 13px; font-style: italic; }
 
+/* signature (how they win/lose) */
+.sigGrid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+@media (max-width: 720px) { .sigGrid { grid-template-columns: 1fr; gap: 18px; } }
+.sigCard { border: 1px solid var(--line); border-radius: 10px; padding: 16px 16px 18px; }
+.sigK { font-size: 10px; font-weight: 700; letter-spacing: .1em; margin-bottom: 8px; }
+.sigK.win { color: var(--in); } .sigK.loss { color: var(--net); }
+.sigT { font-size: 15px; line-height: 1.5; color: var(--ink); }
+.sigT b { font-weight: 700; }
+.sigSplit { display: flex; height: 20px; border-radius: 2px; overflow: hidden; }
+.sigSplit i { display: block; height: 100%; }
+.sigCap { display: flex; justify-content: space-between; margin-top: 6px; font-size: 11px; font-weight: 700; color: #555; }
+
+/* D3 charts */
+.d3svg { width: 100%; height: auto; display: block; margin-top: 6px; }
+.d3legend { display: flex; justify-content: center; gap: 18px; margin-top: 6px; }
+.d3legend span { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 700; color: #444; }
+.d3legend i { width: 11px; height: 11px; border-radius: 50%; display: inline-block; }
+
 /* match list */
 .matchList { border-top: 1px solid var(--line); }
 .matchRow { display: grid; grid-template-columns: 1fr 70px 70px; gap: 12px; align-items: baseline; padding: 10px 2px; border-bottom: 1px solid var(--rule); font-size: 14px; }

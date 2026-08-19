@@ -124,22 +124,15 @@ function renderPanel(p) {
   panel.appendChild(trendBlock(p, e));
   panel.appendChild(effectivenessBlock(p));
 
-  // serve placement + rally (two columns)
+  // supporting detail — rally + return, then break points (serve grid and
+  // shot-making are intentionally dropped: the serve court and point-ending
+  // court already cover placement and winners/errors)
   const grid1 = el('div', 'dgrid');
-  grid1.appendChild(servePlacementBlock(p));
   grid1.appendChild(rallyBlock(p));
+  grid1.appendChild(returnBlock(p));
   const b1 = el('div', 'dblock'); b1.appendChild(grid1);
   panel.appendChild(b1);
-
-  // shot-making
-  panel.appendChild(shotMakingBlock(p));
-
-  // break points + return
-  const grid2 = el('div', 'dgrid');
-  grid2.appendChild(bpBlock(p));
-  grid2.appendChild(returnBlock(p));
-  const b2 = el('div', 'dblock'); b2.appendChild(grid2);
-  panel.appendChild(b2);
+  panel.appendChild(bpBlock(p));
 
   // matches list (with YouTube where available)
   panel.appendChild(matchesBlock(p));

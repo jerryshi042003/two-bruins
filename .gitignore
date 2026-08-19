@@ -6,3 +6,4 @@ ingest/*.csv
 ingest/fs_cache/
 ingest/fs_all_cache/
 ingest/__pycache__/
+ingest/raw/

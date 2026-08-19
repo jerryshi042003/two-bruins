@@ -1,0 +1,103 @@
+#!/usr/bin/env python3
+"""Batch-parse every raw SwingVision match in data-collection into per-UCLA-player
+rich analytics: real serve-bounce coordinates (heatmap), contact height, speed,
+serve+1 (explicitly tagged), court position, and winners/errors with coordinates.
+Run with /usr/bin/python3 (has openpyxl)."""
+import os, json, glob, re
+from collections import defaultdict
+import sv_parse
+
+HERE = os.path.dirname(os.path.abspath(__file__))
+ROOT = os.path.join(HERE, 'raw', 'data-collection')
+
+# UCLA roster (surnames as they appear in SwingVision host/guest names)
+UCLA = {
+    'quan': 'Rudy Quan', 'johnson': 'Spencer Johnson', 'hoogmartens': 'Alexander Hoogmartens',
+    'revelli': 'Giacomo Revelli', 'ballotta': 'Gianluca Ballotta', 'ballota': 'Gianluca Ballotta',
+    'nanda': 'Govind Nanda', 'bigun': 'Kaylan Bigun', 'tripathi': 'Aadarsh Tripathi',
+    'sels': 'Emon Van Loben Sels', 'bismarck': 'Leo Von Bismarck', 'bismark': 'Leo Von Bismarck',
+    'visaya': 'Azuma Visaya', 'gonzalez': 'Jorge Plans Gonzalez', 'plans': 'Jorge Plans Gonzalez',
+}
+def ucla_of(name):
+    n = (name or '').lower()
+    for k, v in UCLA.items():
+        if k in n: return v
+    return None
+
+def stats(L):
+    if not L: return None
+    L = sorted(L)
+    return dict(n=len(L), mean=round(sum(L) / len(L), 2), p10=round(L[len(L) // 10], 2), p90=round(L[len(L) * 9 // 10], 2))
+
+def blank():
+    return dict(matches=0, shots=0, serveBounces=[], winnerLocs=[], errorLocs=[],
+               serveHt=[], gsHt=[], speedServe=[], speedFH=[], speedBH=[], contactY=[],
+               s1n=0, s1fh=0, s1win=0, points=0, won=0, matchNames=[])
+
+def main():
+    players = defaultdict(blank)
+    files = sorted(glob.glob(os.path.join(ROOT, '**', '*.xlsx'), recursive=True))
+    parsed = 0
+    for f in files:
+        if '~$' in f: continue
+        try:
+            shots, meta = sv_parse.read_shots(f)
+        except Exception as e:
+            continue
+        if not shots or not meta: continue
+        U = ucla_of(meta.get('host')) or ucla_of(meta.get('guest')) or ucla_of(os.path.basename(f))
+        if not U: continue
+        # which tagged name in shots is the UCLA player?
+        names = set(s['player'] for s in shots)
+        target = None
+        for nm in names:
+            if ucla_of(nm) == U: target = nm; break
+        if not target:
+            # host/guest match
+            if ucla_of(meta.get('host')) == U: target = meta.get('host')
+            elif ucla_of(meta.get('guest')) == U: target = meta.get('guest')
+        if not target or target not in names: continue
+        a = players[U]; a['matches'] += 1; a['matchNames'].append(os.path.basename(f)[:44]); parsed += 1
+        for s in shots:
+            mine = (s['player'] == target)
+            if mine:
+                a['shots'] += 1
+                if s['stroke'] == 'Serve':
+                    if s['hz']: a['serveHt'].append(s['hz'])
+                    if s['speed']: a['speedServe'].append(s['speed'])
+                    # serve bounce (where the serve lands) — only serves that went in
+                    if s['bx'] is not None and s['by'] is not None and str(s['result']).lower() in ('in', 'ace'):
+                        a['serveBounces'].append([round(s['bx'], 2), round(s['by'], 2), s['result']])
+                elif s['stroke'] in ('Forehand', 'Backhand'):
+                    if s['hz']: a['gsHt'].append(s['hz'])
+                    if s['speed']: (a['speedFH'] if s['stroke'] == 'Forehand' else a['speedBH']).append(s['speed'])
+                if s['hy'] is not None: a['contactY'].append(s['hy'])
+                if s['shotType'] == 'serve_plus_one':
+                    a['s1n'] += 1
+                    if s['stroke'] == 'Forehand': a['s1fh'] += 1
+                # winner / error locations (bounce of the shot)
+                if str(s['result']).lower() == 'winner' and s['bx'] is not None:
+                    a['winnerLocs'].append([round(s['bx'], 2), round(s['by'], 2), s['stroke'][0] if s['stroke'] else '?'])
+                elif 'error' in str(s['result']).lower() and s['bx'] is not None:
+                    a['errorLocs'].append([round(s['bx'], 2), round(s['by'], 2), s['stroke'][0] if s['stroke'] else '?'])
+
+    out = {}
+    for U, a in players.items():
+        out[U] = dict(
+            matches=a['matches'], shots=a['shots'], matchNames=a['matchNames'],
+            serveContactHt=stats(a['serveHt']), gsContactHt=stats(a['gsHt']),
+            serveSpeed=stats(a['speedServe']), fhSpeed=stats(a['speedFH']), bhSpeed=stats(a['speedBH']),
+            contactDepth=stats(a['contactY']),
+            serveP1=dict(n=a['s1n'], fhShare=round(a['s1fh'] / a['s1n'], 3) if a['s1n'] else None),
+            serveBounces=a['serveBounces'][:600], winnerLocs=a['winnerLocs'][:300], errorLocs=a['errorLocs'][:400],
+        )
+    json.dump(out, open(os.path.join(HERE, 'raw_players.json'), 'w'))
+    print(f'parsed {parsed} matches across {len(out)} UCLA players\n')
+    for U in sorted(out, key=lambda k: -out[k]['matches']):
+        o = out[U]
+        print(f"  {U:22} {o['matches']:>2}m {o['shots']:>5}sh  serveHt {o['serveContactHt']['mean'] if o['serveContactHt'] else '-'}m  "
+              f"gsHt {o['gsContactHt']['mean'] if o['gsContactHt'] else '-'}m  serveSpd {o['serveSpeed']['mean'] if o['serveSpeed'] else '-'}  "
+              f"depth {o['contactDepth']['mean'] if o['contactDepth'] else '-'}m  +1FH {o['serveP1']['fhShare']}  serves-plotted {len(o['serveBounces'])}")
+
+if __name__ == '__main__':
+    main()

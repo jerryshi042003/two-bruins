@@ -37,7 +37,38 @@ function renderTabs() {
     wrap.appendChild(b);
   });
   if (current[gender] == null) current[gender] = 0;
+  renderLeaderboard();
   select();
+}
+
+function renderLeaderboard() {
+  const wrap = document.getElementById('teamBoard');
+  wrap.innerHTML = '';
+  const list = DATA[gender].slice().sort((a, b) => (b.winPct || 0) - (a.winPct || 0));
+  wrap.appendChild(el('div', 'tbHead',
+    `TEAM OVERVIEW · ${gender === 'men' ? "MEN'S" : "WOMEN'S"} · ${list.length} PLAYERS · SORTED BY POINTS WON`));
+  const table = el('div', 'tbTable' + (gender === 'women' ? ' w' : ''));
+  const head = el('div', 'tbRow tbColHead');
+  head.innerHTML = '<span>PLAYER</span><span>M</span><span>PTS</span><span>WIN%</span><span>1ST IN</span><span>BP CONV</span><span>W : E</span>';
+  table.appendChild(head);
+  list.forEach(p => {
+    const r = el('div', 'tbRow');
+    r.innerHTML =
+      `<span class="tbP">${p.name}</span>` +
+      `<span>${p.matchesTracked}</span>` +
+      `<span>${p.points}</span>` +
+      `<span class="tbV">${pct(p.winPct)}</span>` +
+      `<span>${pct(p.firstInPct)}</span>` +
+      `<span>${p.bp && p.bp.convPct != null ? pct(p.bp.convPct) : '—'}</span>` +
+      `<span class="tbWE">${p.winTotal}:${p.errTotal}</span>`;
+    r.addEventListener('click', () => {
+      current[gender] = DATA[gender].indexOf(p);
+      select();
+      document.getElementById('playerPanel').scrollIntoView({ block: 'start' });
+    });
+    table.appendChild(r);
+  });
+  wrap.appendChild(table);
 }
 
 function select() {

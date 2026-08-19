@@ -22,15 +22,15 @@
    "backhand": 57
   },
   "sos": {
-   "avgOppUtr": 10.79,
-   "nRated": 2,
+   "avgOppUtr": null,
+   "nRated": 0,
    "vsStronger": [
     0,
     0
    ],
    "vsWeaker": [
-    118,
-    66
+    0,
+    0
    ]
   },
   "trend": [
@@ -45,7 +45,7 @@
    {
     "date": "2024-02-23",
     "opp": "Carlota Molina",
-    "oppUtr": 10.53,
+    "oppUtr": null,
     "won": 54,
     "lost": 36,
     "winPct": 0.6
@@ -53,7 +53,7 @@
    {
     "date": "2024-03-09",
     "opp": "Erika Matsuda",
-    "oppUtr": 11.05,
+    "oppUtr": null,
     "won": 64,
     "lost": 30,
     "winPct": 0.681
@@ -69,7 +69,7 @@
   ]
  },
  "men::Gianluca Ballotta": {
-  "playerUtr": 13.67,
+  "playerUtr": null,
   "winSig": {
    "ownWinnerPct": 0.423,
    "oppErrorPct": 0.577,
@@ -94,8 +94,8 @@
    "avgOppUtr": 13.83,
    "nRated": 1,
    "vsStronger": [
-    27,
-    54
+    0,
+    0
    ],
    "vsWeaker": [
     0,
@@ -136,11 +136,11 @@
    "backhand": 9
   },
   "sos": {
-   "avgOppUtr": 12.64,
-   "nRated": 1,
+   "avgOppUtr": null,
+   "nRated": 0,
    "vsStronger": [
-    55,
-    44
+    0,
+    0
    ],
    "vsWeaker": [
     0,
@@ -151,7 +151,7 @@
    {
     "date": "2024-02-23",
     "opp": "Anastasia Bozova",
-    "oppUtr": 12.64,
+    "oppUtr": null,
     "won": 55,
     "lost": 44,
     "winPct": 0.556
@@ -159,7 +159,7 @@
   ]
  },
  "women::Elise Wagle": {
-  "playerUtr": 12.67,
+  "playerUtr": null,
   "winSig": {
    "ownWinnerPct": 0.198,
    "oppErrorPct": 0.802,
@@ -181,15 +181,15 @@
    "backhand": 77
   },
   "sos": {
-   "avgOppUtr": 10.09,
-   "nRated": 4,
+   "avgOppUtr": 9.9,
+   "nRated": 3,
    "vsStronger": [
     0,
     0
    ],
    "vsWeaker": [
-    244,
-    172
+    0,
+    0
    ]
   },
   "trend": [
@@ -212,7 +212,7 @@
    {
     "date": "2024-03-15",
     "opp": "Sara Svetac",
-    "oppUtr": 10.66,
+    "oppUtr": null,
     "won": 63,
     "lost": 43,
     "winPct": 0.594
@@ -244,7 +244,7 @@
   ]
  },
  "men::Alexander Hoogmartens": {
-  "playerUtr": 16.19,
+  "playerUtr": null,
   "winSig": {
    "ownWinnerPct": 0.257,
    "oppErrorPct": 0.743,
@@ -266,22 +266,22 @@
    "backhand": 54
   },
   "sos": {
-   "avgOppUtr": 12.44,
-   "nRated": 4,
+   "avgOppUtr": 13.28,
+   "nRated": 1,
    "vsStronger": [
     0,
     0
    ],
    "vsWeaker": [
-    291,
-    225
+    0,
+    0
    ]
   },
   "trend": [
    {
     "date": "2024-01-28",
     "opp": "Isac Stromberg",
-    "oppUtr": 12.93,
+    "oppUtr": null,
     "won": 65,
     "lost": 55,
     "winPct": 0.542
@@ -289,7 +289,7 @@
    {
     "date": "2024-03-17",
     "opp": "Ronan Jachuck",
-    "oppUtr": 11.23,
+    "oppUtr": null,
     "won": 77,
     "lost": 58,
     "winPct": 0.57
@@ -305,7 +305,7 @@
    {
     "date": "2024-04-05",
     "opp": "Lenn Luemkemann",
-    "oppUtr": 12.32,
+    "oppUtr": null,
     "won": 57,
     "lost": 39,
     "winPct": 0.594
@@ -374,7 +374,7 @@
   ]
  },
  "men::Giacomo Revelli": {
-  "playerUtr": 13.17,
+  "playerUtr": null,
   "winSig": {
    "ownWinnerPct": 0.265,
    "oppErrorPct": 0.735,
@@ -396,11 +396,11 @@
    "backhand": 67
   },
   "sos": {
-   "avgOppUtr": 14.04,
-   "nRated": 2,
+   "avgOppUtr": 13.44,
+   "nRated": 1,
    "vsStronger": [
-    103,
-    104
+    0,
+    0
    ],
    "vsWeaker": [
     0,
@@ -419,7 +419,7 @@
    {
     "date": "2024-01-27",
     "opp": "Henry Vds",
-    "oppUtr": 14.64,
+    "oppUtr": null,
     "won": 51,
     "lost": 60,
     "winPct": 0.459
@@ -465,11 +465,11 @@
    "backhand": 54
   },
   "sos": {
-   "avgOppUtr": 10.83,
-   "nRated": 1,
+   "avgOppUtr": null,
+   "nRated": 0,
    "vsStronger": [
-    33,
-    39
+    0,
+    0
    ],
    "vsWeaker": [
     0,
@@ -504,7 +504,7 @@
    {
     "date": "2024-05-03",
     "opp": "Andreea Velcea",
-    "oppUtr": 10.83,
+    "oppUtr": null,
     "won": 33,
     "lost": 39,
     "winPct": 0.458
@@ -534,22 +534,22 @@
    "backhand": 32
   },
   "sos": {
-   "avgOppUtr": 10.43,
-   "nRated": 3,
+   "avgOppUtr": 12.33,
+   "nRated": 1,
    "vsStronger": [
-    156,
-    122
+    74,
+    54
    ],
    "vsWeaker": [
-    62,
-    53
+    0,
+    0
    ]
   },
   "trend": [
    {
     "date": "2024-03-16",
     "opp": "Teja Tirunelveli",
-    "oppUtr": 7.45,
+    "oppUtr": null,
     "won": 62,
     "lost": 53,
     "winPct": 0.539
@@ -565,7 +565,7 @@
    {
     "date": "2024-05-10",
     "opp": "Vivian Ovrootsky",
-    "oppUtr": 11.51,
+    "oppUtr": null,
     "won": 82,
     "lost": 68,
     "winPct": 0.547
@@ -815,22 +815,22 @@
    "backhand": 32
   },
   "sos": {
-   "avgOppUtr": 12.86,
-   "nRated": 2,
+   "avgOppUtr": 12.59,
+   "nRated": 1,
    "vsStronger": [
     0,
     0
    ],
    "vsWeaker": [
-    145,
-    113
+    65,
+    43
    ]
   },
   "trend": [
    {
     "date": "2024-02-25",
     "opp": "Aaron Bailey",
-    "oppUtr": 13.12,
+    "oppUtr": null,
     "won": 80,
     "lost": 70,
     "winPct": 0.533

@@ -292,7 +292,7 @@ function rawMetricsBlock(p, rw) {
   const K = [
     [rw.serveSpeed ? `${Math.round(rw.serveSpeed.mean)}` : '—', 'AVG SERVE MPH', rw.serveSpeed ? `top 10%: ${Math.round(rw.serveSpeed.p90)}` : ''],
     [rw.fhSpeed ? `${Math.round(rw.fhSpeed.mean)}` : '—', 'AVG FOREHAND MPH', rw.bhSpeed ? `bh ${Math.round(rw.bhSpeed.mean)}` : ''],
-    [m(rw.gsContactHt), 'GROUNDSTROKE CONTACT HT', rw.gsContactHt ? `serve ${m(rw.serveContactHt)}` : ''],
+    [m(rw.gsContactHt), 'GROUNDSTROKE CONTACT HT', rw.contactDepth ? `steps in ${m(rw.contactDepth)} inside baseline` : (rw.gsContactHt ? `serve ${m(rw.serveContactHt)}` : '')],
     [rw.serveP1 && rw.serveP1.fhShare != null ? Math.round(rw.serveP1.fhShare * 100) + '%' : '—', 'SERVE+1 FOREHAND', rw.serveP1 ? `${rw.serveP1.n} serve+1 balls` : ''],
   ];
   K.forEach(([v, l, s]) => {

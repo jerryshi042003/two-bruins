@@ -81,7 +81,13 @@ def main():
                 elif s['stroke'] in ('Forehand', 'Backhand'):
                     if s['hz']: a['gsHt'].append(s['hz'])
                     if s['speed']: (a['speedFH'] if s['stroke'] == 'Forehand' else a['speedBH']).append(s['speed'])
-                if s['hy'] is not None: a['contactY'].append(s['hy'])
+                    # court position folded to the player's OWN baseline: min(hy, L-hy).
+                    # 0 = struck on the baseline; larger = contact taken deeper inside the
+                    # court (earlier / on the rise); negative = struck behind the baseline.
+                    # Groundstrokes only — a raw mean of hy is bimodal across the two ends
+                    # and collapses to the net, so it must be folded before averaging.
+                    if s['hy'] is not None and 0 <= s['hy'] <= 23.77:
+                        a['contactY'].append(round(min(s['hy'], 23.77 - s['hy']), 2))
                 if s['shotType'] == 'serve_plus_one':
                     a['s1n'] += 1
                     if s['stroke'] == 'Forehand': a['s1fh'] += 1
@@ -111,7 +117,8 @@ def main():
             serveP1=dict(n=a['s1n'], fhShare=round(a['s1fh'] / a['s1n'], 3) if a['s1n'] else None),
             serveBounces=a['serveBounces'][:600], winnerLocs=a['winnerLocs'][:300], errorLocs=a['errorLocs'][:400],
         )
-    json.dump(out, open(os.path.join(HERE, 'raw_players.json'), 'w'))
+    # write to the repo root — this is the file the dashboard actually fetches
+    json.dump(out, open(os.path.join(HERE, '..', 'raw_players.json'), 'w'))
     print(f'parsed {parsed} matches across {len(out)} UCLA players\n')
     for U in sorted(out, key=lambda k: -out[k]['matches']):
         o = out[U]

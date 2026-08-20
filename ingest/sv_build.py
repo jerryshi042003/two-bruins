@@ -17,6 +17,7 @@ UCLA = {
     'nanda': 'Govind Nanda', 'bigun': 'Kaylan Bigun', 'tripathi': 'Aadarsh Tripathi',
     'sels': 'Emon Van Loben Sels', 'bismarck': 'Leo Von Bismarck', 'bismark': 'Leo Von Bismarck',
     'visaya': 'Azuma Visaya', 'gonzalez': 'Jorge Plans Gonzalez', 'plans': 'Jorge Plans Gonzalez',
+    'chinlund': 'Cassius Chinlund', 'chindlund': 'Cassius Chinlund', 'nguyen': 'Andy Nguyen',
 }
 def ucla_of(name):
     n = (name or '').lower()

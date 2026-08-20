@@ -75,11 +75,20 @@ def main():
                 if s['shotType'] == 'serve_plus_one':
                     a['s1n'] += 1
                     if s['stroke'] == 'Forehand': a['s1fh'] += 1
-                # winner / error locations (bounce of the shot)
-                if str(s['result']).lower() == 'winner' and s['bx'] is not None:
-                    a['winnerLocs'].append([round(s['bx'], 2), round(s['by'], 2), s['stroke'][0] if s['stroke'] else '?'])
-                elif 'error' in str(s['result']).lower() and s['bx'] is not None:
-                    a['errorLocs'].append([round(s['bx'], 2), round(s['by'], 2), s['stroke'][0] if s['stroke'] else '?'])
+        # point endings: last shot of each point, by the UCLA player -> winner (In) or error (Net/Out)
+        from collections import defaultdict as _dd
+        pts = _dd(list)
+        for s in shots:
+            pts[(s['set'], s['game'], s['point'])].append(s)
+        for _, ss in pts.items():
+            last = ss[-1]
+            if last['player'] != target or last['stroke'] == 'Serve':
+                continue
+            res = str(last['result']).lower(); wing = (last['stroke'] or '?')[0]
+            if res == 'in' and last['bx'] is not None:
+                a['winnerLocs'].append([round(last['bx'], 2), round(last['by'], 2), wing])
+            elif res in ('net', 'out') and last['bx'] is not None:
+                a['errorLocs'].append([round(last['bx'], 2), round(last['by'], 2), wing, res])
 
     out = {}
     for U, a in players.items():

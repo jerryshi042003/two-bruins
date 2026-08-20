@@ -124,7 +124,8 @@ function renderPanel(p) {
   panel.appendChild(signatureBlock(p, e));
   if (rw) panel.appendChild(rawServeCourt(p, rw));
   else panel.appendChild(courtPatternBlock(p));
-  panel.appendChild(pointEndBlock(p));
+  if (rw && (rw.winnerLocs || []).length >= 20) panel.appendChild(rawPointEndCourt(p, rw));
+  else panel.appendChild(pointEndBlock(p));
   panel.appendChild(levelBlock(p, e));
   panel.appendChild(trendBlock(p, e));
   panel.appendChild(effectivenessBlock(p));
@@ -342,6 +343,40 @@ function courtPatternBlock(p) {
     `Cells are their serve targets, shaded by how often they win the point from that spot; the gold arrow is where the return usually comes back. ` +
     `Their signature serve is the <b>${sig.side} ${sig.zone}</b> — ${sig.n} times, <b>${pctI(sig.winPct)}</b> won (${sig.lift >= 0 ? '+' : ''}${Math.round(sig.lift * 100)} vs their average), returned mostly <b>${sig.topReturn.toLowerCase()}</b>` +
     (sig.s1winPct != null ? `; <b>${pctI(sig.s1winPct)}</b> of those points are won inside three shots — the serve+1 quick strike.` : '.')));
+  return b;
+}
+
+function rawPointEndCourt(p, rw) {
+  const b = block('WHERE WINNERS LAND', 'Real bounce point of every winner they hit');
+  const NET = 11.885, BASE = 23.77, WIDE = 4.115;
+  const W = 340, H = 420, mL = 24, mR = 24, mT = 26, mB = 26;
+  const svg = d3.create('svg').attr('viewBox', `0 0 ${W} ${H}`).attr('class', 'd3svg');
+  const g = svg.append('g');
+  const x = d3.scaleLinear().domain([-WIDE, WIDE]).range([mL, W - mR]);
+  const y = d3.scaleLinear().domain([NET, BASE]).range([H - mB, mT]); // net at bottom, opp baseline at top
+  g.append('rect').attr('x', x(-WIDE)).attr('y', y(BASE)).attr('width', x(WIDE) - x(-WIDE)).attr('height', y(NET) - y(BASE)).attr('fill', '#f7faf7').attr('stroke', '#c4c4c4');
+  g.append('line').attr('x1', x(-WIDE)).attr('x2', x(WIDE)).attr('y1', y(NET)).attr('y2', y(NET)).attr('stroke', '#333').attr('stroke-width', 2);
+  g.append('line').attr('x1', x(0)).attr('x2', x(0)).attr('y1', y(NET)).attr('y2', y(NET + 6.4)).attr('stroke', '#e0e0e0'); // center service line hint
+  g.append('text').attr('x', x(-WIDE) - 4).attr('y', y(NET) + 3).attr('text-anchor', 'end').attr('font-size', 9).attr('fill', C.muted).text('net');
+  g.append('text').attr('x', x(-WIDE) - 4).attr('y', y(BASE) + 8).attr('text-anchor', 'end').attr('font-size', 9).attr('fill', C.muted).text('base');
+  (rw.winnerLocs || []).forEach(w => {
+    let bx = w[0], by = w[1];
+    if (by < NET) { by = BASE - by; bx = -bx; }   // reflect through net-center to far court
+    if (by < NET || by > BASE + 0.5) return;
+    g.append('circle').attr('cx', x(Math.max(-WIDE, Math.min(WIDE, bx)))).attr('cy', y(Math.min(BASE, by)))
+      .attr('r', 3.4).attr('fill', w[2] === 'F' ? C.blue : '#6f9bd8').attr('fill-opacity', 0.5);
+  });
+  b.appendChild(svg.node());
+  b.appendChild(el('div', 'd3legend', `<span><i style="background:${C.blue}"></i>forehand winner</span><span><i style="background:#6f9bd8"></i>backhand winner</span>`));
+  // error breakdown (net vs out, by wing)
+  const errs = rw.errorLocs || [];
+  const net = errs.filter(e => e[3] === 'net').length, out = errs.filter(e => e[3] === 'out').length;
+  const fhE = errs.filter(e => e[2] === 'F').length, bhE = errs.filter(e => e[2] === 'B').length;
+  const w = rw.winnerLocs || [], fhW = w.filter(x => x[2] === 'F').length, bhW = w.filter(x => x[2] === 'B').length;
+  b.appendChild(el('p', 'dnote',
+    `${w.length} winners plotted at their real landing point (both ends folded into one). ` +
+    `Forehand ${fhW} winners vs ${fhE} errors; backhand ${bhW} vs ${bhE}. ` +
+    `Of ${errs.length} errors, ${net} found the net and ${out} sailed out — ${net > out ? 'more tentative (net) than wild' : 'more over-hitting (out) than tentative'}.`));
   return b;
 }
 

@@ -18,11 +18,12 @@ Promise.all([
   fetch('raw_players.json').then(r => r.json()).catch(() => ({})),
 ]).then(([d, e, pt, sy, rw]) => {
   DATA = d; ENRICH = e || {}; PAT = pt || {}; SYN = sy || {}; RAW = rw || {};
-  // surface men who have rich raw SwingVision data but no Firestore entry
-  const fsMen = new Set(DATA.men.map(p => p.name));
+  // surface players who have rich raw SwingVision data but no Firestore entry (into the right gender)
+  const fsAll = new Set([...DATA.men, ...DATA.women].map(p => p.name));
   Object.keys(RAW).forEach(name => {
-    if (!fsMen.has(name)) {
-      DATA.men.push({ name, _rawOnly: true, matchesTracked: RAW[name].matches, points: RAW[name].shots });
+    if (!fsAll.has(name)) {
+      const g = RAW[name].gender === 'women' ? 'women' : 'men';
+      DATA[g].push({ name, _rawOnly: true, matchesTracked: RAW[name].matches, points: RAW[name].shots });
     }
   });
   DATA.men.sort((a, b) => (b.matchesTracked || 0) - (a.matchesTracked || 0));

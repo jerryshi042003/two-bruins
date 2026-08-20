@@ -18,7 +18,15 @@ UCLA = {
     'sels': 'Emon Van Loben Sels', 'bismarck': 'Leo Von Bismarck', 'bismark': 'Leo Von Bismarck',
     'visaya': 'Azuma Visaya', 'gonzalez': 'Jorge Plans Gonzalez', 'plans': 'Jorge Plans Gonzalez',
     'chinlund': 'Cassius Chinlund', 'chindlund': 'Cassius Chinlund', 'nguyen': 'Andy Nguyen',
+    # women (raw exports pulled from the UCLA tennis email)
+    'tian fang ran': 'Tian Fang Ran', 'fang ran': 'Tian Fang Ran', 'tian': 'Tian Fang Ran',
+    'wagle': 'Elise Wagle', 'elise': 'Elise Wagle', 'hance': 'Kimmi Hance', 'kimberly': 'Kimmi Hance',
+    'guichard': 'Ahmani Guichard', 'lutkemeyer': 'Anne Lutkemeyer', 'fernandez': 'Bianca Fernandez',
+    'vagramov': 'Sasha Vagramov', 'alexandra vagramov': 'Sasha Vagramov',
 }
+GENDER = {'Tian Fang Ran': 'women', 'Elise Wagle': 'women', 'Kimmi Hance': 'women',
+          'Ahmani Guichard': 'women', 'Anne Lutkemeyer': 'women', 'Bianca Fernandez': 'women',
+          'Sasha Vagramov': 'women'}
 def ucla_of(name):
     n = (name or '').lower()
     for k, v in UCLA.items():
@@ -38,6 +46,7 @@ def blank():
 def main():
     players = defaultdict(blank)
     files = sorted(glob.glob(os.path.join(ROOT, '**', '*.xlsx'), recursive=True))
+    files += sorted(glob.glob(os.path.join(HERE, 'raw', 'email', '*.xlsx')))
     parsed = 0
     for f in files:
         if '~$' in f: continue
@@ -94,6 +103,7 @@ def main():
     out = {}
     for U, a in players.items():
         out[U] = dict(
+            gender=GENDER.get(U, 'men'),
             matches=a['matches'], shots=a['shots'], matchNames=a['matchNames'],
             serveContactHt=stats(a['serveHt']), gsContactHt=stats(a['gsHt']),
             serveSpeed=stats(a['speedServe']), fhSpeed=stats(a['speedFH']), bhSpeed=stats(a['speedBH']),

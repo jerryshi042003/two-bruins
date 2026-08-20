@@ -47,11 +47,24 @@ def read_shots(path):
             si = {h: i for i, h in enumerate(sh)}
             meta = {'host': sr[si.get('Host Team', 0)], 'guest': sr[si.get('Guest Team', 1)],
                     'start': sr[si.get('Start Time', 0)]}
-    return shots, meta
+    # points sheet: (set,game,point) -> server/winner ('host'/'guest') + serve state, for win-rate linking
+    points = {}
+    if 'Points' in wb.sheetnames:
+        pit = wb['Points'].iter_rows(values_only=True)
+        ph = [str(c).strip() if c is not None else '' for c in next(pit)]
+        pi = {h: i for i, h in enumerate(ph)}
+        def pg(row, col):
+            i = pi.get(col)
+            return row[i] if i is not None and i < len(row) else None
+        for r in pit:
+            k = (pg(r, 'Set'), pg(r, 'Game'), pg(r, 'Point'))
+            points[k] = dict(server=str(pg(r, 'Match Server') or ''), winner=str(pg(r, 'Point Winner') or ''),
+                             state=str(pg(r, 'Serve State') or ''), breakPoint=pg(r, 'Break Point'))
+    return shots, meta, points
 
 if __name__ == '__main__':
     path = sys.argv[1] if len(sys.argv) > 1 else 'raw/rudy_youcef_sv.xlsx'
-    shots, meta = read_shots(path)
+    shots, meta, points = read_shots(path)
     print('meta:', meta)
     print('shots:', len(shots))
     # quick rich-metric sanity per player

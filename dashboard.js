@@ -3,6 +3,12 @@
 
 const pct = (x) => (x == null ? '—' : Math.round(x * 100) + '%');
 const el = (tag, cls, html) => { const e = document.createElement(tag); if (cls) e.className = cls; if (html != null) e.innerHTML = html; return e; };
+// SVG star path (adopted from the analytics-repo winner/serve visuals)
+function starPath(outer, inner, n) {
+  const pts = [], off = -Math.PI / 2, a = Math.PI / n;
+  for (let i = 0; i < 2 * n; i++) { const r = i % 2 ? inner : outer; pts.push([Math.cos(i * a + off) * r, Math.sin(i * a + off) * r]); }
+  return 'M' + pts.map(p => p.map(v => v.toFixed(1)).join(',')).join('L') + 'Z';
+}
 
 let DATA = null, ENRICH = {}, PAT = {}, SYN = {}, RAW = {}, gender = 'men', current = {};
 const enr = (p) => ENRICH[`${gender}::${p.name}`] || {};
@@ -305,38 +311,67 @@ function rawMetricsBlock(p, rw) {
 }
 
 function rawServeCourt(p, rw) {
-  const b = block('SERVE PLACEMENT', 'Every serve that went in — real bounce locations');
+  const b = block('SERVE PLACEMENT', 'Where they serve — and how often the point is won from each spot');
   const sv = rw.serveBounces || [];
-  if (sv.length < 20) { b.appendChild(el('p', 'naNote', 'Not enough tracked serves.')); return b; }
-  const NET = 11.885, HALF = 6.4, WIDE = 4.115;
-  const W = 460, H = 300, mL = 60, mR = 60, mT = 26, mB = 30;
+  const sig = rw.serveSignature || {};
+  if (sv.length < 20 && !Object.keys(sig).length) { b.appendChild(el('p', 'naNote', 'Not enough tracked serves.')); return b; }
+  const SINGLES = 4.115, NET = 11.885, SVC = 6.4;
+  const W = 460, H = 360, mL = 34, mR = 34, mT = 62, mB = 30;
   const svg = d3.create('svg').attr('viewBox', `0 0 ${W} ${H}`).attr('class', 'd3svg');
   const g = svg.append('g');
-  const x = d3.scaleLinear().domain([-WIDE, WIDE]).range([mL, W - mR]);
-  const y = d3.scaleLinear().domain([0, HALF]).range([H - mB, mT]); // 0 = net (bottom), 6.4 = service line (top)
-  // box + lines
-  g.append('rect').attr('x', x(-WIDE)).attr('y', y(HALF)).attr('width', x(WIDE) - x(-WIDE)).attr('height', y(0) - y(HALF)).attr('fill', '#f7faf7').attr('stroke', '#c4c4c4');
-  g.append('line').attr('x1', x(0)).attr('x2', x(0)).attr('y1', y(0)).attr('y2', y(HALF)).attr('stroke', '#d8d8d8'); // center line
-  g.append('line').attr('x1', x(-WIDE)).attr('x2', x(WIDE)).attr('y1', y(0)).attr('y2', y(0)).attr('stroke', '#333').attr('stroke-width', 2); // net
-  g.append('text').attr('x', x(-WIDE) - 6).attr('y', y(0) + 3).attr('text-anchor', 'end').attr('font-size', 9).attr('fill', C.muted).text('net');
-  g.append('text').attr('x', x(-WIDE) - 6).attr('y', y(HALF) + 3).attr('text-anchor', 'end').attr('font-size', 9).attr('fill', C.muted).text('svc line');
-  g.append('text').attr('x', (x(-WIDE) + x(0)) / 2).attr('y', mT - 8).attr('text-anchor', 'middle').attr('font-size', 9).attr('font-weight', 700).attr('fill', C.muted).text('AD BOX');
-  g.append('text').attr('x', (x(0) + x(WIDE)) / 2).attr('y', mT - 8).attr('text-anchor', 'middle').attr('font-size', 9).attr('font-weight', 700).attr('fill', C.muted).text('DEUCE BOX');
-  // fold both ends into one far-box frame, plot alpha dots (density heatmap)
+  const x = d3.scaleLinear().domain([-SINGLES, SINGLES]).range([mL, W - mR]);
+  const y = d3.scaleLinear().domain([0, SVC]).range([mT, H - mB]);   // 0 = net (top), 6.4 = service line (bottom)
+  const WH = '#ffffff';
+  // surface + boxes
+  g.append('rect').attr('x', x(-SINGLES)).attr('y', y(0)).attr('width', x(SINGLES) - x(-SINGLES)).attr('height', y(SVC) - y(0)).attr('fill', '#d7e3ef');
+  // wide|T dashed dividers (each box split at half its width)
+  [-SINGLES / 2, SINGLES / 2].forEach(zx => g.append('line').attr('x1', x(zx)).attr('x2', x(zx)).attr('y1', y(0)).attr('y2', y(SVC)).attr('stroke', WH).attr('stroke-dasharray', '4 4').attr('stroke-width', 1));
+  // center service line + singles sidelines + service line
+  [0, -SINGLES, SINGLES].forEach(sx => g.append('line').attr('x1', x(sx)).attr('x2', x(sx)).attr('y1', y(0)).attr('y2', y(SVC)).attr('stroke', WH).attr('stroke-width', 2));
+  g.append('line').attr('x1', x(-SINGLES)).attr('x2', x(SINGLES)).attr('y1', y(SVC)).attr('y2', y(SVC)).attr('stroke', WH).attr('stroke-width', 2);
+  g.append('line').attr('x1', x(-SINGLES)).attr('x2', x(SINGLES)).attr('y1', y(0)).attr('y2', y(0)).attr('stroke', '#2b3a4a').attr('stroke-width', 3); // net
+  g.append('text').attr('x', x(-SINGLES) - 6).attr('y', y(0) + 3).attr('text-anchor', 'end').attr('font-size', 9).attr('fill', C.muted).text('net');
+  g.append('text').attr('x', x(-SINGLES) - 6).attr('y', y(SVC) + 3).attr('text-anchor', 'end').attr('font-size', 9).attr('fill', C.muted).text('svc');
+  // serve dots placed by real depth + lateral, coloured by point outcome
   let aces = 0;
   sv.forEach(s => {
-    let bx = s[0], by = s[1];
-    if (by < NET) { by = 23.77 - by; bx = -bx; }
-    const d = by - NET; if (d < 0 || d > HALF + 0.4) return;
-    const isAce = String(s[2]).toLowerCase() === 'ace'; if (isAce) aces++;
-    g.append('circle').attr('cx', x(Math.max(-WIDE, Math.min(WIDE, bx)))).attr('cy', y(Math.min(HALF, d)))
-      .attr('r', isAce ? 4 : 3.2).attr('fill', isAce ? C.gold : C.blue).attr('fill-opacity', isAce ? 0.9 : 0.14).attr('stroke', 'none');
+    const spot = s[4]; if (!spot) return;
+    const side = spot.split('|')[0];
+    const d = Math.min(SVC, Math.abs(s[1] - NET));
+    const lat = Math.min(SINGLES, Math.abs(s[0]));
+    const px = side === 'ad' ? lat : -lat;
+    if (String(s[2]).toLowerCase() === 'ace') { aces++; g.append('path').attr('transform', `translate(${x(px)},${y(d)})`).attr('d', starPath(6, 3, 5)).attr('fill', C.gold).attr('stroke', '#3a3a3a').attr('stroke-width', 0.5); return; }
+    g.append('circle').attr('cx', x(px)).attr('cy', y(d)).attr('r', 3).attr('fill', s[3] === 1 ? C.win : '#cf8d8d').attr('fill-opacity', 0.5).attr('stroke', '#3a3a3a').attr('stroke-width', 0.35);
   });
+  // zone Win% / Freq chips above the net (from the serve signature)
+  const wins = Object.values(sig).map(z => z.winPct).filter(v => v != null);
+  const maxW = Math.max(...wins), minW = Math.min(...wins);
+  const totalIn = Object.values(sig).reduce((a, z) => a + (z.winN || 0), 0) || 1;
+  const zoneX = { 'deuce|wide': -SINGLES * 0.75, 'deuce|T': -SINGLES * 0.25, 'ad|T': SINGLES * 0.25, 'ad|wide': SINGLES * 0.75 };
+  Object.entries(zoneX).forEach(([k, zx]) => {
+    const z = sig[k]; const cx = x(zx);
+    g.append('text').attr('x', cx).attr('y', y(0) + 14).attr('text-anchor', 'middle').attr('font-size', 9).attr('font-weight', 700).attr('fill', '#33475a').text(k.split('|')[1].toUpperCase());
+    if (!z) return;
+    const wp = z.winPct;
+    const col = wp == null ? '#8a8a8a' : (wins.length > 1 && wp === maxW ? C.win : (wins.length > 1 && wp === minW ? C.loss : C.blue));
+    g.append('rect').attr('x', cx - 26).attr('y', 8).attr('width', 52).attr('height', 36).attr('rx', 8).attr('fill', col);
+    g.append('text').attr('x', cx).attr('y', 24).attr('text-anchor', 'middle').attr('font-size', 14).attr('font-weight', 700).attr('fill', '#fff').text(wp == null ? '—' : Math.round(wp * 100) + '%');
+    g.append('text').attr('x', cx).attr('y', 38).attr('text-anchor', 'middle').attr('font-size', 8.5).attr('fill', 'rgba(255,255,255,.85)').text(`${Math.round((z.winN || 0) / totalIn * 100)}% · ${z.winN}`);
+  });
+  g.append('text').attr('x', x(-SINGLES / 2)).attr('y', H - mB + 16).attr('text-anchor', 'middle').attr('font-size', 10).attr('font-weight', 700).attr('fill', C.muted).text('DEUCE COURT');
+  g.append('text').attr('x', x(SINGLES / 2)).attr('y', H - mB + 16).attr('text-anchor', 'middle').attr('font-size', 10).attr('font-weight', 700).attr('fill', C.muted).text('AD COURT');
   b.appendChild(svg.node());
-  b.appendChild(el('div', 'd3legend', `<span><i style="background:${C.blue};opacity:.5"></i>serve landed</span><span><i style="background:${C.gold}"></i>ace</span>`));
+  b.appendChild(el('div', 'd3legend', `<span><i style="background:${C.win}"></i>point won</span><span><i style="background:#cf8d8d"></i>point lost</span><span><i style="background:${C.gold}"></i>ace</span>`));
+  // pick the best + worst spot for the note
+  const spots = Object.entries(sig).filter(([, z]) => z.winPct != null && z.winN >= 15).sort((a, b2) => b2[1].winPct - a[1].winPct);
+  const nice = k => k.replace('|', ' ').replace('deuce', 'deuce-court').replace('ad', 'ad-court');
+  const best = spots[0], worst = spots[spots.length - 1];
   b.appendChild(el('p', 'dnote',
-    `Each dot is one serve's real bounce point (both service boxes folded together, both ends overlaid), so the dark clusters are where they actually live. ` +
-    `${sv.length} serves plotted, ${aces} aces. ` + (rw.serveSpeed ? `Averaging ${Math.round(rw.serveSpeed.mean)} mph, up to ${Math.round(rw.serveSpeed.p90)}.` : '')));
+    `Chips show the point win% from each serve spot and how much of their serve diet lands there. ` +
+    (best && worst && best[0] !== worst[0]
+      ? `Their <b>${nice(best[0])}</b> serve is the weapon — <b>${Math.round(best[1].winPct * 100)}%</b> of points won (${best[1].winN}); the <b>${nice(worst[0])}</b> is the soft spot at <b>${Math.round(worst[1].winPct * 100)}%</b>. `
+      : '') +
+    `${sv.length} serves plotted, ${aces} aces` + (rw.serveSpeed ? `, averaging ${Math.round(rw.serveSpeed.mean)} mph up to ${Math.round(rw.serveSpeed.p90)}.` : '.')));
   return b;
 }
 
@@ -388,36 +423,55 @@ function courtPatternBlock(p) {
 }
 
 function rawPointEndCourt(p, rw) {
-  const b = block('WHERE WINNERS LAND', 'Real bounce point of every winner they hit');
-  const NET = 11.885, BASE = 23.77, WIDE = 4.115;
-  const W = 340, H = 420, mL = 24, mR = 24, mT = 26, mB = 26;
+  const b = block('WHERE WINNERS LAND', 'Every winner at its real bounce point, with the direction it was travelling');
+  const NET = 11.885, BASE = 23.77, SINGLES = 4.115, DOUBLES = 5.485, SVC = 6.4;
+  const W = 360, H = 440, mL = 24, mR = 24, mT = 22, mB = 40;
+  const FH = C.win, BH = C.blue;
   const svg = d3.create('svg').attr('viewBox', `0 0 ${W} ${H}`).attr('class', 'd3svg');
   const g = svg.append('g');
-  const x = d3.scaleLinear().domain([-WIDE, WIDE]).range([mL, W - mR]);
-  const y = d3.scaleLinear().domain([NET, BASE]).range([H - mB, mT]); // net at bottom, opp baseline at top
-  g.append('rect').attr('x', x(-WIDE)).attr('y', y(BASE)).attr('width', x(WIDE) - x(-WIDE)).attr('height', y(NET) - y(BASE)).attr('fill', '#f7faf7').attr('stroke', '#c4c4c4');
-  g.append('line').attr('x1', x(-WIDE)).attr('x2', x(WIDE)).attr('y1', y(NET)).attr('y2', y(NET)).attr('stroke', '#333').attr('stroke-width', 2);
-  g.append('line').attr('x1', x(0)).attr('x2', x(0)).attr('y1', y(NET)).attr('y2', y(NET + 6.4)).attr('stroke', '#e0e0e0'); // center service line hint
-  g.append('text').attr('x', x(-WIDE) - 4).attr('y', y(NET) + 3).attr('text-anchor', 'end').attr('font-size', 9).attr('fill', C.muted).text('net');
-  g.append('text').attr('x', x(-WIDE) - 4).attr('y', y(BASE) + 8).attr('text-anchor', 'end').attr('font-size', 9).attr('fill', C.muted).text('base');
+  const x = d3.scaleLinear().domain([-DOUBLES, DOUBLES]).range([mL, W - mR]);
+  const y = d3.scaleLinear().domain([NET, BASE]).range([H - mB, mT]);   // net at bottom, far baseline at top
+  const WH = '#ffffff';
+  g.append('defs').html('<marker id="warr" viewBox="0 0 8 8" refX="4" refY="4" markerWidth="4.5" markerHeight="4.5" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#222"/></marker>');
+  // surface (doubles) + singles inset
+  g.append('rect').attr('x', x(-DOUBLES)).attr('y', y(BASE)).attr('width', x(DOUBLES) - x(-DOUBLES)).attr('height', y(NET) - y(BASE)).attr('fill', '#dbe7f1');
+  g.append('rect').attr('x', x(-SINGLES)).attr('y', y(BASE)).attr('width', x(SINGLES) - x(-SINGLES)).attr('height', y(NET) - y(BASE)).attr('fill', '#d0e0ee');
+  // lines: doubles + singles sidelines, baseline, service line, centre service line + centre mark
+  [-DOUBLES, DOUBLES, -SINGLES, SINGLES].forEach(sx => g.append('line').attr('x1', x(sx)).attr('x2', x(sx)).attr('y1', y(NET)).attr('y2', y(BASE)).attr('stroke', WH).attr('stroke-width', 2));
+  g.append('line').attr('x1', x(-SINGLES)).attr('x2', x(SINGLES)).attr('y1', y(BASE)).attr('y2', y(BASE)).attr('stroke', WH).attr('stroke-width', 2); // baseline
+  g.append('line').attr('x1', x(-SINGLES)).attr('x2', x(SINGLES)).attr('y1', y(NET + SVC)).attr('y2', y(NET + SVC)).attr('stroke', WH).attr('stroke-width', 2); // service line
+  g.append('line').attr('x1', x(0)).attr('x2', x(0)).attr('y1', y(NET)).attr('y2', y(NET + SVC)).attr('stroke', WH).attr('stroke-width', 2); // centre service line
+  g.append('line').attr('x1', x(0)).attr('x2', x(0)).attr('y1', y(BASE)).attr('y2', y(BASE - 0.4)).attr('stroke', WH).attr('stroke-width', 2); // centre mark
+  g.append('line').attr('x1', x(-DOUBLES)).attr('x2', x(DOUBLES)).attr('y1', y(NET)).attr('y2', y(NET)).attr('stroke', '#2b3a4a').attr('stroke-width', 3); // net
+  g.append('text').attr('x', x(-DOUBLES) - 4).attr('y', y(NET) + 3).attr('text-anchor', 'end').attr('font-size', 9).attr('fill', C.muted).text('net');
+  g.append('text').attr('x', x(-DOUBLES) - 4).attr('y', y(BASE) + 3).attr('text-anchor', 'end').attr('font-size', 9).attr('fill', C.muted).text('base');
+  const clampX = v => Math.max(-DOUBLES, Math.min(DOUBLES, v));
+  let fhW = 0, bhW = 0, vol = 0;
   (rw.winnerLocs || []).forEach(w => {
-    let bx = w[0], by = w[1];
-    if (by < NET) { by = BASE - by; bx = -bx; }   // reflect through net-center to far court
-    if (by < NET || by > BASE + 0.5) return;
-    g.append('circle').attr('cx', x(Math.max(-WIDE, Math.min(WIDE, bx)))).attr('cy', y(Math.min(BASE, by)))
-      .attr('r', 3.4).attr('fill', w[2] === 'F' ? C.blue : '#6f9bd8').attr('fill-opacity', 0.5);
+    let bx = w[0], by = w[1], hx = w[3], hy = w[4];
+    if (by < NET) { by = BASE - by; bx = -bx; if (hx != null) { hx = -hx; hy = BASE - hy; } }  // fold to far half
+    if (by < NET || by > BASE + 0.6) return;
+    const px = x(clampX(bx)), py = y(Math.min(BASE, by));
+    const isVol = w[5] === 1; const col = isVol ? C.gold : (w[2] === 'B' ? BH : FH);
+    if (w[2] === 'B') bhW++; else if (w[2] === 'F') fhW++; if (isVol) vol++;
+    // direction arrow: from just before the landing, along the contact->bounce heading, arrowhead at the bounce
+    if (hx != null && hy != null) {
+      const dx = bx - hx, dy = by - hy, L = Math.hypot(dx, dy) || 1, u = 1.4;
+      g.append('line').attr('x1', x(clampX(bx - dx / L * u))).attr('y1', y(by - dy / L * u)).attr('x2', px).attr('y2', py)
+        .attr('stroke', '#222').attr('stroke-width', 0.7).attr('stroke-opacity', 0.35).attr('marker-end', 'url(#warr)');
+    }
+    if (isVol) g.append('path').attr('transform', `translate(${px},${py})`).attr('d', starPath(6, 3, 5)).attr('fill', col).attr('stroke', '#222').attr('stroke-width', 0.6);
+    else g.append('circle').attr('cx', px).attr('cy', py).attr('r', 3.6).attr('fill', col).attr('fill-opacity', 0.72).attr('stroke', '#222').attr('stroke-width', 0.5);
   });
   b.appendChild(svg.node());
-  b.appendChild(el('div', 'd3legend', `<span><i style="background:${C.blue}"></i>forehand winner</span><span><i style="background:#6f9bd8"></i>backhand winner</span>`));
-  // error breakdown (net vs out, by wing)
+  b.appendChild(el('div', 'd3legend', `<span><i style="background:${FH}"></i>forehand</span><span><i style="background:${BH}"></i>backhand</span><span><i style="background:${C.gold}"></i>volley</span>`));
   const errs = rw.errorLocs || [];
   const net = errs.filter(e => e[3] === 'net').length, out = errs.filter(e => e[3] === 'out').length;
   const fhE = errs.filter(e => e[2] === 'F').length, bhE = errs.filter(e => e[2] === 'B').length;
-  const w = rw.winnerLocs || [], fhW = w.filter(x => x[2] === 'F').length, bhW = w.filter(x => x[2] === 'B').length;
   b.appendChild(el('p', 'dnote',
-    `${w.length} winners plotted at their real landing point (both ends folded into one). ` +
-    `Forehand ${fhW} winners vs ${fhE} errors; backhand ${bhW} vs ${bhE}. ` +
-    `Of ${errs.length} errors, ${net} found the net and ${out} sailed out — ${net > out ? 'more tentative (net) than wild' : 'more over-hitting (out) than tentative'}.`));
+    `${fhW + bhW + vol} winners at their real landing point (both ends folded together); each arrow is the ball's heading as it landed. ` +
+    `Forehand ${fhW} winners vs ${fhE} errors; backhand ${bhW} vs ${bhE}${vol ? `; ${vol} at the net` : ''}. ` +
+    `Of ${errs.length} errors, ${net} found the net and ${out} sailed long — ${net > out ? 'more tentative than wild' : 'more over-hitting than tentative'}.`));
   return b;
 }
 

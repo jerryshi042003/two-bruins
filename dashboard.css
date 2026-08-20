@@ -141,3 +141,5 @@
 .matchRow .mw { text-align: right; }
 .matchRow .mw a { color: var(--blue); font-weight: 700; font-size: 12px; text-decoration: none; }
 .matchRow .mw a:hover { text-decoration: underline; }
+
+.tbP .rawtag { font-weight: 400; color: #999; font-size: 10px; font-style: normal; letter-spacing: .04em; }

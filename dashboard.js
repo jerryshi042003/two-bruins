@@ -18,6 +18,14 @@ Promise.all([
   fetch('raw_players.json').then(r => r.json()).catch(() => ({})),
 ]).then(([d, e, pt, sy, rw]) => {
   DATA = d; ENRICH = e || {}; PAT = pt || {}; SYN = sy || {}; RAW = rw || {};
+  // surface men who have rich raw SwingVision data but no Firestore entry
+  const fsMen = new Set(DATA.men.map(p => p.name));
+  Object.keys(RAW).forEach(name => {
+    if (!fsMen.has(name)) {
+      DATA.men.push({ name, _rawOnly: true, matchesTracked: RAW[name].matches, points: RAW[name].shots });
+    }
+  });
+  DATA.men.sort((a, b) => (b.matchesTracked || 0) - (a.matchesTracked || 0));
   const totals = ['men', 'women'].reduce((a, g) => {
     a.players += d[g].length; a.pts += d[g].reduce((s, p) => s + p.points, 0); return a;
   }, { players: 0, pts: 0 });
@@ -41,8 +49,8 @@ function renderTabs() {
   const wrap = document.getElementById('playerTabs');
   wrap.innerHTML = '';
   DATA[gender].forEach((p, i) => {
-    const b = el('button', 'pTab' + (gender === 'women' ? ' w' : ''),
-      `${p.name}<small>${p.matchesTracked} match${p.matchesTracked > 1 ? 'es' : ''} · ${p.points} pts</small>`);
+    const sub = p._rawOnly ? `${p.matchesTracked} matches · raw` : `${p.matchesTracked} match${p.matchesTracked > 1 ? 'es' : ''} · ${p.points} pts`;
+    const b = el('button', 'pTab' + (gender === 'women' ? ' w' : ''), `${p.name}<small>${sub}</small>`);
     b.addEventListener('click', () => { current[gender] = i; select(); });
     wrap.appendChild(b);
   });
@@ -63,14 +71,17 @@ function renderLeaderboard() {
   table.appendChild(head);
   list.forEach(p => {
     const r = el('div', 'tbRow');
+    const rw = RAW[p.name];
+    const we = (p.winTotal != null && p.errTotal != null) ? `${p.winTotal}:${p.errTotal}`
+      : (rw && rw.serveSpeed ? `${Math.round(rw.serveSpeed.mean)}mph` : '—');
     r.innerHTML =
-      `<span class="tbP">${p.name}</span>` +
+      `<span class="tbP">${p.name}${p._rawOnly ? ' <em class="rawtag">raw</em>' : ''}</span>` +
       `<span>${p.matchesTracked}</span>` +
-      `<span>${p.points}</span>` +
+      `<span>${p._rawOnly ? (rw ? Math.round(rw.shots / 1000) + 'k sh' : '—') : p.points}</span>` +
       `<span class="tbV">${pct(p.winPct)}</span>` +
-      `<span>${pct(p.firstInPct)}</span>` +
+      `<span>${p._rawOnly && rw && rw.serveP1 ? pct(rw.serveP1.fhShare) : pct(p.firstInPct)}</span>` +
       `<span>${p.bp && p.bp.convPct != null ? pct(p.bp.convPct) : '—'}</span>` +
-      `<span class="tbWE">${p.winTotal}:${p.errTotal}</span>`;
+      `<span class="tbWE">${we}</span>`;
     r.addEventListener('click', () => {
       current[gender] = DATA[gender].indexOf(p);
       select();
@@ -90,6 +101,20 @@ function select() {
 function renderPanel(p) {
   const panel = document.getElementById('playerPanel');
   panel.innerHTML = '';
+
+  // raw-only men: rich SwingVision shot data, no Firestore point tagging
+  if (p._rawOnly) {
+    const rw = raw(p);
+    const head = el('div', 'pHead');
+    head.appendChild(el('h2', null, p.name));
+    head.appendChild(el('div', 'pMeta', `RAW SWINGVISION<br>${rw.matches} matches · ${rw.shots.toLocaleString()} shots`));
+    panel.appendChild(head);
+    panel.appendChild(rawMetricsBlock(p, rw));
+    panel.appendChild(rawServeCourt(p, rw));
+    if ((rw.winnerLocs || []).length >= 20) panel.appendChild(rawPointEndCourt(p, rw));
+    panel.appendChild(rawMatchesBlock(p, rw));
+    return;
+  }
 
   const e = enr(p);
   // header
@@ -240,6 +265,21 @@ function headlineBlock(p) {
     b.appendChild(row);
   }
   if (!s.strength && !s.weakness) b.appendChild(el('p', 'naNote', 'Sample still thin — read the sections below directly.'));
+  return b;
+}
+
+function rawMatchesBlock(p, rw) {
+  const b = block('THE MATCHES', `${rw.matches} tracked in the raw data`);
+  const wrap = el('div', 'matchList');
+  (rw.matchNames || []).forEach(nm => {
+    const clean = nm.replace(/\.xlsx$/i, '').replace(/_/g, ' ').replace(/\b\d[\d\-.:]*\b/g, '').trim();
+    const row = el('div', 'matchRow');
+    row.appendChild(el('div', 'mo', clean));
+    row.appendChild(el('div', 'mn', ''));
+    row.appendChild(el('div', 'mw', ''));
+    wrap.appendChild(row);
+  });
+  b.appendChild(wrap);
   return b;
 }
 
